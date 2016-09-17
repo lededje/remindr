@@ -4,28 +4,30 @@ import Counter from '../components/counter';
 import * as counterActions from '../actions/counterActions';
 import { connect } from 'react-redux';
 
-// @connect(state => ({
-//   state: state.counter
-// }))
-class CounterApp extends Component {
-  constructor(props) {
-    super(props);
-  }
-
+@connect(
+  state => ({
+    state: state.counter,
+  }),
+  dispatch => ({
+    actions: bindActionCreators(counterActions, dispatch),
+  })
+)
+export default class CounterApp extends Component {
   render() {
     const { state, actions } = this.props;
     return (
       <Counter
         counter={state.count}
-        {...actions} />
+        {...actions}
+      />
     );
   }
 }
 
-export default connect(state => ({
-    state: state.counter
-  }),
-  (dispatch) => ({
-    actions: bindActionCreators(counterActions, dispatch)
-  })
-)(CounterApp);
+// export default connect(state => ({
+//     state: state.counter
+//   }),
+//   (dispatch) => ({
+//     actions: bindActionCreators(counterActions, dispatch)
+//   })
+// )(CounterApp);
