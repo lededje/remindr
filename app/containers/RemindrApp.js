@@ -12,7 +12,7 @@ import { connect } from 'react-redux';
     actions: bindActionCreators(counterActions, dispatch),
   })
 )
-export default class CounterApp extends Component {
+export default class RemindrApp extends Component {
   render() {
     const { state, actions } = this.props;
     return (

@@ -1,0 +1,11 @@
+exports[`test changes the class when hovered 1`] = `
+<View
+  style={Object {}}>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail">
+    Lorem
+  </Text>
+</View>
+`;

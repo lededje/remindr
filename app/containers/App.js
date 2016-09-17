@@ -4,16 +4,16 @@ import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 
 import * as reducers from '../reducers';
-import CounterApp from './counterApp';
+import RemindrApp from './RemindrApp';
 
 const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
 const reducer = combineReducers(reducers);
 const store = createStoreWithMiddleware(reducer);
 
-export default function app() {
+export default function App() {
   return (
     <Provider store={store}>
-      <CounterApp />
+      <RemindrApp />
     </Provider>
   );
 }

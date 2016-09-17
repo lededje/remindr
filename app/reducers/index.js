@@ -1,5 +1,5 @@
-import counter from './counter';
+import tasks from './tasks';
 
 export {
-  counter,
+  tasks,
 };
