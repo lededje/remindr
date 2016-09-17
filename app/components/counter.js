@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
 export default function counter({ counter, increment, decrement }) {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>{counter}</Text>
+      <Text>{counter} lorem</Text>
       <TouchableOpacity onPress={increment} style={styles.button}>
         <Text>up</Text>
       </TouchableOpacity>
