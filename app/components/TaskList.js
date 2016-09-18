@@ -5,6 +5,9 @@ import {
   View,
   ListView,
 } from 'react-native';
+import I18n from 'react-native-i18n'
+
+import Task from './Task';
 
 export default class List extends Component {
 
@@ -26,9 +29,9 @@ export default class List extends Component {
     this.dataSource = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
   }
 
-  renderRow(task) {
+  static renderRow(task) {
     return (
-      <Task {...task} />
+      <Task id={task.id} title={task.title} timestamp={task.timestamp} />
     );
   }
 
