@@ -26,6 +26,7 @@ rules:
   indent: [1, 2, { SwitchCase: 1, VariableDeclarator: 2 }]
   id-length: [1, { min: 2, exceptions: [_, e, i, k, v, x, y] }]
   no-underscore-dangle: 0
+  class-methods-use-this: 0
 
   ### React
   jsx-quotes: [1, prefer-double]
@@ -51,3 +52,6 @@ rules:
   react/wrap-multilines: 2
   react/jsx-filename-extension: 0
   react/no-unused-prop-types: [2, {skipShapeProps: true}]
+
+  ### Import
+  import/no-extraneous-dependencies: 0
