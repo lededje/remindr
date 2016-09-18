@@ -26,6 +26,7 @@ rules:
   indent: [1, 2, { SwitchCase: 1, VariableDeclarator: 2 }]
   id-length: [1, { min: 2, exceptions: [_, e, i, k, v, x, y] }]
   no-underscore-dangle: 0
+  class-methods-use-this: 0
 
   ### React
   jsx-quotes: [1, prefer-double]
