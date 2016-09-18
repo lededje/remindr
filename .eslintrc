@@ -52,3 +52,6 @@ rules:
   react/wrap-multilines: 2
   react/jsx-filename-extension: 0
   react/no-unused-prop-types: [2, {skipShapeProps: true}]
+
+  ### Import
+  import/no-extraneous-dependencies: 0

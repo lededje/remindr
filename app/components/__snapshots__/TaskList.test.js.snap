@@ -1,3 +1,25 @@
+exports[`test renders an empty list component with message 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1
+    }
+  }>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Object {
+        "marginTop": 20,
+        "textAlign": "center"
+      }
+    }>
+    This list is empty
+  </Text>
+</View>
+`;
+
 exports[`test renders the task list component 1`] = `
 <View
   style={
