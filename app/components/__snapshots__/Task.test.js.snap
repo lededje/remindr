@@ -1,4 +1,4 @@
-exports[`test should include all necessary props 1`] = `
+exports[`test renders the task component 1`] = `
 <View
   style={
     Object {
