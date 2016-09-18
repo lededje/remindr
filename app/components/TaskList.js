@@ -15,7 +15,7 @@ export default class List extends Component {
       title: React.PropTypes.string.isRequired,
       timestamp: React.PropTypes.number.isRequired,
     })).isRequired,
-  };
+  }
 
   static defaultProps = {
     tasks: [],
