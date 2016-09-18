@@ -46,7 +46,7 @@ export default class List extends Component {
           />
         )}
         {this.props.tasks.length > 0 && (
-          <Text>This list is empty</Text>
+          <Text style={styles.emptyMessage}>This list is empty</Text>
         )}
       </View>
     );
@@ -56,5 +56,9 @@ export default class List extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  emptyMessage: {
+    textAlign: 'center',
+    marginTop: 20,
   },
 });
