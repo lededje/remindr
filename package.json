@@ -20,14 +20,9 @@
     "redux-thunk": "2.1.0"
   },
   "devDependencies": {
-    "babel-eslint": "^6.1.2",
     "babel-jest": "^15.0.0",
     "babel-preset-react-native": "^1.9.0",
-    "eslint": "^3.1.1",
-    "eslint-config-shakacode": "^5.0.0",
-    "eslint-plugin-import": "^1.11.1",
-    "eslint-plugin-jsx-a11y": "^2.0.1",
-    "eslint-plugin-react": "^5.2.2",
+    "eslint-config-airbnb": "^11.1.0",
     "jest": "^15.1.1",
     "jest-react-native": "^15.0.0",
     "react-test-renderer": "^15.3.1"
