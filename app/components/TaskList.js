@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import Task from './Task';
 import {
   StyleSheet,
   View,
   ListView,
+  Text,
 } from 'react-native';
+import Task from './Task';
 
 export default class List extends Component {
 
@@ -28,7 +29,7 @@ export default class List extends Component {
 
   renderRow(task) {
     return (
-      <Task {...task} />
+      <Task id={task.id} title={task.title} timestamp={task.timestamp} />
     );
   }
 
@@ -37,11 +38,16 @@ export default class List extends Component {
 
     return (
       <View style={styles.container}>
-        <ListView
-          ref={(lv) => { this.listView = lv; }}
-          dataSource={dataSource}
-          renderRow={this.renderRow}
-        />
+        {this.props.tasks.length > 0 && (
+          <ListView
+            ref={(lv) => { this.listView = lv; }}
+            dataSource={dataSource}
+            renderRow={this.renderRow}
+          />
+        )}
+        {this.props.tasks.length === 0 && (
+          <Text style={styles.emptyMessage}>This list is empty</Text>
+        )}
       </View>
     );
   }
@@ -50,5 +56,9 @@ export default class List extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  emptyMessage: {
+    textAlign: 'center',
+    marginTop: 20,
   },
 });

@@ -1,6 +1,7 @@
 package com.remindr;
 
 import com.facebook.react.ReactActivity;
+import com.i18n.reactnativei18n.ReactNativeI18n;
 
 public class MainActivity extends ReactActivity {
 
