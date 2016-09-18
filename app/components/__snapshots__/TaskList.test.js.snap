@@ -1,0 +1,109 @@
+exports[`test renders the task list component 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1
+    }
+  }>
+  <ScrollView
+    dataSource={
+      ListViewDataSource {
+        "items": 2
+      }
+    }
+    initialListSize={10}
+    onContentSizeChange={[Function bound _onContentSizeChange]}
+    onEndReachedThreshold={1000}
+    onKeyboardDidHide={undefined}
+    onKeyboardDidShow={undefined}
+    onKeyboardWillHide={undefined}
+    onKeyboardWillShow={undefined}
+    onLayout={[Function bound _onLayout]}
+    onScroll={[Function bound _onScroll]}
+    pageSize={1}
+    removeClippedSubviews={true}
+    renderRow={[Function renderRow]}
+    scrollEventThrottle={50}
+    scrollRenderAheadDistance={1000}
+    stickyHeaderIndices={Array []}>
+    <View
+      style={
+        Object {
+          "backgroundColor": "#fff",
+          "borderBottomWidth": 0.5,
+          "borderColor": "#eee",
+          "paddingBottom": 20,
+          "paddingLeft": 35,
+          "paddingRight": 35,
+          "paddingTop": 20
+        }
+      }>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "fontSize": 14,
+            "fontWeight": "300",
+            "marginBottom": 10
+          }
+        }>
+        Test task 1
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "color": "#999",
+            "fontSize": 12,
+            "fontWeight": "300"
+          }
+        }>
+        1
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "backgroundColor": "#fff",
+          "borderBottomWidth": 0.5,
+          "borderColor": "#eee",
+          "paddingBottom": 20,
+          "paddingLeft": 35,
+          "paddingRight": 35,
+          "paddingTop": 20
+        }
+      }>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "fontSize": 14,
+            "fontWeight": "300",
+            "marginBottom": 10
+          }
+        }>
+        Test task 2
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "color": "#999",
+            "fontSize": 12,
+            "fontWeight": "300"
+          }
+        }>
+        2
+      </Text>
+    </View>
+  </ScrollView>
+</View>
+`;

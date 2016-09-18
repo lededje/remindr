@@ -1,0 +1,41 @@
+exports[`test renders the task component 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "#fff",
+      "borderBottomWidth": 0.5,
+      "borderColor": "#eee",
+      "paddingBottom": 20,
+      "paddingLeft": 35,
+      "paddingRight": 35,
+      "paddingTop": 20
+    }
+  }>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Object {
+        "fontSize": 14,
+        "fontWeight": "300",
+        "marginBottom": 10
+      }
+    }>
+    Test Task
+  </Text>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Object {
+        "color": "#999",
+        "fontSize": 12,
+        "fontWeight": "300"
+      }
+    }>
+    1474160934141
+  </Text>
+</View>
+`;
