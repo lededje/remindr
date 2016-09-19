@@ -6,3 +6,10 @@ export function add(task) {
     task,
   };
 }
+
+export function changeFilterType(filterType) {
+  return {
+    type: types.CHANGE_FILTER_TYPE,
+    filterType,
+  };
+}
