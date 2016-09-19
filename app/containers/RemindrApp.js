@@ -20,6 +20,10 @@ export default class RemindrApp extends Component {
   static propTypes = {
     tasks: React.PropTypes.array.isRequired,
     filterType: React.PropTypes.string.isRequired,
+
+    actions: React.PropTypes.shape({
+      changeFilterType: React.PropTypes.func.isRequired,
+    }).isRequired,
   }
 
   render() {
@@ -27,7 +31,10 @@ export default class RemindrApp extends Component {
       <View style={styles.container}>
         <Header />
         <TaskList tasks={this.props.tasks} />
-        <Navigation onPress={taskActions.changeFilterType} selectedType={this.props.filterType} />
+        <Navigation
+          onPress={this.props.actions.changeFilterType}
+          selectedType={this.props.filterType}
+        />
       </View>
     );
   }
