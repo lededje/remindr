@@ -3,7 +3,7 @@ node_js:
   - "6"
 sudo: false
 script:
-  - npm test
+  - npm run travis
 notifications:
   email: false
 cache:
