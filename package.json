@@ -9,7 +9,8 @@
   },
   "jest": {
     "preset": "jest-react-native",
-    "testEnvironment": "node"
+    "testEnvironment": "node",
+    "collectCoverageFrom": ["app/**/*.js", "!**/*.test.js"]
   },
   "dependencies": {
     "babel-plugin-transform-decorators-legacy": "^1.3.4",
