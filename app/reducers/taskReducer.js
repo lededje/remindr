@@ -16,7 +16,7 @@ export default function tasks(state = initialState, action = {}) {
         ...state,
         filterType: action.filterType,
       };
-    case types.ADD:
+    case types.ADD_TASK:
       return {
         ...state,
         tasks: [

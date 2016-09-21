@@ -11,7 +11,7 @@ describe('Task Reducer', () => {
 
   it('adds a task', () => {
     const action = {
-      type: types.ADD,
+      type: types.ADD_TASK,
       task: {
         id: 1,
         title: 'For the tests',
