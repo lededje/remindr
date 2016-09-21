@@ -1,0 +1,26 @@
+exports[`test renders the header component 1`] = `
+<View
+  style={
+    Object {
+      "borderBottomWidth": 1,
+      "borderColor": "#d9dbdb"
+    }
+  }>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Object {
+        "fontSize": 29,
+        "fontWeight": "300",
+        "paddingBottom": 20,
+        "paddingLeft": 32,
+        "paddingRight": 32,
+        "paddingTop": 20
+      }
+    }>
+    Remindr
+  </Text>
+</View>
+`;
