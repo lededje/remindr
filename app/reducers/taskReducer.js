@@ -1,11 +1,11 @@
 import * as types from '../actions/actionTypes';
 
-const initialState = {
+export const initialState = {
   filterType: 'CURRENT',
   tasks: [{
     id: 0,
     title: 'Create a new task',
-    timestamp: Date.now(),
+    timestamp: 0,
   }],
 };
 
@@ -15,6 +15,14 @@ export default function tasks(state = initialState, action = {}) {
       return {
         ...state,
         filterType: action.filterType,
+      };
+    case types.ADD_TASK:
+      return {
+        ...state,
+        tasks: [
+          ...state.tasks,
+          { ...action.task },
+        ],
       };
     default:
       return state;
