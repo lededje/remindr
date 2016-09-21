@@ -52,10 +52,13 @@ describe('Task Reducer', () => {
     expect(reducer(state, action)).toEqual(result);
   });
 
-  it('changes task types', () => {
+  it('changes task types without changing others', () => {
     const state = {
       tasks: [{
         id: 1,
+        type: 'CURRENT',
+      }, {
+        id: 2,
         type: 'CURRENT',
       }],
     };
@@ -70,7 +73,25 @@ describe('Task Reducer', () => {
       tasks: [{
         id: 1,
         type: 'DONE',
+      }, {
+        id: 2,
+        type: 'CURRENT',
       }],
+    };
+
+    expect(reducer(state, action)).toEqual(result);
+  });
+
+  it('changes the current filter type', () => {
+    const state = {
+      filterType: 'ONE',
+    };
+    const action = {
+      type: types.CHANGE_FILTER_TYPE,
+      filterType: 'TWO',
+    };
+    const result = {
+      filterType: 'TWO',
     };
 
     expect(reducer(state, action)).toEqual(result);
