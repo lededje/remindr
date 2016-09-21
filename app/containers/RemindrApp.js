@@ -3,7 +3,7 @@ import { View, StyleSheet } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import * as taskActions from '../actions/taskActions';
+import * as actions from '../actions';
 import Header from '../components/Header';
 import TaskList from '../components/TaskList';
 import Navigation from '../components/Navigation';
@@ -11,9 +11,10 @@ import Navigation from '../components/Navigation';
 @connect(
   state => state.tasks,
   dispatch => ({
-    actions: bindActionCreators(taskActions, dispatch),
+    actions: bindActionCreators(actions, dispatch),
   }),
 )
+// A decorator should be able to bind the a plain function but they don't at the moment.
 // eslint-disable-next-line react/prefer-stateless-function
 export default class RemindrApp extends Component {
 
