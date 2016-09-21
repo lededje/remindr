@@ -1,10 +1,11 @@
 import React from 'react';
-import Navigation from './Navigation';
 import renderer from 'react-test-renderer';
+import Navigation from './Navigation';
 
 it('renders the navigation component', () => {
+  const dummyPressCallback = () => ('');
   const component = renderer.create(
-    <Navigation selectedType={'CURRENT'} onPress={() => {}} />
+    <Navigation selectedType={'CURRENT'} onPress={dummyPressCallback} />
   );
   const tree = component.toJSON();
   expect(tree).toMatchSnapshot();
