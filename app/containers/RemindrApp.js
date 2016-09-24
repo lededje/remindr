@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { KeyboardAwareView } from 'react-native-keyboard-aware-view';
 
 import * as actions from '../actions';
 import Header from '../components/Header';
 import TaskList from '../components/TaskList';
+import AddTaskInput from '../components/AddTaskInput';
 import Navigation from '../components/Navigation';
 
 @connect(
@@ -31,7 +33,10 @@ export default class RemindrApp extends Component {
     return (
       <View style={styles.container}>
         <Header />
-        <TaskList tasks={this.props.tasks} />
+        <KeyboardAwareView animated={true}>
+          <TaskList tasks={this.props.tasks} />
+          <AddTaskInput onSubmit={this.props.actions.addTask} />
+        </KeyboardAwareView>
         <Navigation
           onPress={this.props.actions.changeFilterType}
           selectedType={this.props.filterType}
