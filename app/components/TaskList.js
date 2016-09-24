@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 import {
   StyleSheet,
   View,
-  ListView,
   Text,
+  ScrollView,
+  ListView,
 } from 'react-native';
 import Task from './Task';
 
-export default class List extends Component {
+export default class TaskList extends Component {
 
   static propTypes = {
     tasks: React.PropTypes.arrayOf(React.PropTypes.shape({
@@ -39,11 +40,13 @@ export default class List extends Component {
     return (
       <View style={styles.container}>
         {this.props.tasks.length > 0 && (
-          <ListView
-            ref={(lv) => { this.listView = lv; }}
-            dataSource={dataSource}
-            renderRow={this.renderRow}
-          />
+          <ScrollView keyboardDismissMode="on-drag">
+            <ListView
+              ref={(lv) => { this.listView = lv; }}
+              dataSource={dataSource}
+              renderRow={this.renderRow}
+            />
+          </ScrollView>
         )}
         {this.props.tasks.length === 0 && (
           <Text style={styles.emptyMessage}>This list is empty</Text>

@@ -1,5 +1,5 @@
+import { maxBy } from 'lodash';
 import * as types from './types';
-
 // List actions
 
 export function changeFilterType(filterType) {
@@ -11,13 +11,28 @@ export function changeFilterType(filterType) {
 
 // Task Actions
 
-export function addTask(task) {
-  return {
-    type: types.ADD_TASK,
-    task,
+export function addTask({
+  type = 'CURRENT',
+  timestamp = Date.now(),
+  title,
+}) {
+  return (dispatch, getState) => {
+    const { tasks } = getState().tasks;
+    const maxTask = maxBy(tasks, task => task.id);
+    const maxTaskId = maxTask && maxTask.id && maxTask.id + 1;
+    const id = maxTaskId || 1;
+
+    dispatch({
+      type: types.ADD_TASK,
+      task: {
+        id,
+        type,
+        timestamp,
+        title,
+      },
+    });
   };
 }
-
 
 export function changeTaskType(id, type) {
   return {

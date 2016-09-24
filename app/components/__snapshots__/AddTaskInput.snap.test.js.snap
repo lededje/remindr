@@ -1,0 +1,24 @@
+exports[`Add Task Input renders the component 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "#fff",
+      "borderTopColor": "#d9dbdb",
+      "borderTopWidth": 1,
+      "padding": 10
+    }
+  }>
+  <TextInput
+    autoCapitalize="sentences"
+    blurOnSubmit={true}
+    enablesReturnKeyAutomatically={true}
+    onChange={[Function bound onChange]}
+    onSubmitEditing={[Function bound onSubmit]}
+    style={
+      Object {
+        "height": 19
+      }
+    }
+    value="" />
+</View>
+`;
