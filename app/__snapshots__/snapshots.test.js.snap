@@ -1,0 +1,369 @@
+exports[`Component snapshots renders an empty list component with message 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1
+    }
+  }>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Object {
+        "marginTop": 20,
+        "textAlign": "center"
+      }
+    }>
+    This list is empty
+  </Text>
+</View>
+`;
+
+exports[`Component snapshots renders the component 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "#fff",
+      "borderTopColor": "#d9dbdb",
+      "borderTopWidth": 1,
+      "padding": 10
+    }
+  }>
+  <TextInput
+    autoCapitalize="sentences"
+    blurOnSubmit={true}
+    enablesReturnKeyAutomatically={true}
+    onChange={[Function bound onChange]}
+    onSubmitEditing={[Function bound onSubmit]}
+    style={
+      Object {
+        "height": 19
+      }
+    }
+    value="" />
+</View>
+`;
+
+exports[`Component snapshots renders the header component 1`] = `
+<View
+  style={
+    Object {
+      "borderBottomWidth": 1,
+      "borderColor": "#d9dbdb"
+    }
+  }>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Object {
+        "fontSize": 29,
+        "fontWeight": "300",
+        "paddingBottom": 20,
+        "paddingLeft": 32,
+        "paddingRight": 32,
+        "paddingTop": 20
+      }
+    }>
+    Remindr
+  </Text>
+</View>
+`;
+
+exports[`Component snapshots renders the navigation component 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "#fff",
+      "borderTopColor": "#d9dbdb",
+      "borderTopWidth": 1
+    }
+  }>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "justifyContent": "center"
+      }
+    }>
+    <View
+      accessibilityComponentType={undefined}
+      accessibilityLabel={undefined}
+      accessibilityTraits={undefined}
+      accessible={true}
+      hitSlop={undefined}
+      onLayout={undefined}
+      onResponderGrant={[Function bound touchableHandleResponderGrant]}
+      onResponderMove={[Function bound touchableHandleResponderMove]}
+      onResponderRelease={[Function bound touchableHandleResponderRelease]}
+      onResponderTerminate={[Function bound touchableHandleResponderTerminate]}
+      onResponderTerminationRequest={[Function bound touchableHandleResponderTerminationRequest]}
+      onStartShouldSetResponder={[Function bound touchableHandleStartShouldSetResponder]}
+      style={
+        Array [
+          Object {
+            "backgroundColor": "transparent"
+          },
+          undefined
+        ]
+      }
+      testID={undefined}>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontSize": 11,
+              "fontWeight": "300",
+              "padding": 12
+            }
+          ]
+        }>
+        DEFERRED
+      </Text>
+    </View>
+    <View
+      accessibilityComponentType={undefined}
+      accessibilityLabel={undefined}
+      accessibilityTraits={undefined}
+      accessible={true}
+      hitSlop={undefined}
+      onLayout={undefined}
+      onResponderGrant={[Function bound touchableHandleResponderGrant]}
+      onResponderMove={[Function bound touchableHandleResponderMove]}
+      onResponderRelease={[Function bound touchableHandleResponderRelease]}
+      onResponderTerminate={[Function bound touchableHandleResponderTerminate]}
+      onResponderTerminationRequest={[Function bound touchableHandleResponderTerminationRequest]}
+      onStartShouldSetResponder={[Function bound touchableHandleStartShouldSetResponder]}
+      style={
+        Array [
+          Object {
+            "backgroundColor": "transparent"
+          },
+          undefined
+        ]
+      }
+      testID={undefined}>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontSize": 11,
+              "fontWeight": "300",
+              "padding": 12
+            },
+            Object {
+              "backgroundColor": "#03a9f4"
+            },
+            Object {
+              "color": "#fff"
+            }
+          ]
+        }>
+        CURRENT
+      </Text>
+    </View>
+    <View
+      accessibilityComponentType={undefined}
+      accessibilityLabel={undefined}
+      accessibilityTraits={undefined}
+      accessible={true}
+      hitSlop={undefined}
+      onLayout={undefined}
+      onResponderGrant={[Function bound touchableHandleResponderGrant]}
+      onResponderMove={[Function bound touchableHandleResponderMove]}
+      onResponderRelease={[Function bound touchableHandleResponderRelease]}
+      onResponderTerminate={[Function bound touchableHandleResponderTerminate]}
+      onResponderTerminationRequest={[Function bound touchableHandleResponderTerminationRequest]}
+      onStartShouldSetResponder={[Function bound touchableHandleStartShouldSetResponder]}
+      style={
+        Array [
+          Object {
+            "backgroundColor": "transparent"
+          },
+          undefined
+        ]
+      }
+      testID={undefined}>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontSize": 11,
+              "fontWeight": "300",
+              "padding": 12
+            }
+          ]
+        }>
+        DONE
+      </Text>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`Component snapshots renders the task component 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "#fff",
+      "borderBottomWidth": 0.5,
+      "borderColor": "#eee",
+      "paddingBottom": 20,
+      "paddingLeft": 35,
+      "paddingRight": 35,
+      "paddingTop": 20
+    }
+  }>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Object {
+        "fontSize": 14,
+        "fontWeight": "300",
+        "marginBottom": 10
+      }
+    }>
+    Test Task
+  </Text>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Object {
+        "color": "#999",
+        "fontSize": 12,
+        "fontWeight": "300"
+      }
+    }>
+    1474160934141
+  </Text>
+</View>
+`;
+
+exports[`Component snapshots renders the task list component 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1
+    }
+  }>
+  <ScrollView
+    keyboardDismissMode="on-drag">
+    <ScrollView
+      dataSource={
+        ListViewDataSource {
+          "items": 2
+        }
+      }
+      initialListSize={10}
+      onContentSizeChange={[Function bound _onContentSizeChange]}
+      onEndReachedThreshold={1000}
+      onKeyboardDidHide={undefined}
+      onKeyboardDidShow={undefined}
+      onKeyboardWillHide={undefined}
+      onKeyboardWillShow={undefined}
+      onLayout={[Function bound _onLayout]}
+      onScroll={[Function bound _onScroll]}
+      pageSize={1}
+      removeClippedSubviews={true}
+      renderRow={[Function renderRow]}
+      scrollEventThrottle={50}
+      scrollRenderAheadDistance={1000}
+      stickyHeaderIndices={Array []}>
+      <View
+        style={
+          Object {
+            "backgroundColor": "#fff",
+            "borderBottomWidth": 0.5,
+            "borderColor": "#eee",
+            "paddingBottom": 20,
+            "paddingLeft": 35,
+            "paddingRight": 35,
+            "paddingTop": 20
+          }
+        }>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "fontSize": 14,
+              "fontWeight": "300",
+              "marginBottom": 10
+            }
+          }>
+          Test task 1
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "#999",
+              "fontSize": 12,
+              "fontWeight": "300"
+            }
+          }>
+          1
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "backgroundColor": "#fff",
+            "borderBottomWidth": 0.5,
+            "borderColor": "#eee",
+            "paddingBottom": 20,
+            "paddingLeft": 35,
+            "paddingRight": 35,
+            "paddingTop": 20
+          }
+        }>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "fontSize": 14,
+              "fontWeight": "300",
+              "marginBottom": 10
+            }
+          }>
+          Test task 2
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "#999",
+              "fontSize": 12,
+              "fontWeight": "300"
+            }
+          }>
+          2
+        </Text>
+      </View>
+    </ScrollView>
+  </ScrollView>
+</View>
+`;
