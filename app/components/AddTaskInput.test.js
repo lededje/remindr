@@ -19,4 +19,18 @@ describe('Add Task Input', () => {
 
     expect(wrapper.state().text).toEqual('');
   });
+
+  it('changes the state every time the on change event is fired', () => {
+    const wrapper = shallow(
+      <AddTaskInput onSubmit={jest.fn()} />
+    );
+
+    wrapper.instance().onChange({
+      nativeEvent: {
+        text: 'Test string',
+      },
+    });
+
+    expect(wrapper.state().text).toEqual('Test string');
+  });
 });
