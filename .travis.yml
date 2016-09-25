@@ -3,7 +3,7 @@ node_js:
   - "6"
 sudo: false
 script:
-  - npm run travis
+  - make $JOB
 notifications:
   email: false
 cache:
@@ -12,3 +12,6 @@ cache:
 branches:
   only:
     - master
+env:
+  - JOB=travis
+  - JOB=ios
