@@ -15,15 +15,57 @@ describe('actions', () => {
   it('should create an action to add a task', () => {
     const args = [{
       id: 1,
+      title: 'Task Two',
+      timestamp: 0,
     }];
+    const state = {
+      tasks: {
+        tasks: [{
+          id: 1,
+          type: 'CURRENT',
+          timestamp: 0,
+          title: 'Task One',
+        }],
+      },
+    };
+    const result = {
+      type: types.ADD_TASK,
+      task: {
+        id: 2,
+        type: 'CURRENT',
+        timestamp: 0,
+        title: 'Task Two',
+      },
+    };
+
+    actions.addTask.apply(null, args)((test) => {
+      expect(test).toEqual(result);
+    }, () => state);
+  });
+
+  it('should create an action if there are not other tasks to increment from', () => {
+    const args = [{
+      id: 1,
+      title: 'Only task',
+      timestamp: 0,
+    }];
+    const state = {
+      tasks: {
+        tasks: [],
+      },
+    };
     const result = {
       type: types.ADD_TASK,
       task: {
         id: 1,
+        type: 'CURRENT',
+        timestamp: 0,
+        title: 'Only task',
       },
     };
-
-    expect(actions.addTask.apply(null, args)).toEqual(result);
+    actions.addTask.apply(null, args)((test) => {
+      expect(test).toEqual(result);
+    }, () => state);
   });
 
   it('should create an action to change a task type', () => {
