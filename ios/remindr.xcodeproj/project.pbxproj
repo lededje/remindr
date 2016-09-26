@@ -23,6 +23,7 @@
 		3E2713139C504D86A8BF5403 /* libRNI18n.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A439AA1870C74AE9A7F8C398 /* libRNI18n.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		A606BF7F1D983A7D00C71A9F /* remindrUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A606BF7E1D983A7D00C71A9F /* remindrUITests.swift */; };
+		A65B920C1D99A8C800044918 /* glyphicons-halflings-regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A65B920B1D99A8C800044918 /* glyphicons-halflings-regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -143,6 +144,7 @@
 		A606BF7C1D983A7D00C71A9F /* remindrUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = remindrUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A606BF7E1D983A7D00C71A9F /* remindrUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = remindrUITests.swift; sourceTree = "<group>"; };
 		A606BF801D983A7D00C71A9F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A65B920B1D99A8C800044918 /* glyphicons-halflings-regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "glyphicons-halflings-regular.ttf"; path = "../app/assets/fonts/glyphicons-halflings-regular.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -289,6 +291,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				A65B92191D99A8CC00044918 /* Assets */,
 				13B07FAE1A68108700A75B9A /* remindr */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				A606BF7D1D983A7D00C71A9F /* remindrUITests */,
@@ -314,6 +317,14 @@
 				A606BF801D983A7D00C71A9F /* Info.plist */,
 			);
 			path = remindrUITests;
+			sourceTree = "<group>";
+		};
+		A65B92191D99A8CC00044918 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				A65B920B1D99A8C800044918 /* glyphicons-halflings-regular.ttf */,
+			);
+			name = Assets;
 			sourceTree = "<group>";
 		};
 		A6EA1DDB1D8E9D91009DE56D /* Products */ = {
@@ -539,6 +550,7 @@
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
+				A65B920C1D99A8C800044918 /* glyphicons-halflings-regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
