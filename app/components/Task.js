@@ -7,7 +7,7 @@ import {
 
 export default function Task(props) {
   return (
-    <View style={styles.item}>
+    <View style={styles.item} testID="Task">
       <Text style={styles.title}>{props.title}</Text>
       <Text style={styles.timestamp}>{props.timestamp}</Text>
     </View>
