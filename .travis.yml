@@ -13,13 +13,12 @@ install:
   - travis_wait npm install
 
 script:
-  - if [[ "$TEST_TYPE" = objc ]]; xcodebuild test -project ios/remindr.xcodeproj -scheme remindr -destination 'platform=iOS Simulator,name=iPhone 6' ; fi
-  - if [[ "$TEST_TYPE" = js ]]; then npm run travis -- --maxWorkers=1; fi
+  - make $TEST_TYPE
 
 env:
   matrix:
-    - TEST_TYPE=objc
-    - TEST_TYPE=js
+    - TEST_TYPE=ui
+    - TEST_TYPE=jest
 
 branches:
   only:
