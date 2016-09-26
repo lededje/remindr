@@ -42,6 +42,7 @@ export default class AddTaskInput extends Component {
           onSubmitEditing={this.onSubmit}
           onChange={this.onChange}
           value={this.state.text}
+          testID="Add Task"
         />
       </View>
     );

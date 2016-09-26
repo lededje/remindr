@@ -28,6 +28,7 @@ export default function Navigation(props) {
               // eslint-disable-next-line react/jsx-no-bind
               onPress={props.onPress.bind(null, type)}
               key={type}
+              accessibilityLabel={`navigation-${type.toLowerCase()}`}
             >
               <Text style={buttonStyles}>{type}</Text>
             </TouchableHighlight>
