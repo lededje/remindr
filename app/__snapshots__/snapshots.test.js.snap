@@ -41,6 +41,7 @@ exports[`Component snapshots renders the component 1`] = `
         "height": 19
       }
     }
+    testID="Add Task"
     value="" />
 </View>
 `;
@@ -91,7 +92,7 @@ exports[`Component snapshots renders the navigation component 1`] = `
     }>
     <View
       accessibilityComponentType={undefined}
-      accessibilityLabel={undefined}
+      accessibilityLabel="navigation-deferred"
       accessibilityTraits={undefined}
       accessible={true}
       hitSlop={undefined}
@@ -129,7 +130,7 @@ exports[`Component snapshots renders the navigation component 1`] = `
     </View>
     <View
       accessibilityComponentType={undefined}
-      accessibilityLabel={undefined}
+      accessibilityLabel="navigation-current"
       accessibilityTraits={undefined}
       accessible={true}
       hitSlop={undefined}
@@ -173,7 +174,7 @@ exports[`Component snapshots renders the navigation component 1`] = `
     </View>
     <View
       accessibilityComponentType={undefined}
-      accessibilityLabel={undefined}
+      accessibilityLabel="navigation-done"
       accessibilityTraits={undefined}
       accessible={true}
       hitSlop={undefined}
@@ -225,7 +226,8 @@ exports[`Component snapshots renders the task component 1`] = `
       "paddingRight": 35,
       "paddingTop": 20
     }
-  }>
+  }
+  testID="Task">
   <Text
     accessible={true}
     allowFontScaling={true}
@@ -296,7 +298,8 @@ exports[`Component snapshots renders the task list component 1`] = `
             "paddingRight": 35,
             "paddingTop": 20
           }
-        }>
+        }
+        testID="Task">
         <Text
           accessible={true}
           allowFontScaling={true}
@@ -335,7 +338,8 @@ exports[`Component snapshots renders the task list component 1`] = `
             "paddingRight": 35,
             "paddingTop": 20
           }
-        }>
+        }
+        testID="Task">
         <Text
           accessible={true}
           allowFontScaling={true}
