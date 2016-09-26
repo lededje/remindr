@@ -46,16 +46,6 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "remindrTests.xctest"
-               BlueprintName = "remindrTests"
-               ReferencedContainer = "container:remindr.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "A606BF7B1D983A7D00C71A9F"
                BuildableName = "remindrUITests.xctest"
                BlueprintName = "remindrUITests"

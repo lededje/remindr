@@ -42,7 +42,7 @@ export default class AddTaskInput extends Component {
           onSubmitEditing={this.onSubmit}
           onChange={this.onChange}
           value={this.state.text}
-          accessibilityLabel="add-task-input"
+          testID="Add Task"
         />
       </View>
     );
