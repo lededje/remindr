@@ -4,8 +4,9 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "jest",
-    "travis": "jest --coverage; codeclimate-test-reporter < coverage/lcov.info"
+    "pr": "jest",
+    "push": "jest --coverage; codeclimate-test-reporter < coverage/lcov.info",
+    "e2e": "node ./scripts/ios-e2e.js"
   },
   "jest": {
     "preset": "jest-react-native",
@@ -41,6 +42,7 @@
     "react-dom": "^15.3.2",
     "react-native-mock": "^0.2.6",
     "react-test-renderer": "^15.3.2",
-    "remote-redux-devtools": "^0.4.8"
+    "remote-redux-devtools": "^0.4.8",
+    "shelljs": "^0.7.4"
   }
 }
