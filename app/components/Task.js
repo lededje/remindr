@@ -6,6 +6,7 @@ import {
   PanResponder,
   Dimensions,
 } from 'react-native';
+import autobind from 'autobind-decorator';
 
 const DIRECTIONAL_DISTANCE_CHANGE_THRESHOLD = 5;
 
@@ -25,6 +26,8 @@ export default class Task extends Component {
     nextType: React.PropTypes.string.isRequired,
 
     onDirectionDecided: React.PropTypes.func,
+
+    // must be a promise
     onSwipeEnd: React.PropTypes.func,
   };
 
@@ -88,6 +91,13 @@ export default class Task extends Component {
 
     this.swipeInitialX = undefined;
 
+    const velocity = Math.abs(vx) > 0.3 ? vx : 0.4 * this.state.direction;
+
+    Animated.decay(this.state.translateX, {
+      velocity,
+      deceleration: 0.9999,
+    }).start();
+
     // If there is high velocity (with the correct direction) or the swipe is large enough _and_
     // swiping is enabled for that direction return true.
     const swipedRight = ((vx > 1 && this.state.direction === 1) || (dx >= width * 0.3));
@@ -101,13 +111,11 @@ export default class Task extends Component {
     else if (swipedRight) swipedDirectionId = 1;
     else swipedDirectionId = 0;
 
-    this.props.onSwipeEnd({ id: this.props.id, direction: swipedDirectionId });
-
-    if (swipedDirectionId === 0) {
-      this.resetPosition();
-    }
+    this.props.onSwipeEnd({ id: this.props.id, direction: swipedDirectionId })
+    .catch(this.resetPosition);
   }
 
+  @autobind
   resetPosition(animated = true) {
     if (animated) {
       Animated.spring(this.state.translateX, {
