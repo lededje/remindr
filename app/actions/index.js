@@ -44,6 +44,14 @@ export function changeTaskType(id, type) {
   };
 }
 
+export function changeNextTaskType(id, nextType) {
+  return {
+    type: types.CHANGE_NEXT_TASK_TYPE,
+    id,
+    nextType,
+  };
+}
+
 export function removeTask(id) {
   return {
     type: types.REMOVE_TASK,

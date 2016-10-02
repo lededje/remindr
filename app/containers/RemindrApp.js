@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { KeyboardAwareView } from 'react-native-keyboard-aware-view';
+import autobind from 'autobind-decorator';
 
 import * as actions from '../actions';
 import Header from '../components/Header';
@@ -29,14 +29,26 @@ export default class RemindrApp extends Component {
     }).isRequired,
   }
 
+  @autobind
+  onSwipeLeft(id) {
+    this.props.actions.changeNextTaskType(id, 'DEFER');
+  }
+
+  @autobind
+  onSwipeRight(id) {
+    this.props.actions.changeNextTaskType(id, 'COMPLETE');
+  }
+
   render() {
     return (
       <View style={styles.container}>
         <Header />
-        <KeyboardAwareView animated={true}>
-          <TaskList tasks={this.props.tasks} />
-          <AddTaskInput onSubmit={this.props.actions.addTask} />
-        </KeyboardAwareView>
+        <TaskList
+          tasks={this.props.tasks}
+          onSwipeLeft={this.onSwipeLeft}
+          onSwipeRight={this.onSwipeRight}
+        />
+        <AddTaskInput onSubmit={this.props.actions.addTask} />
         <Navigation
           onPress={this.props.actions.changeFilterType}
           selectedType={this.props.filterType}
