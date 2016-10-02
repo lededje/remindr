@@ -3,9 +3,9 @@ import {
   StyleSheet,
   View,
   Text,
-  ScrollView,
   ListView,
 } from 'react-native';
+import autobind from 'autobind-decorator';
 import Task from './Task';
 
 export default class TaskList extends Component {
@@ -15,11 +15,15 @@ export default class TaskList extends Component {
       id: React.PropTypes.number.isRequired,
       title: React.PropTypes.string.isRequired,
       timestamp: React.PropTypes.number.isRequired,
-    })).isRequired,
+    })),
+    onSwipeLeft: React.PropTypes.func,
+    onSwipeRight: React.PropTypes.func,
   }
 
   static defaultProps = {
     tasks: [],
+    onSwipeLeft: () => {},
+    onSwipeRight: () => {},
   }
 
   constructor(props) {
@@ -28,9 +32,42 @@ export default class TaskList extends Component {
     this.dataSource = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
   }
 
+  @autobind
+  onTaskDirectionDecided({ direction }) {
+    if (direction === 'x') {
+      this.listView.setNativeProps({ scrollEnabled: false });
+    }
+  }
+
+  @autobind
+  onTaskSwipeEnd({ id, direction }) {
+    switch (direction) {
+      case -1:
+        this.props.onSwipeLeft(id);
+        break;
+      case 1:
+        this.props.onSwipeRight(id);
+        break;
+      case 0:
+      default:
+        break;
+
+    }
+
+    this.listView.setNativeProps({ scrollEnabled: true });
+  }
+
+  @autobind
   renderRow(task) {
     return (
-      <Task id={task.id} title={task.title} timestamp={task.timestamp} />
+      <Task
+        id={task.id}
+        title={task.title}
+        timestamp={task.timestamp}
+        nextType={task.nextType}
+        onDirectionDecided={this.onTaskDirectionDecided}
+        onSwipeEnd={this.onTaskSwipeEnd}
+      />
     );
   }
 
@@ -40,13 +77,11 @@ export default class TaskList extends Component {
     return (
       <View style={styles.container}>
         {this.props.tasks.length > 0 && (
-          <ScrollView keyboardDismissMode="on-drag">
-            <ListView
-              ref={(lv) => { this.listView = lv; }}
-              dataSource={dataSource}
-              renderRow={this.renderRow}
-            />
-          </ScrollView>
+          <ListView
+            ref={(lv) => { this.listView = lv; }}
+            dataSource={dataSource}
+            renderRow={this.renderRow}
+          />
         )}
         {this.props.tasks.length === 0 && (
           <Text style={styles.emptyMessage}>This list is empty</Text>

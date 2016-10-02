@@ -81,6 +81,17 @@ describe('actions', () => {
     expect(actions.changeTaskType.apply(null, args)).toEqual(result);
   });
 
+  it('should create an action to change a task type', () => {
+    const args = [1, 'TEST'];
+    const result = {
+      type: types.CHANGE_NEXT_TASK_TYPE,
+      id: 1,
+      nextType: 'TEST',
+    };
+
+    expect(actions.changeNextTaskType.apply(null, args)).toEqual(result);
+  });
+
   it('should create an action to remove a task', () => {
     const args = [1];
     const result = {
