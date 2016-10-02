@@ -41,20 +41,22 @@ export default class TaskList extends Component {
 
   @autobind
   onTaskSwipeEnd({ id, direction }) {
-    switch (direction) {
-      case -1:
-        this.props.onSwipeLeft(id);
-        break;
-      case 1:
-        this.props.onSwipeRight(id);
-        break;
-      case 0:
-      default:
-        break;
-
-    }
-
     this.listView.setNativeProps({ scrollEnabled: true });
+
+    return new Promise((resolve, reject) => {
+      switch (direction) {
+        case -1:
+          this.props.onSwipeLeft(id);
+          break;
+        case 1:
+          this.props.onSwipeRight(id);
+          break;
+        case 0:
+        default:
+          reject(); // Reject will cause the task to reset. (The swipe failed)
+          break;
+      }
+    });
   }
 
   @autobind
