@@ -86,7 +86,7 @@ export default class Task extends Component {
     const { width } = Dimensions.get('window');
     const { dx, vx } = gestureState;
 
-    this.swipeInitialX = null;
+    this.swipeInitialX = undefined;
 
     // If there is high velocity (with the correct direction) or the swipe is large enough _and_
     // swiping is enabled for that direction return true.
@@ -103,7 +103,20 @@ export default class Task extends Component {
 
     this.props.onSwipeEnd({ id: this.props.id, direction: swipedDirectionId });
 
-    // if 0 reset to center.
+    if (swipedDirectionId === 0) {
+      this.resetPosition();
+    }
+  }
+
+  resetPosition(animated = true) {
+    if (animated) {
+      Animated.spring(this.state.translateX, {
+        toValue: 0,
+        friction: 4,
+      }).start();
+    } else {
+      this.state.translateX.value(0);
+    }
   }
 
   render() {
