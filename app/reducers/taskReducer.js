@@ -8,36 +8,6 @@ const initialState = {
     timestamp: 0,
     type: 'CURRENT',
     nextType: '',
-  }, {
-    id: 2,
-    title: 'Create a new task',
-    timestamp: 0,
-    type: 'CURRENT',
-    nextType: '',
-  }, {
-    id: 3,
-    title: 'Create a new task',
-    timestamp: 0,
-    type: 'CURRENT',
-    nextType: '',
-  }, {
-    id: 4,
-    title: 'Create a new task',
-    timestamp: 0,
-    type: 'CURRENT',
-    nextType: '',
-  }, {
-    id: 5,
-    title: 'Create a new task',
-    timestamp: 0,
-    type: 'CURRENT',
-    nextType: '',
-  }, {
-    id: 6,
-    title: 'Create a new task',
-    timestamp: 0,
-    type: 'CURRENT',
-    nextType: '',
   }],
 };
 

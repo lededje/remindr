@@ -44,8 +44,24 @@ export default class Task extends Component {
 
     this.state = {
       translateX: new Animated.Value(0),
+      height: new Animated.Value(-1),
       direction: 0,
     };
+
+    // Update the direction when the translateX is updated. Graphically performant.
+    this.state.translateX.addListener(({ value }) => {
+      const { width } = Dimensions.get('window');
+
+      this.setState({
+        direction: value < 0 ? -1 : 1,
+      });
+
+      // This stops the decay animation, which decays very slowly from triggering all the time.
+      // If it's off screen there is no need to keep rerendering. Times it by two for good measure.
+      if (Math.abs(value) > width * 2) {
+        this.state.translateX.stopAnimation();
+      }
+    });
   }
 
   componentWillMount() {
@@ -56,6 +72,13 @@ export default class Task extends Component {
       onPanResponderTerminate: this.handlePanResponderEnd.bind(this),
       onShouldBlockNativeResponder: () => false,
     });
+  }
+
+  componentWillUpdate(nextProps, nextState) {
+    // If it's currently blank and it wont be after this update...
+    if (nextProps.nextType !== '' && this.props.nextType === '') {
+      this.closeTask(this.state.direction);
+    }
   }
 
   handleOnMoveShouldSetPanResponder(e, gestureState) {
@@ -127,19 +150,51 @@ export default class Task extends Component {
     }
   }
 
+  @autobind
+  onLayout(event) {
+    if (this.state.layoutHeight) return;
+
+    this.setState({
+      layoutHeight: event.nativeEvent.layout.height,
+    });
+
+    // Todo: Look to see if there is a way to access this value without using the "private" value
+    if (this.state.height._value === -1) { // -1 is the "default" value set in the constructor
+      this.state.height.setValue(event.nativeEvent.layout.height);
+    }
+  }
+
+  @autobind
+  closeTask(direction, animated = true) {
+    if (animated) {
+      Animated.timing(this.state.height, {
+        toValue: 0,
+        delay: 150,
+      }).start();
+    }
+  }
+
   render() {
+    const height = this.state.height._value >= 0 ? this.state.height : undefined;
+
     return (
       <Animated.View
-        style={[styles.item, {
-          transform: [
-            { translateX: this.state.translateX },
-          ],
-        }]}
-        testID="Task"
-        {...this.panResponder.panHandlers}
+        style={[{ height }]}
+        onLayout={this.onLayout}
       >
-        <Text style={styles.title}>{this.props.title} - {this.props.nextType}</Text>
-        <Text style={styles.timestamp}>{this.props.timestamp}</Text>
+        <Animated.View
+          style={[styles.item, {
+            height,
+            transform: [
+              { translateX: this.state.translateX },
+            ],
+          }]}
+          testID="Task"
+          {...this.panResponder.panHandlers}
+        >
+          <Text style={styles.title}>{this.props.title} - {this.props.nextType}</Text>
+          <Text style={styles.timestamp}>{this.props.timestamp}</Text>
+        </Animated.View>
       </Animated.View>
     );
   }

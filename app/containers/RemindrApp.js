@@ -16,17 +16,14 @@ import Navigation from '../components/Navigation';
     actions: bindActionCreators(actions, dispatch),
   }),
 )
-// A decorator should be able to bind the a plain function but they don't at the moment.
-// eslint-disable-next-line react/prefer-stateless-function
+
 export default class RemindrApp extends Component {
 
   static propTypes = {
     tasks: React.PropTypes.array.isRequired,
     filterType: React.PropTypes.string.isRequired,
 
-    actions: React.PropTypes.shape({
-      changeFilterType: React.PropTypes.func.isRequired,
-    }).isRequired,
+    actions: React.PropTypes.shape().isRequired,
   }
 
   @autobind
