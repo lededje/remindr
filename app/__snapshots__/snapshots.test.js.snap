@@ -41,6 +41,7 @@ exports[`Component snapshots renders the component 1`] = `
         "height": 19
       }
     }
+    testID="Add Task"
     value="" />
 </View>
 `;
@@ -91,7 +92,7 @@ exports[`Component snapshots renders the navigation component 1`] = `
     }>
     <View
       accessibilityComponentType={undefined}
-      accessibilityLabel={undefined}
+      accessibilityLabel="navigation-deferred"
       accessibilityTraits={undefined}
       accessible={true}
       hitSlop={undefined}
@@ -129,7 +130,7 @@ exports[`Component snapshots renders the navigation component 1`] = `
     </View>
     <View
       accessibilityComponentType={undefined}
-      accessibilityLabel={undefined}
+      accessibilityLabel="navigation-current"
       accessibilityTraits={undefined}
       accessible={true}
       hitSlop={undefined}
@@ -173,7 +174,7 @@ exports[`Component snapshots renders the navigation component 1`] = `
     </View>
     <View
       accessibilityComponentType={undefined}
-      accessibilityLabel={undefined}
+      accessibilityLabel="navigation-done"
       accessibilityTraits={undefined}
       accessible={true}
       hitSlop={undefined}
@@ -215,43 +216,72 @@ exports[`Component snapshots renders the navigation component 1`] = `
 
 exports[`Component snapshots renders the task component 1`] = `
 <View
+  onLayout={[Function bound onLayout]}
   style={
     Object {
-      "backgroundColor": "#fff",
-      "borderBottomWidth": 0.5,
-      "borderColor": "#eee",
-      "paddingBottom": 20,
-      "paddingLeft": 35,
-      "paddingRight": 35,
-      "paddingTop": 20
+      "height": undefined
     }
   }>
-  <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
+  <View
+    onMoveShouldSetResponder={[Function onMoveShouldSetResponder]}
+    onMoveShouldSetResponderCapture={[Function onMoveShouldSetResponderCapture]}
+    onResponderEnd={[Function onResponderEnd]}
+    onResponderGrant={[Function onResponderGrant]}
+    onResponderMove={[Function onResponderMove]}
+    onResponderReject={[Function onResponderReject]}
+    onResponderRelease={[Function onResponderRelease]}
+    onResponderStart={[Function onResponderStart]}
+    onResponderTerminate={[Function onResponderTerminate]}
+    onResponderTerminationRequest={[Function onResponderTerminationRequest]}
+    onStartShouldSetResponder={[Function onStartShouldSetResponder]}
+    onStartShouldSetResponderCapture={[Function onStartShouldSetResponderCapture]}
     style={
       Object {
-        "fontSize": 14,
-        "fontWeight": "300",
-        "marginBottom": 10
+        "backgroundColor": "#fff",
+        "borderBottomWidth": 0.5,
+        "borderColor": "#eee",
+        "height": undefined,
+        "paddingBottom": 20,
+        "paddingLeft": 35,
+        "paddingRight": 35,
+        "paddingTop": 20,
+        "transform": Array [
+          Object {
+            "translateX": 0
+          }
+        ]
       }
-    }>
-    Test Task
-  </Text>
-  <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
-    style={
-      Object {
-        "color": "#999",
-        "fontSize": 12,
-        "fontWeight": "300"
-      }
-    }>
-    1474160934141
-  </Text>
+    }
+    testID="Task">
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Object {
+          "fontSize": 14,
+          "fontWeight": "300",
+          "marginBottom": 10
+        }
+      }>
+      Test Task
+       - 
+      
+    </Text>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Object {
+          "color": "#999",
+          "fontSize": 12,
+          "fontWeight": "300"
+        }
+      }>
+      1474160934141
+    </Text>
+  </View>
 </View>
 `;
 
@@ -263,40 +293,64 @@ exports[`Component snapshots renders the task list component 1`] = `
     }
   }>
   <ScrollView
-    keyboardDismissMode="on-drag">
-    <ScrollView
-      dataSource={
-        ListViewDataSource {
-          "items": 2
-        }
+    dataSource={
+      ListViewDataSource {
+        "items": 2
       }
-      initialListSize={10}
-      onContentSizeChange={[Function bound _onContentSizeChange]}
-      onEndReachedThreshold={1000}
-      onKeyboardDidHide={undefined}
-      onKeyboardDidShow={undefined}
-      onKeyboardWillHide={undefined}
-      onKeyboardWillShow={undefined}
-      onLayout={[Function bound _onLayout]}
-      onScroll={[Function bound _onScroll]}
-      pageSize={1}
-      removeClippedSubviews={true}
-      renderRow={[Function renderRow]}
-      scrollEventThrottle={50}
-      scrollRenderAheadDistance={1000}
-      stickyHeaderIndices={Array []}>
+    }
+    initialListSize={10}
+    onContentSizeChange={[Function bound _onContentSizeChange]}
+    onEndReachedThreshold={1000}
+    onKeyboardDidHide={undefined}
+    onKeyboardDidShow={undefined}
+    onKeyboardWillHide={undefined}
+    onKeyboardWillShow={undefined}
+    onLayout={[Function bound _onLayout]}
+    onScroll={[Function bound _onScroll]}
+    pageSize={1}
+    removeClippedSubviews={true}
+    renderRow={[Function bound renderRow]}
+    scrollEventThrottle={50}
+    scrollRenderAheadDistance={1000}
+    stickyHeaderIndices={Array []}>
+    <View
+      onLayout={[Function bound onLayout]}
+      style={
+        Object {
+          "height": undefined
+        }
+      }>
       <View
+        onMoveShouldSetResponder={[Function onMoveShouldSetResponder]}
+        onMoveShouldSetResponderCapture={[Function onMoveShouldSetResponderCapture]}
+        onResponderEnd={[Function onResponderEnd]}
+        onResponderGrant={[Function onResponderGrant]}
+        onResponderMove={[Function onResponderMove]}
+        onResponderReject={[Function onResponderReject]}
+        onResponderRelease={[Function onResponderRelease]}
+        onResponderStart={[Function onResponderStart]}
+        onResponderTerminate={[Function onResponderTerminate]}
+        onResponderTerminationRequest={[Function onResponderTerminationRequest]}
+        onStartShouldSetResponder={[Function onStartShouldSetResponder]}
+        onStartShouldSetResponderCapture={[Function onStartShouldSetResponderCapture]}
         style={
           Object {
             "backgroundColor": "#fff",
             "borderBottomWidth": 0.5,
             "borderColor": "#eee",
+            "height": undefined,
             "paddingBottom": 20,
             "paddingLeft": 35,
             "paddingRight": 35,
-            "paddingTop": 20
+            "paddingTop": 20,
+            "transform": Array [
+              Object {
+                "translateX": 0
+              }
+            ]
           }
-        }>
+        }
+        testID="Task">
         <Text
           accessible={true}
           allowFontScaling={true}
@@ -309,6 +363,8 @@ exports[`Component snapshots renders the task list component 1`] = `
             }
           }>
           Test task 1
+           - 
+          
         </Text>
         <Text
           accessible={true}
@@ -324,18 +380,45 @@ exports[`Component snapshots renders the task list component 1`] = `
           1
         </Text>
       </View>
+    </View>
+    <View
+      onLayout={[Function bound onLayout]}
+      style={
+        Object {
+          "height": undefined
+        }
+      }>
       <View
+        onMoveShouldSetResponder={[Function onMoveShouldSetResponder]}
+        onMoveShouldSetResponderCapture={[Function onMoveShouldSetResponderCapture]}
+        onResponderEnd={[Function onResponderEnd]}
+        onResponderGrant={[Function onResponderGrant]}
+        onResponderMove={[Function onResponderMove]}
+        onResponderReject={[Function onResponderReject]}
+        onResponderRelease={[Function onResponderRelease]}
+        onResponderStart={[Function onResponderStart]}
+        onResponderTerminate={[Function onResponderTerminate]}
+        onResponderTerminationRequest={[Function onResponderTerminationRequest]}
+        onStartShouldSetResponder={[Function onStartShouldSetResponder]}
+        onStartShouldSetResponderCapture={[Function onStartShouldSetResponderCapture]}
         style={
           Object {
             "backgroundColor": "#fff",
             "borderBottomWidth": 0.5,
             "borderColor": "#eee",
+            "height": undefined,
             "paddingBottom": 20,
             "paddingLeft": 35,
             "paddingRight": 35,
-            "paddingTop": 20
+            "paddingTop": 20,
+            "transform": Array [
+              Object {
+                "translateX": 0
+              }
+            ]
           }
-        }>
+        }
+        testID="Task">
         <Text
           accessible={true}
           allowFontScaling={true}
@@ -348,6 +431,8 @@ exports[`Component snapshots renders the task list component 1`] = `
             }
           }>
           Test task 2
+           - 
+          
         </Text>
         <Text
           accessible={true}
@@ -363,7 +448,7 @@ exports[`Component snapshots renders the task list component 1`] = `
           2
         </Text>
       </View>
-    </ScrollView>
+    </View>
   </ScrollView>
 </View>
 `;

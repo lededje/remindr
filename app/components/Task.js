@@ -34,6 +34,7 @@ export default class Task extends Component {
   static defaultProps = {
     onDirectionDecided: () => {},
     onSwipeEnd: () => {},
+    nextType: '',
   };
 
   constructor(props) {
