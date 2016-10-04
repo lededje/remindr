@@ -10,13 +10,6 @@ import autobind from 'autobind-decorator';
 
 const DIRECTIONAL_DISTANCE_CHANGE_THRESHOLD = 5;
 
-// Listeners
-// onSwipeStart
-// onDirectionDecided
-// onSwipeEnd
-// onCloseStart
-// onCloseEnd
-
 export default class Task extends Component {
 
   static propTypes = {
