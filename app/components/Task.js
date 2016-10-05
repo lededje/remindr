@@ -88,7 +88,8 @@ export default class Task extends Component {
     // This stops the decay animation, which decays very slowly from triggering all the time.
     // If it's off screen there is no need to keep rerendering. Times it by two for good measure.
     // Also only cancels if it's a decay animation by looking at private variables again.
-    if (Math.abs(value) > width * 1 && get(this.state.translateX, '_animation._velocity') !== undefined) {
+    if (Math.abs(value) > width * 1 &&
+      get(this.state.translateX, '_animation._velocity') !== undefined) {
       this.state.translateX.stopAnimation();
     }
   }
@@ -104,7 +105,6 @@ export default class Task extends Component {
     const absDy = Math.abs(dy);
 
     if (this.swipeDirection === undefined) {
-
       if (absDy > absDx) {
         this.swipeDirection = 'y';
       } else {
@@ -182,7 +182,6 @@ export default class Task extends Component {
 
   @autobind
   closeTask(animated = true) {
-    console.log('ping');
     if (animated) {
       Animated.timing(this.state.height, {
         toValue: 0,
@@ -213,7 +212,7 @@ export default class Task extends Component {
         {this.props.left && this.state.direction === 1 && (
           <View
             style={[styles.iconWrapper, {
-              left: 15,
+              left: 25,
             }]}
           >
             <Text style={styles.icon}>{this.props.left.icon}</Text>
@@ -222,7 +221,7 @@ export default class Task extends Component {
         {this.props.right && this.state.direction === -1 && (
           <View
             style={[styles.iconWrapper, {
-              right: 15,
+              right: 25,
             }]}
           >
             <Text style={styles.icon}>{this.props.right.icon}</Text>
@@ -238,7 +237,7 @@ export default class Task extends Component {
           testID="Task"
           {...this.panResponder.panHandlers}
         >
-          <Text style={styles.title}>{this.props.title} - {this.state.direction}</Text>
+          <Text style={styles.title}>{this.props.title}</Text>
           <Text style={styles.timestamp}>{this.props.timestamp}</Text>
         </Animated.View>
       </Animated.View>
