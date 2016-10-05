@@ -267,8 +267,6 @@ exports[`Component snapshots renders the task component 1`] = `
         }
       }>
       Test Task
-       - 
-      0
     </Text>
     <Text
       accessible={true}
@@ -367,8 +365,6 @@ exports[`Component snapshots renders the task list component 1`] = `
             }
           }>
           Test task 1
-           - 
-          0
         </Text>
         <Text
           accessible={true}
@@ -437,8 +433,6 @@ exports[`Component snapshots renders the task list component 1`] = `
             }
           }>
           Test task 2
-           - 
-          0
         </Text>
         <Text
           accessible={true}
