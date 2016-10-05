@@ -37,8 +37,8 @@ export default class Task extends Component {
   };
 
   static defaultProps = {
-    onDirectionDecided: () => {},
-    onSwipeEnd: () => {},
+    onDirectionDecided: () => undefined,
+    onSwipeEnd: () => undefined,
     nextType: '',
   };
 
@@ -262,7 +262,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderColor: '#eee',
     borderBottomWidth: StyleSheet.hairlineWidth,
-    zIndex: 2,
   },
   title: {
     fontSize: 14,

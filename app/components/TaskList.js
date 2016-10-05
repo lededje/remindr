@@ -27,7 +27,7 @@ export default class TaskList extends Component {
 
   static defaultProps = {
     tasks: [],
-    onSwipe: () => {},
+    onSwipe: () => undefined,
   }
 
   constructor(props) {
