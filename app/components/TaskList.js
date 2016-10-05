@@ -50,7 +50,13 @@ export default class TaskList extends Component {
     return new Promise((resolve, reject) => {
       switch (direction) {
         case -1:
-          this.props.onSwipe(id, this.props.left.id);
+          // Special case...
+          if (this.props.left.id === 'DEFERRED') {
+            // Show dialog
+            reject();
+          } else {
+            this.props.onSwipe(id, this.props.left.id);
+          }
           break;
         case 1:
           this.props.onSwipe(id, this.props.right.id);

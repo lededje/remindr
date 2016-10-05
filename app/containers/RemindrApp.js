@@ -10,6 +10,7 @@ import Header from '../components/Header';
 import TaskList from '../components/TaskList';
 import AddTaskInput from '../components/AddTaskInput';
 import Navigation from '../components/Navigation';
+import DeferDialog from '../components/DeferDialog';
 
 @connect(
   state => state.tasks,
@@ -28,6 +29,7 @@ export default class RemindrApp extends Component {
   render() {
     return (
       <View style={styles.container}>
+        {false && <DeferDialog /> }
         <Header />
         <TaskList
           tasks={this.props.tasks}
