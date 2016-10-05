@@ -207,7 +207,7 @@ exports[`Component snapshots renders the navigation component 1`] = `
             }
           ]
         }>
-        DONE
+        COMPLETE
       </Text>
     </View>
   </View>
@@ -219,7 +219,9 @@ exports[`Component snapshots renders the task component 1`] = `
   onLayout={[Function bound onLayout]}
   style={
     Object {
-      "height": undefined
+      "backgroundColor": "#8bc34a",
+      "height": undefined,
+      "position": "relative"
     }
   }>
   <View
@@ -266,7 +268,7 @@ exports[`Component snapshots renders the task component 1`] = `
       }>
       Test Task
        - 
-      
+      0
     </Text>
     <Text
       accessible={true}
@@ -317,7 +319,9 @@ exports[`Component snapshots renders the task list component 1`] = `
       onLayout={[Function bound onLayout]}
       style={
         Object {
-          "height": undefined
+          "backgroundColor": "#8bc34a",
+          "height": undefined,
+          "position": "relative"
         }
       }>
       <View
@@ -364,7 +368,7 @@ exports[`Component snapshots renders the task list component 1`] = `
           }>
           Test task 1
            - 
-          
+          0
         </Text>
         <Text
           accessible={true}
@@ -385,7 +389,9 @@ exports[`Component snapshots renders the task list component 1`] = `
       onLayout={[Function bound onLayout]}
       style={
         Object {
-          "height": undefined
+          "backgroundColor": "#8bc34a",
+          "height": undefined,
+          "position": "relative"
         }
       }>
       <View
@@ -432,7 +438,7 @@ exports[`Component snapshots renders the task list component 1`] = `
           }>
           Test task 2
            - 
-          
+          0
         </Text>
         <Text
           accessible={true}

@@ -1,6 +1,8 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 
+import taskTypes from './util/taskTypes';
+
 import AddTaskInput from './components/AddTaskInput';
 import Navigation from './components/Navigation';
 import Header from './components/Header';
@@ -43,7 +45,7 @@ describe('Component snapshots', () => {
     }];
 
     const component = renderer.create(
-      <TaskList tasks={taskData} />
+      <TaskList tasks={taskData} left={taskTypes.DEFERRED} right={taskTypes.DONE} />
     );
     const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
@@ -60,7 +62,13 @@ describe('Component snapshots', () => {
 
   it('renders the task component', () => {
     const component = renderer.create(
-      <Task id={123} title="Test Task" timestamp={1474160934141} />
+      <Task
+        id={123}
+        title="Test Task"
+        timestamp={1474160934141}
+        left={taskTypes.DEFERRED}
+        right={taskTypes.DONE}
+      />
     );
     const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
