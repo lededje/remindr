@@ -8,6 +8,7 @@ import {
   View,
 } from 'react-native';
 import autobind from 'autobind-decorator';
+import { get } from 'lodash';
 
 const DIRECTIONAL_DISTANCE_CHANGE_THRESHOLD = 5;
 
@@ -56,20 +57,7 @@ export default class Task extends Component {
     };
 
     // Update the direction when the translateX is updated. Graphically performant.
-    this.state.translateX.addListener(({ value }) => {
-      const { width } = Dimensions.get('window');
-
-      this.setState({
-        direction: value < 0 ? -1 : 1,
-      });
-
-      // This stops the decay animation, which decays very slowly from triggering all the time.
-      // If it's off screen there is no need to keep rerendering. Times it by two for good measure.
-      // Also only cancels if it's a decay animation by looking at private variables again.
-      if (Math.abs(value) > width * 1 && this.state.translateX._animation._velocity !== undefined) {
-        this.state.translateX.stopAnimation();
-      }
-    });
+    this.state.translateX.addListener(this.translateXAnimationListener);
   }
 
   componentWillMount() {
@@ -82,15 +70,32 @@ export default class Task extends Component {
     });
   }
 
-  componentWillUpdate(nextProps, nextState) {
+  componentWillUpdate(nextProps) {
     // If it's currently blank and it wont be after this update...
     if (nextProps.nextType !== '' && this.props.nextType === '') {
-      this.closeTask(this.state.direction);
+      this.closeTask();
+    }
+  }
+
+  @autobind
+  translateXAnimationListener({ value }) {
+    const { width } = Dimensions.get('window');
+
+    this.setState({
+      direction: value < 0 ? -1 : 1,
+    });
+
+    // This stops the decay animation, which decays very slowly from triggering all the time.
+    // If it's off screen there is no need to keep rerendering. Times it by two for good measure.
+    // Also only cancels if it's a decay animation by looking at private variables again.
+    if (Math.abs(value) > width * 1 && get(this.state.translateX, '_animation._velocity') !== undefined) {
+      this.state.translateX.stopAnimation();
     }
   }
 
   handleOnMoveShouldSetPanResponder(e, gestureState) {
-    return Math.abs(gestureState.dx) > DIRECTIONAL_DISTANCE_CHANGE_THRESHOLD;
+    return Math.abs(gestureState.dx) > DIRECTIONAL_DISTANCE_CHANGE_THRESHOLD
+      || Math.abs(gestureState.dy) > DIRECTIONAL_DISTANCE_CHANGE_THRESHOLD;
   }
 
   handlePanResponderMove(e, gestureState) {
@@ -99,6 +104,7 @@ export default class Task extends Component {
     const absDy = Math.abs(dy);
 
     if (this.swipeDirection === undefined) {
+
       if (absDy > absDx) {
         this.swipeDirection = 'y';
       } else {
@@ -112,6 +118,7 @@ export default class Task extends Component {
     }
 
     const newDX = this.swipeInitialX + dx;
+
 
     this.state.translateX.setValue(newDX);
   }
@@ -174,7 +181,8 @@ export default class Task extends Component {
   }
 
   @autobind
-  closeTask(direction, animated = true) {
+  closeTask(animated = true) {
+    console.log('ping');
     if (animated) {
       Animated.timing(this.state.height, {
         toValue: 0,
@@ -185,8 +193,11 @@ export default class Task extends Component {
 
   render() {
     const height = this.state.height._value >= 0 ? this.state.height : undefined;
+
+    const leftColor = get(this.props, 'left.color', '#fff');
+    const rightColor = get(this.props, 'right.color', '#fff');
     const backgroundColor = this.state.direction === 1 ?
-      this.props.left.color : this.props.right.color;
+      leftColor : rightColor;
 
     return (
       <Animated.View
@@ -199,7 +210,7 @@ export default class Task extends Component {
         ]}
         onLayout={this.onLayout}
       >
-        {this.state.direction === 1 && (
+        {this.props.left && this.state.direction === 1 && (
           <View
             style={[styles.iconWrapper, {
               left: 15,
@@ -208,7 +219,7 @@ export default class Task extends Component {
             <Text style={styles.icon}>{this.props.left.icon}</Text>
           </View>
         )}
-        {this.state.direction === -1 && (
+        {this.props.right && this.state.direction === -1 && (
           <View
             style={[styles.iconWrapper, {
               right: 15,
