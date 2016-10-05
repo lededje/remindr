@@ -5,6 +5,7 @@ import {
   Animated,
   PanResponder,
   Dimensions,
+  View,
 } from 'react-native';
 import autobind from 'autobind-decorator';
 
@@ -20,6 +21,17 @@ export default class Task extends Component {
 
     onDirectionDecided: React.PropTypes.func,
 
+    left: React.PropTypes.shape({
+      id: React.PropTypes.string.isRequired,
+      color: React.PropTypes.string.isRequired,
+      icon: React.PropTypes.string.isRequired,
+    }),
+    right: React.PropTypes.shape({
+      id: React.PropTypes.string.isRequired,
+      color: React.PropTypes.string.isRequired,
+      icon: React.PropTypes.string.isRequired,
+    }),
+
     // must be a promise
     onSwipeEnd: React.PropTypes.func,
   };
@@ -33,6 +45,7 @@ export default class Task extends Component {
   constructor(props) {
     super(props);
 
+    // Swipe direction is x or y, the state's direction is -1, 0 and 1
     this.swipeDirection = undefined;
     this.swipeInitialX = undefined;
 
@@ -52,7 +65,8 @@ export default class Task extends Component {
 
       // This stops the decay animation, which decays very slowly from triggering all the time.
       // If it's off screen there is no need to keep rerendering. Times it by two for good measure.
-      if (Math.abs(value) > width * 2) {
+      // Also only cancels if it's a decay animation by looking at private variables again.
+      if (Math.abs(value) > width * 1 && this.state.translateX._animation._velocity !== undefined) {
         this.state.translateX.stopAnimation();
       }
     });
@@ -106,6 +120,7 @@ export default class Task extends Component {
     const { width } = Dimensions.get('window');
     const { dx, vx } = gestureState;
 
+    this.swipeDirection = undefined;
     this.swipeInitialX = undefined;
 
     const velocity = Math.abs(vx) > 0.3 ? vx : 0.4 * this.state.direction;
@@ -170,12 +185,38 @@ export default class Task extends Component {
 
   render() {
     const height = this.state.height._value >= 0 ? this.state.height : undefined;
+    const backgroundColor = this.state.direction === 1 ?
+      this.props.left.color : this.props.right.color;
 
     return (
       <Animated.View
-        style={[{ height }]}
+        style={[
+          styles.container,
+          {
+            height,
+            backgroundColor,
+          },
+        ]}
         onLayout={this.onLayout}
       >
+        {this.state.direction === 1 && (
+          <View
+            style={[styles.iconWrapper, {
+              left: 15,
+            }]}
+          >
+            <Text style={styles.icon}>{this.props.left.icon}</Text>
+          </View>
+        )}
+        {this.state.direction === -1 && (
+          <View
+            style={[styles.iconWrapper, {
+              right: 15,
+            }]}
+          >
+            <Text style={styles.icon}>{this.props.right.icon}</Text>
+          </View>
+        )}
         <Animated.View
           style={[styles.item, {
             height,
@@ -186,7 +227,7 @@ export default class Task extends Component {
           testID="Task"
           {...this.panResponder.panHandlers}
         >
-          <Text style={styles.title}>{this.props.title} - {this.props.nextType}</Text>
+          <Text style={styles.title}>{this.props.title} - {this.state.direction}</Text>
           <Text style={styles.timestamp}>{this.props.timestamp}</Text>
         </Animated.View>
       </Animated.View>
@@ -194,8 +235,25 @@ export default class Task extends Component {
   }
 }
 
-
 const styles = StyleSheet.create({
+  container: {
+    position: 'relative',
+    backgroundColor: 'orange',
+  },
+  iconWrapper: {
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  icon: {
+    fontFamily: 'GLYPHICONS Halflings',
+    backgroundColor: 'transparent',
+    color: '#fff',
+  },
   item: {
     paddingLeft: 35,
     paddingRight: 35,
@@ -204,6 +262,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderColor: '#eee',
     borderBottomWidth: StyleSheet.hairlineWidth,
+    zIndex: 2,
   },
   title: {
     fontSize: 14,

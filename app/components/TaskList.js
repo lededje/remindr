@@ -16,14 +16,18 @@ export default class TaskList extends Component {
       title: React.PropTypes.string.isRequired,
       timestamp: React.PropTypes.number.isRequired,
     })),
-    onSwipeLeft: React.PropTypes.func,
-    onSwipeRight: React.PropTypes.func,
+    onSwipe: React.PropTypes.func,
+    left: React.PropTypes.shape({
+      id: React.PropTypes.string.isRequired,
+    }),
+    right: React.PropTypes.shape({
+      id: React.PropTypes.string.isRequired,
+    }),
   }
 
   static defaultProps = {
     tasks: [],
-    onSwipeLeft: () => {},
-    onSwipeRight: () => {},
+    onSwipe: () => {},
   }
 
   constructor(props) {
@@ -46,10 +50,10 @@ export default class TaskList extends Component {
     return new Promise((resolve, reject) => {
       switch (direction) {
         case -1:
-          this.props.onSwipeLeft(id);
+          this.props.onSwipe(id, this.props.left.id);
           break;
         case 1:
-          this.props.onSwipeRight(id);
+          this.props.onSwipe(id, this.props.right.id);
           break;
         case 0:
         default:
@@ -69,6 +73,8 @@ export default class TaskList extends Component {
         nextType={task.nextType}
         onDirectionDecided={this.onTaskDirectionDecided}
         onSwipeEnd={this.onTaskSwipeEnd}
+        left={this.props.left}
+        right={this.props.right}
       />
     );
   }

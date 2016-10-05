@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import autobind from 'autobind-decorator';
 
 import * as actions from '../actions';
+import taskTypes from '../util/taskTypes';
+
 import Header from '../components/Header';
 import TaskList from '../components/TaskList';
 import AddTaskInput from '../components/AddTaskInput';
@@ -16,24 +17,12 @@ import Navigation from '../components/Navigation';
     actions: bindActionCreators(actions, dispatch),
   }),
 )
-
 export default class RemindrApp extends Component {
 
   static propTypes = {
     tasks: React.PropTypes.array.isRequired,
     filterType: React.PropTypes.string.isRequired,
-
     actions: React.PropTypes.shape().isRequired,
-  }
-
-  @autobind
-  onSwipeLeft(id) {
-    this.props.actions.changeNextTaskType(id, 'DEFER');
-  }
-
-  @autobind
-  onSwipeRight(id) {
-    this.props.actions.changeNextTaskType(id, 'COMPLETE');
   }
 
   render() {
@@ -42,8 +31,9 @@ export default class RemindrApp extends Component {
         <Header />
         <TaskList
           tasks={this.props.tasks}
-          onSwipeLeft={this.onSwipeLeft}
-          onSwipeRight={this.onSwipeRight}
+          onSwipe={this.props.actions.changeNextTaskType}
+          left={taskTypes.DEFERRED}
+          right={taskTypes.DONE}
         />
         <AddTaskInput onSubmit={this.props.actions.addTask} />
         <Navigation
