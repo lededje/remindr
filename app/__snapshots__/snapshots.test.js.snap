@@ -2,7 +2,7 @@ exports[`Component snapshots renders an empty list component with message 1`] = 
 <View
   style={
     Object {
-      "flex": 1
+      "flex": 1,
     }
   }>
   <Text
@@ -12,7 +12,7 @@ exports[`Component snapshots renders an empty list component with message 1`] = 
     style={
       Object {
         "marginTop": 20,
-        "textAlign": "center"
+        "textAlign": "center",
       }
     }>
     This list is empty
@@ -27,18 +27,18 @@ exports[`Component snapshots renders the component 1`] = `
       "backgroundColor": "#fff",
       "borderTopColor": "#d9dbdb",
       "borderTopWidth": 1,
-      "padding": 10
+      "padding": 10,
     }
   }>
   <TextInput
     autoCapitalize="sentences"
     blurOnSubmit={true}
     enablesReturnKeyAutomatically={true}
-    onChange={[Function bound onChange]}
-    onSubmitEditing={[Function bound onSubmit]}
+    onChange={[Function]}
+    onSubmitEditing={[Function]}
     style={
       Object {
-        "height": 19
+        "height": 19,
       }
     }
     testID="Add Task"
@@ -51,7 +51,7 @@ exports[`Component snapshots renders the header component 1`] = `
   style={
     Object {
       "borderBottomWidth": 1,
-      "borderColor": "#d9dbdb"
+      "borderColor": "#d9dbdb",
     }
   }>
   <Text
@@ -65,7 +65,7 @@ exports[`Component snapshots renders the header component 1`] = `
         "paddingBottom": 20,
         "paddingLeft": 32,
         "paddingRight": 32,
-        "paddingTop": 20
+        "paddingTop": 20,
       }
     }>
     Remindr
@@ -79,7 +79,7 @@ exports[`Component snapshots renders the navigation component 1`] = `
     Object {
       "backgroundColor": "#fff",
       "borderTopColor": "#d9dbdb",
-      "borderTopWidth": 1
+      "borderTopWidth": 1,
     }
   }>
   <View
@@ -87,7 +87,7 @@ exports[`Component snapshots renders the navigation component 1`] = `
       Object {
         "alignItems": "center",
         "flexDirection": "row",
-        "justifyContent": "center"
+        "justifyContent": "center",
       }
     }>
     <View
@@ -97,18 +97,18 @@ exports[`Component snapshots renders the navigation component 1`] = `
       accessible={true}
       hitSlop={undefined}
       onLayout={undefined}
-      onResponderGrant={[Function bound touchableHandleResponderGrant]}
-      onResponderMove={[Function bound touchableHandleResponderMove]}
-      onResponderRelease={[Function bound touchableHandleResponderRelease]}
-      onResponderTerminate={[Function bound touchableHandleResponderTerminate]}
-      onResponderTerminationRequest={[Function bound touchableHandleResponderTerminationRequest]}
-      onStartShouldSetResponder={[Function bound touchableHandleStartShouldSetResponder]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
       style={
         Array [
           Object {
-            "backgroundColor": "transparent"
+            "backgroundColor": "transparent",
           },
-          undefined
+          undefined,
         ]
       }
       testID={undefined}>
@@ -121,8 +121,8 @@ exports[`Component snapshots renders the navigation component 1`] = `
             Object {
               "fontSize": 11,
               "fontWeight": "300",
-              "padding": 12
-            }
+              "padding": 12,
+            },
           ]
         }>
         DEFERRED
@@ -135,18 +135,18 @@ exports[`Component snapshots renders the navigation component 1`] = `
       accessible={true}
       hitSlop={undefined}
       onLayout={undefined}
-      onResponderGrant={[Function bound touchableHandleResponderGrant]}
-      onResponderMove={[Function bound touchableHandleResponderMove]}
-      onResponderRelease={[Function bound touchableHandleResponderRelease]}
-      onResponderTerminate={[Function bound touchableHandleResponderTerminate]}
-      onResponderTerminationRequest={[Function bound touchableHandleResponderTerminationRequest]}
-      onStartShouldSetResponder={[Function bound touchableHandleStartShouldSetResponder]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
       style={
         Array [
           Object {
-            "backgroundColor": "transparent"
+            "backgroundColor": "transparent",
           },
-          undefined
+          undefined,
         ]
       }
       testID={undefined}>
@@ -159,14 +159,14 @@ exports[`Component snapshots renders the navigation component 1`] = `
             Object {
               "fontSize": 11,
               "fontWeight": "300",
-              "padding": 12
+              "padding": 12,
             },
             Object {
-              "backgroundColor": "#03a9f4"
+              "backgroundColor": "#03a9f4",
             },
             Object {
-              "color": "#fff"
-            }
+              "color": "#fff",
+            },
           ]
         }>
         CURRENT
@@ -179,18 +179,18 @@ exports[`Component snapshots renders the navigation component 1`] = `
       accessible={true}
       hitSlop={undefined}
       onLayout={undefined}
-      onResponderGrant={[Function bound touchableHandleResponderGrant]}
-      onResponderMove={[Function bound touchableHandleResponderMove]}
-      onResponderRelease={[Function bound touchableHandleResponderRelease]}
-      onResponderTerminate={[Function bound touchableHandleResponderTerminate]}
-      onResponderTerminationRequest={[Function bound touchableHandleResponderTerminationRequest]}
-      onStartShouldSetResponder={[Function bound touchableHandleStartShouldSetResponder]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
       style={
         Array [
           Object {
-            "backgroundColor": "transparent"
+            "backgroundColor": "transparent",
           },
-          undefined
+          undefined,
         ]
       }
       testID={undefined}>
@@ -203,8 +203,8 @@ exports[`Component snapshots renders the navigation component 1`] = `
             Object {
               "fontSize": 11,
               "fontWeight": "300",
-              "padding": 12
-            }
+              "padding": 12,
+            },
           ]
         }>
         COMPLETE
@@ -216,27 +216,27 @@ exports[`Component snapshots renders the navigation component 1`] = `
 
 exports[`Component snapshots renders the task component 1`] = `
 <View
-  onLayout={[Function bound onLayout]}
+  onLayout={[Function]}
   style={
     Object {
       "backgroundColor": "#8bc34a",
       "height": undefined,
-      "position": "relative"
+      "position": "relative",
     }
   }>
   <View
-    onMoveShouldSetResponder={[Function onMoveShouldSetResponder]}
-    onMoveShouldSetResponderCapture={[Function onMoveShouldSetResponderCapture]}
-    onResponderEnd={[Function onResponderEnd]}
-    onResponderGrant={[Function onResponderGrant]}
-    onResponderMove={[Function onResponderMove]}
-    onResponderReject={[Function onResponderReject]}
-    onResponderRelease={[Function onResponderRelease]}
-    onResponderStart={[Function onResponderStart]}
-    onResponderTerminate={[Function onResponderTerminate]}
-    onResponderTerminationRequest={[Function onResponderTerminationRequest]}
-    onStartShouldSetResponder={[Function onStartShouldSetResponder]}
-    onStartShouldSetResponderCapture={[Function onStartShouldSetResponderCapture]}
+    onMoveShouldSetResponder={[Function]}
+    onMoveShouldSetResponderCapture={[Function]}
+    onResponderEnd={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderReject={[Function]}
+    onResponderRelease={[Function]}
+    onResponderStart={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    onStartShouldSetResponderCapture={[Function]}
     style={
       Object {
         "backgroundColor": "#fff",
@@ -249,9 +249,9 @@ exports[`Component snapshots renders the task component 1`] = `
         "paddingTop": 20,
         "transform": Array [
           Object {
-            "translateX": 0
-          }
-        ]
+            "translateX": 0,
+          },
+        ],
       }
     }
     testID="Task">
@@ -263,12 +263,10 @@ exports[`Component snapshots renders the task component 1`] = `
         Object {
           "fontSize": 14,
           "fontWeight": "300",
-          "marginBottom": 10
+          "marginBottom": 10,
         }
       }>
       Test Task
-       - 
-      0
     </Text>
     <Text
       accessible={true}
@@ -278,7 +276,7 @@ exports[`Component snapshots renders the task component 1`] = `
         Object {
           "color": "#999",
           "fontSize": 12,
-          "fontWeight": "300"
+          "fontWeight": "300",
         }
       }>
       1474160934141
@@ -291,52 +289,52 @@ exports[`Component snapshots renders the task list component 1`] = `
 <View
   style={
     Object {
-      "flex": 1
+      "flex": 1,
     }
   }>
   <ScrollView
     dataSource={
       ListViewDataSource {
-        "items": 2
+        "items": 2,
       }
     }
     initialListSize={10}
-    onContentSizeChange={[Function bound _onContentSizeChange]}
+    onContentSizeChange={[Function]}
     onEndReachedThreshold={1000}
     onKeyboardDidHide={undefined}
     onKeyboardDidShow={undefined}
     onKeyboardWillHide={undefined}
     onKeyboardWillShow={undefined}
-    onLayout={[Function bound _onLayout]}
-    onScroll={[Function bound _onScroll]}
+    onLayout={[Function]}
+    onScroll={[Function]}
     pageSize={1}
     removeClippedSubviews={true}
-    renderRow={[Function bound renderRow]}
+    renderRow={[Function]}
     scrollEventThrottle={50}
     scrollRenderAheadDistance={1000}
     stickyHeaderIndices={Array []}>
     <View
-      onLayout={[Function bound onLayout]}
+      onLayout={[Function]}
       style={
         Object {
           "backgroundColor": "#8bc34a",
           "height": undefined,
-          "position": "relative"
+          "position": "relative",
         }
       }>
       <View
-        onMoveShouldSetResponder={[Function onMoveShouldSetResponder]}
-        onMoveShouldSetResponderCapture={[Function onMoveShouldSetResponderCapture]}
-        onResponderEnd={[Function onResponderEnd]}
-        onResponderGrant={[Function onResponderGrant]}
-        onResponderMove={[Function onResponderMove]}
-        onResponderReject={[Function onResponderReject]}
-        onResponderRelease={[Function onResponderRelease]}
-        onResponderStart={[Function onResponderStart]}
-        onResponderTerminate={[Function onResponderTerminate]}
-        onResponderTerminationRequest={[Function onResponderTerminationRequest]}
-        onStartShouldSetResponder={[Function onStartShouldSetResponder]}
-        onStartShouldSetResponderCapture={[Function onStartShouldSetResponderCapture]}
+        onMoveShouldSetResponder={[Function]}
+        onMoveShouldSetResponderCapture={[Function]}
+        onResponderEnd={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderReject={[Function]}
+        onResponderRelease={[Function]}
+        onResponderStart={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        onStartShouldSetResponderCapture={[Function]}
         style={
           Object {
             "backgroundColor": "#fff",
@@ -349,9 +347,9 @@ exports[`Component snapshots renders the task list component 1`] = `
             "paddingTop": 20,
             "transform": Array [
               Object {
-                "translateX": 0
-              }
-            ]
+                "translateX": 0,
+              },
+            ],
           }
         }
         testID="Task">
@@ -363,12 +361,10 @@ exports[`Component snapshots renders the task list component 1`] = `
             Object {
               "fontSize": 14,
               "fontWeight": "300",
-              "marginBottom": 10
+              "marginBottom": 10,
             }
           }>
           Test task 1
-           - 
-          0
         </Text>
         <Text
           accessible={true}
@@ -378,7 +374,7 @@ exports[`Component snapshots renders the task list component 1`] = `
             Object {
               "color": "#999",
               "fontSize": 12,
-              "fontWeight": "300"
+              "fontWeight": "300",
             }
           }>
           1
@@ -386,27 +382,27 @@ exports[`Component snapshots renders the task list component 1`] = `
       </View>
     </View>
     <View
-      onLayout={[Function bound onLayout]}
+      onLayout={[Function]}
       style={
         Object {
           "backgroundColor": "#8bc34a",
           "height": undefined,
-          "position": "relative"
+          "position": "relative",
         }
       }>
       <View
-        onMoveShouldSetResponder={[Function onMoveShouldSetResponder]}
-        onMoveShouldSetResponderCapture={[Function onMoveShouldSetResponderCapture]}
-        onResponderEnd={[Function onResponderEnd]}
-        onResponderGrant={[Function onResponderGrant]}
-        onResponderMove={[Function onResponderMove]}
-        onResponderReject={[Function onResponderReject]}
-        onResponderRelease={[Function onResponderRelease]}
-        onResponderStart={[Function onResponderStart]}
-        onResponderTerminate={[Function onResponderTerminate]}
-        onResponderTerminationRequest={[Function onResponderTerminationRequest]}
-        onStartShouldSetResponder={[Function onStartShouldSetResponder]}
-        onStartShouldSetResponderCapture={[Function onStartShouldSetResponderCapture]}
+        onMoveShouldSetResponder={[Function]}
+        onMoveShouldSetResponderCapture={[Function]}
+        onResponderEnd={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderReject={[Function]}
+        onResponderRelease={[Function]}
+        onResponderStart={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        onStartShouldSetResponderCapture={[Function]}
         style={
           Object {
             "backgroundColor": "#fff",
@@ -419,9 +415,9 @@ exports[`Component snapshots renders the task list component 1`] = `
             "paddingTop": 20,
             "transform": Array [
               Object {
-                "translateX": 0
-              }
-            ]
+                "translateX": 0,
+              },
+            ],
           }
         }
         testID="Task">
@@ -433,12 +429,10 @@ exports[`Component snapshots renders the task list component 1`] = `
             Object {
               "fontSize": 14,
               "fontWeight": "300",
-              "marginBottom": 10
+              "marginBottom": 10,
             }
           }>
           Test task 2
-           - 
-          0
         </Text>
         <Text
           accessible={true}
@@ -448,7 +442,7 @@ exports[`Component snapshots renders the task list component 1`] = `
             Object {
               "color": "#999",
               "fontSize": 12,
-              "fontWeight": "300"
+              "fontWeight": "300",
             }
           }>
           2
