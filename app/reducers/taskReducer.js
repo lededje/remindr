@@ -14,6 +14,16 @@ const initialState = {
 export default function tasks(state = initialState, action = {}) {
   switch (action.type) {
 
+    case types.SQUASH_TASKS:
+      return {
+        ...state,
+        tasks: state.tasks.map(task => ({
+          ...task,
+          type: task.nextType || task.type,
+          nextType: undefined,
+        })),
+      };
+
     case types.CHANGE_FILTER_TYPE:
       return {
         ...state,
