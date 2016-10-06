@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { findIndex } from 'lodash';
 
 import * as actions from '../actions';
 import taskTypes from '../util/taskTypes';
@@ -10,6 +11,7 @@ import Header from '../components/Header';
 import TaskList from '../components/TaskList';
 import AddTaskInput from '../components/AddTaskInput';
 import Navigation from '../components/Navigation';
+import DeferDialog from '../components/DeferDialog';
 
 @connect(
   state => state.tasks,
@@ -26,8 +28,15 @@ export default class RemindrApp extends Component {
   }
 
   render() {
+    const isTaskDeferring = !!findIndex(this.props.tasks, task => !task.deferring);
     return (
       <View style={styles.container}>
+        {isTaskDeferring && (
+          <DeferDialog
+            onClose={this.props.actions.clearDeferringTask}
+            onTimeChosen={this.props.actions.deferTask}
+          />
+        )}
         <Header />
         <TaskList
           tasks={this.props.tasks.filter(task => task.type === this.props.filterType)}

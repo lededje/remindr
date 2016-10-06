@@ -22,9 +22,6 @@ describe('actions', () => {
       tasks: {
         tasks: [{
           id: 1,
-          type: 'CURRENT',
-          timestamp: 0,
-          title: 'Task One',
         }],
       },
     };
@@ -35,6 +32,7 @@ describe('actions', () => {
         type: 'CURRENT',
         timestamp: 0,
         title: 'Task Two',
+        deferring: false,
       },
     };
 
@@ -61,6 +59,7 @@ describe('actions', () => {
         type: 'CURRENT',
         timestamp: 0,
         title: 'Only task',
+        deferring: false,
       },
     };
     actions.addTask.apply(null, args)((test) => {
