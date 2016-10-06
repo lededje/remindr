@@ -36,7 +36,8 @@ export default function DeferDialog(props) {
 }
 
 DeferDialog.propTypes = {
-  onClick: React.PropTypes.func,
+  onClose: React.PropTypes.func,
+  onTimeChosen: React.PropTypes.func,
 };
 
 const styles = StyleSheet.create({
