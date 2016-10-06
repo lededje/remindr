@@ -19,6 +19,7 @@ export default class Task extends Component {
     title: React.PropTypes.string.isRequired,
     timestamp: React.PropTypes.number.isRequired,
     nextType: React.PropTypes.string.isRequired,
+    deferring: React.PropTypes.bool,
 
     onDirectionDecided: React.PropTypes.func,
 
@@ -76,6 +77,11 @@ export default class Task extends Component {
     // If it's currently blank and it wont be after this update...
     if (nextProps.nextType !== '' && this.props.nextType === '') {
       this.closeTask();
+      return;
+    }
+    // If this task was being deferred and now isn't...
+    if (nextProps.deferring === false && this.props.deferring === true) {
+      this.resetPosition('EASE_OUT');
     }
   }
 
@@ -158,11 +164,25 @@ export default class Task extends Component {
   }
 
   @autobind
-  resetPosition(animated = true) {
-    Animated.spring(this.state.translateX, {
-      toValue: 0,
-      friction: 4,
-    }).start();
+  resetPosition(animated = 'SPRING') {
+    switch (animated) {
+      case 'SPRING':
+        Animated.spring(this.state.translateX, {
+          toValue: 0,
+          friction: 4,
+        }).start();
+        break;
+      case 'EASE_OUT':
+        Animated.timing(this.state.translateX, {
+          toValue: 0,
+          duration: 350,
+          // Ease out.
+        }).start();
+        break;
+      default:
+        this.state.translateX.setValue(0);
+        break;
+    }
   }
 
   @autobind

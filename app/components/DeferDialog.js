@@ -15,15 +15,15 @@ const delayTimes = [
   { name: 'Someday' },
 ];
 
-export default function DeferDialog() {
+export default function DeferDialog(props) {
   return (
-    <View style={styles.container}>
+    <TouchableHighlight onPress={props.onClose} style={styles.container}>
       <View style={styles.dialog}>
         {delayTimes.map((time, i) => (
           <TouchableHighlight
             style={styles.option}
             key={time.name}
-            onPress={this.onClickHandler}
+            onPress={props.onTimeChosen}
             underlayColor={'orange'}
             activeOpacity={1}
           >
@@ -31,7 +31,7 @@ export default function DeferDialog() {
           </TouchableHighlight>
         ))}
       </View>
-    </View>
+    </TouchableHighlight>
   );
 }
 

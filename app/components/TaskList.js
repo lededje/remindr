@@ -17,6 +17,7 @@ export default class TaskList extends Component {
       timestamp: React.PropTypes.number.isRequired,
     })),
     onSwipe: React.PropTypes.func,
+    onDefer: React.PropTypes.func,
     left: React.PropTypes.shape({
       id: React.PropTypes.string.isRequired,
     }),
@@ -28,6 +29,7 @@ export default class TaskList extends Component {
   static defaultProps = {
     tasks: [],
     onSwipe: () => undefined,
+    onDefer: () => undefined,
   }
 
   constructor(props) {
@@ -50,13 +52,7 @@ export default class TaskList extends Component {
     return new Promise((resolve, reject) => {
       switch (direction) {
         case -1:
-          // Special case...
-          if (this.props.left.id === 'DEFERRED') {
-            // Show dialog
-            reject();
-          } else {
-            this.props.onSwipe(id, this.props.left.id);
-          }
+          this.props.onSwipe(id, this.props.left.id);
           break;
         case 1:
           this.props.onSwipe(id, this.props.right.id);
@@ -76,6 +72,7 @@ export default class TaskList extends Component {
         id={task.id}
         title={task.title}
         timestamp={task.timestamp}
+        deferring={task.deferring}
         nextType={task.nextType}
         onDirectionDecided={this.onTaskDirectionDecided}
         onSwipeEnd={this.onTaskSwipeEnd}
