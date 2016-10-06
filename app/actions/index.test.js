@@ -2,7 +2,7 @@ import * as types from './types';
 import * as actions from './';
 
 describe('actions', () => {
-  it.only('should create an action to change the filter type', () => {
+  it('should create an action to change the filter type', () => {
     const args = ['TEST'];
     const changeFilterResult = {
       type: types.CHANGE_FILTER_TYPE,
