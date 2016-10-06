@@ -4,9 +4,12 @@ import * as types from './types';
 // List actions
 
 export function changeFilterType(filterType) {
-  return {
-    type: types.CHANGE_FILTER_TYPE,
-    filterType,
+  return (dispatch) => {
+    dispatch(squashTasks());
+    dispatch({
+      type: types.CHANGE_FILTER_TYPE,
+      filterType,
+    });
   };
 }
 
@@ -33,6 +36,12 @@ export function addTask({
         deferring: false,
       },
     });
+  };
+}
+
+export function squashTasks() {
+  return {
+    type: types.SQUASH_TASKS,
   };
 }
 

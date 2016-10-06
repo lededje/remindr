@@ -39,7 +39,7 @@ export default class RemindrApp extends Component {
         )}
         <Header />
         <TaskList
-          tasks={this.props.tasks}
+          tasks={this.props.tasks.filter(task => task.type === this.props.filterType)}
           onSwipe={this.props.actions.changeNextTaskType}
           left={taskTypes.DEFERRED}
           right={taskTypes.DONE}

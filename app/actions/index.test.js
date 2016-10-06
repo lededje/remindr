@@ -2,14 +2,22 @@ import * as types from './types';
 import * as actions from './';
 
 describe('actions', () => {
-  it('should create an action to change the filter type', () => {
+  it.only('should create an action to change the filter type', () => {
     const args = ['TEST'];
-    const result = {
+    const changeFilterResult = {
       type: types.CHANGE_FILTER_TYPE,
       filterType: 'TEST',
     };
+    const squashTaskResult = {
+      type: types.SQUASH_TASKS,
+    };
 
-    expect(actions.changeFilterType.apply(null, args)).toEqual(result);
+    const callback = jest.fn();
+
+    actions.changeFilterType.apply(null, args)(callback);
+
+    expect(callback.mock.calls[0][0]).toEqual(squashTaskResult);
+    expect(callback.mock.calls[1][0]).toEqual(changeFilterResult);
   });
 
   it('should create an action to add a task', () => {
