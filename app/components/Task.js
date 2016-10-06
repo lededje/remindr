@@ -19,6 +19,7 @@ export default class Task extends Component {
     title: React.PropTypes.string.isRequired,
     timestamp: React.PropTypes.number.isRequired,
     nextType: React.PropTypes.string.isRequired,
+    deferring: React.PropTypes.bool,
 
     onDirectionDecided: React.PropTypes.func,
 
@@ -49,6 +50,8 @@ export default class Task extends Component {
     // Swipe direction is x or y, the state's direction is -1, 0 and 1
     this.swipeDirection = undefined;
     this.swipeInitialX = undefined;
+    // This means it's animating out and can no longer be interacted with.
+    this.dead = false;
 
     this.state = {
       translateX: new Animated.Value(0),
@@ -74,6 +77,11 @@ export default class Task extends Component {
     // If it's currently blank and it wont be after this update...
     if (nextProps.nextType !== '' && this.props.nextType === '') {
       this.closeTask();
+      return;
+    }
+    // If this task was being deferred and now isn't...
+    if (nextProps.deferring === false && this.props.deferring === true) {
+      this.resetPosition('EASE_OUT');
     }
   }
 
@@ -95,6 +103,7 @@ export default class Task extends Component {
   }
 
   handleOnMoveShouldSetPanResponder(e, gestureState) {
+    if (this.dead) return false;
     return Math.abs(gestureState.dx) > DIRECTIONAL_DISTANCE_CHANGE_THRESHOLD
       || Math.abs(gestureState.dy) > DIRECTIONAL_DISTANCE_CHANGE_THRESHOLD;
   }
@@ -155,14 +164,24 @@ export default class Task extends Component {
   }
 
   @autobind
-  resetPosition(animated = true) {
-    if (animated) {
-      Animated.spring(this.state.translateX, {
-        toValue: 0,
-        friction: 4,
-      }).start();
-    } else {
-      this.state.translateX.value(0);
+  resetPosition(animated = 'SPRING') {
+    switch (animated) {
+      case 'SPRING':
+        Animated.spring(this.state.translateX, {
+          toValue: 0,
+          friction: 4,
+        }).start();
+        break;
+      case 'EASE_OUT':
+        Animated.timing(this.state.translateX, {
+          toValue: 0,
+          duration: 350,
+          // Ease out.
+        }).start();
+        break;
+      default:
+        this.state.translateX.setValue(0);
+        break;
     }
   }
 
@@ -181,13 +200,12 @@ export default class Task extends Component {
   }
 
   @autobind
-  closeTask(animated = true) {
-    if (animated) {
-      Animated.timing(this.state.height, {
-        toValue: 0,
-        delay: 150,
-      }).start();
-    }
+  closeTask() {
+    this.dead = true;
+    Animated.timing(this.state.height, {
+      toValue: 0,
+      delay: 150,
+    }).start();
   }
 
   render() {
@@ -195,7 +213,7 @@ export default class Task extends Component {
 
     const leftColor = get(this.props, 'left.color', '#fff');
     const rightColor = get(this.props, 'right.color', '#fff');
-    const backgroundColor = this.state.direction === 1 ?
+    const backgroundColor = this.state.direction === -1 ?
       leftColor : rightColor;
 
     return (
@@ -209,22 +227,22 @@ export default class Task extends Component {
         ]}
         onLayout={this.onLayout}
       >
-        {this.props.left && this.state.direction === 1 && (
+        {this.props.right && this.state.direction === 1 && (
           <View
             style={[styles.iconWrapper, {
               left: 25,
             }]}
           >
-            <Text style={styles.icon}>{this.props.left.icon}</Text>
+            <Text style={styles.icon}>{this.props.right.icon}</Text>
           </View>
         )}
-        {this.props.right && this.state.direction === -1 && (
+        {this.props.left && this.state.direction === -1 && (
           <View
             style={[styles.iconWrapper, {
               right: 25,
             }]}
           >
-            <Text style={styles.icon}>{this.props.right.icon}</Text>
+            <Text style={styles.icon}>{this.props.left.icon}</Text>
           </View>
         )}
         <Animated.View
@@ -263,6 +281,7 @@ const styles = StyleSheet.create({
     fontFamily: 'GLYPHICONS Halflings',
     backgroundColor: 'transparent',
     color: '#fff',
+    fontSize: 20,
   },
   item: {
     paddingLeft: 35,

@@ -8,6 +8,7 @@ const initialState = {
     timestamp: 0,
     type: 'CURRENT',
     nextType: '',
+    deferring: false,
   }],
 };
 
@@ -57,6 +58,45 @@ export default function tasks(state = initialState, action = {}) {
             return {
               ...task,
               nextType: action.nextType,
+            };
+          }
+          return task;
+        }),
+      };
+
+    case types.SET_DEFERRING_TASK:
+      return {
+        ...state,
+        tasks: state.tasks.map((task) => {
+          if (task.id === action.deferringTaskId) {
+            return {
+              ...task,
+              deferring: true,
+            };
+          }
+          return task;
+        }),
+      };
+
+    case types.CLEAR_DEFERRING_TASK:
+      return {
+        ...state,
+        tasks: state.tasks.map(task => ({
+          ...task,
+          deferring: false,
+        })),
+      };
+
+    case types.DEFER_TASK:
+      return {
+        ...state,
+        tasks: state.tasks.map((task) => {
+          if (task.deferring) {
+            return {
+              ...task,
+              nextType: action.nextType,
+              deferredUntil: action.until,
+              deferring: false,
             };
           }
           return task;
