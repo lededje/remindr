@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { findIndex } from 'lodash';
 
 import * as actions from '../actions';
-import taskTypes from '../util/taskTypes';
+import { flow as taskFlow } from '../util/taskTypes';
 
 import Header from '../components/Header';
 import TaskList from '../components/TaskList';
@@ -29,6 +29,8 @@ export default class RemindrApp extends Component {
 
   render() {
     const isTaskDeferring = !!findIndex(this.props.tasks, task => !task.deferring);
+    const currentTaskFlowId = findIndex(taskFlow, flow => flow.id === this.props.filterType);
+
     return (
       <View style={styles.container}>
         {isTaskDeferring && (
@@ -41,8 +43,8 @@ export default class RemindrApp extends Component {
         <TaskList
           tasks={this.props.tasks.filter(task => task.type === this.props.filterType)}
           onSwipe={this.props.actions.changeNextTaskType}
-          left={taskTypes.DEFERRED}
-          right={taskTypes.DONE}
+          left={taskFlow[currentTaskFlowId - 1]}
+          right={taskFlow[currentTaskFlowId + 1]}
         />
         <AddTaskInput onSubmit={this.props.actions.addTask} />
         <Navigation
