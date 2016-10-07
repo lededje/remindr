@@ -28,7 +28,8 @@ export default class RemindrApp extends Component {
   }
 
   render() {
-    const isTaskDeferring = !!findIndex(this.props.tasks, task => !task.deferring);
+    const filteredTasks = this.props.tasks.filter(task => task.type === this.props.filterType);
+    const isTaskDeferring = findIndex(filteredTasks, task => task.deferring) >= 0;
     const currentTaskFlowId = findIndex(taskFlow, flow => flow.id === this.props.filterType);
 
     return (
@@ -41,7 +42,7 @@ export default class RemindrApp extends Component {
         )}
         <Header />
         <TaskList
-          tasks={this.props.tasks.filter(task => task.type === this.props.filterType)}
+          tasks={filteredTasks}
           onSwipe={this.props.actions.changeNextTaskType}
           left={taskFlow[currentTaskFlowId - 1]}
           right={taskFlow[currentTaskFlowId + 1]}
