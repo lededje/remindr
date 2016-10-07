@@ -1,7 +1,7 @@
 import icons from './icons';
 import colors from './colors';
 
-export default {
+const taskTypes = {
   DEFERRED: {
     id: 'DEFERRED',
     name: 'Deferred',
@@ -27,3 +27,7 @@ export default {
     icon: icons.CROSS,
   },
 };
+
+const flow = [taskTypes.DEFERRED, taskTypes.CURRENT, taskTypes.DONE, taskTypes.DELETED];
+
+export { taskTypes as default, flow };
