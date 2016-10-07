@@ -69,6 +69,7 @@ export default class TaskList extends Component {
   renderRow(task) {
     return (
       <Task
+        key={`${task.id}-${task.type}`}
         id={task.id}
         title={task.title}
         timestamp={task.timestamp}
