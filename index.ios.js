@@ -5,4 +5,8 @@ import {
 
 import App from './app/containers/App';
 
-AppRegistry.registerComponent('remindr', () => <App />);
+function remindr() {
+  return (<App />);
+}
+
+AppRegistry.registerComponent('remindr', () => remindr);
