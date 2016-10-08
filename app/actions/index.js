@@ -95,4 +95,11 @@ export function deferTask(id, until) {
   };
 }
 
-// Fix up change task type to activate the overlay.
+// Push Notification Actions
+
+export function updatePermissions(permissions) {
+  return {
+    type: types.UPDATE_PERMISSIONS,
+    ...permissions,
+  };
+}
