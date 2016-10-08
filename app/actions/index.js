@@ -1,4 +1,7 @@
 import { maxBy } from 'lodash';
+import moment from 'moment';
+import { PushNotificationIOS } from 'react-native';
+
 import * as types from './types';
 
 // List actions
@@ -88,10 +91,20 @@ export function clearDeferringTask() {
 }
 
 export function deferTask(id, until) {
-  return {
-    type: types.DEFER_TASK,
-    until,
-    nextType: 'DEFERRED',
+  return (dispatch, getState) => {
+    const selectedTask = getState().tasks.find(task => task.id === id);
+
+    PushNotificationIOS.scheduleLocalNotification({
+      fireDate: moment(until).format('YYYY-MM-DDTHH:mm:ss.sssZ'),
+      alertBody: selectedTask.title,
+      sound: 'default',
+    });
+
+    return {
+      type: types.DEFER_TASK,
+      until,
+      nextType: 'DEFERRED',
+    };
   };
 }
 
