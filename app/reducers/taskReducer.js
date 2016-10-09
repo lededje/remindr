@@ -1,14 +1,16 @@
+import moment from 'moment';
 import * as types from '../actions/types';
 
 const initialState = {
-  filterType: 'CURRENT',
+  filterType: 'DEFERRED',
   tasks: [{
     id: 0,
     title: 'Create a new task',
-    timestamp: 0,
-    type: 'CURRENT',
+    timestamp: moment().format(),
+    type: 'DEFERRED',
     nextType: '',
     deferring: false,
+    deferredUntil: '2016-10-14T18:47:57+01:00',
   }],
 };
 
