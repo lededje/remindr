@@ -6,28 +6,22 @@ import {
   TouchableHighlight,
 } from 'react-native';
 
-const delayTimes = [
-  { name: 'Later Today' },
-  { name: 'Tomorrow' },
-  { name: 'This Weekend' },
-  { name: 'Next Week' },
-  { name: 'Next Month' },
-  { name: 'Someday' },
-];
+import { deferTypes, availableDeferOptions } from '../util/deferTypes';
 
 export default function DeferDialog(props) {
+  const delayTimes = availableDeferOptions();
   return (
     <TouchableHighlight onPress={props.onClose} style={styles.container}>
       <View style={styles.dialog}>
-        {delayTimes.map((time, i) => (
+        {delayTimes.map(time => (
           <TouchableHighlight
             style={styles.option}
-            key={time.name}
+            key={deferTypes[time].id}
             onPress={props.onTimeChosen}
             underlayColor={'orange'}
             activeOpacity={1}
           >
-            <Text style={styles.optionLabel}>{time.name}</Text>
+            <Text style={styles.optionLabel}>{deferTypes[time].name}</Text>
           </TouchableHighlight>
         ))}
       </View>
