@@ -11,55 +11,87 @@ const deferTypes = {
   THIS_MORNING: {
     id: 'THIS_MORNING',
     name: 'This Morning',
-    calc: time => moment(time).startOf('day').add(THIS_MORNING),
+    calc: time => moment(time)
+      .startOf('day')
+      .add(THIS_MORNING)
+      .format(),
   },
 
   THIS_AFTERNOON: {
     id: 'THIS_AFTERNOON',
     name: 'This Afternoon',
-    calc: time => moment(time).startOf('day').add(THIS_AFTERNOON),
+    calc: time => moment(time)
+      .startOf('day')
+      .add(THIS_AFTERNOON)
+      .format(),
   },
 
   THIS_EVENING: {
     id: 'THIS_EVENING',
     name: 'This Evening',
-    calc: time => moment(time).startOf('day').add(THIS_EVENING),
+    calc: time => moment(time)
+      .startOf('day')
+      .add(THIS_EVENING)
+      .format(),
   },
 
   MIDNIGHT: {
     id: 'MIDNIGHT',
     name: 'Midnight',
-    calc: time => moment(time).startOf('day').add(MIDNIGHT),
+    calc: time => moment(time)
+      .startOf('day')
+      .add(MIDNIGHT)
+      .format(),
   },
 
-  LATER_TODAY: {
-    id: 'LATER_TODAY',
-    name: 'Later Today',
-    calc: time => moment(time).endOf('day').add(START_OF_DAY),
-  },
+  // LATER_TODAY: {
+  //   id: 'LATER_TODAY',
+  //   name: 'Later Today',
+  //   calc: time => moment(time)
+  //  .endOf('day')
+  //  .add(START_OF_DAY)
+  //  .format(),
+  // },
 
   TOMORROW: {
     id: 'TOMORROW',
     name: 'Tomorrow',
-    calc: time => moment(time).startOf('week').add(5, 'days').add(START_OF_DAY),
+    calc: time => moment(time)
+      .startOf('day')
+      .add(1, 'day')
+      .add(START_OF_DAY)
+      .format(),
   },
 
   THIS_WEEKEND: {
     id: 'THIS_WEEKEND',
     name: 'This Weekend',
-    calc: time => moment(time).endOf('week').add(5, 'days').add(START_OF_DAY),
+    // add 6 days to make it saturday
+    calc: time => moment(time)
+      .startOf('week')
+      .add(6, 'days')
+      .add(START_OF_DAY)
+      .format(),
   },
 
   NEXT_WEEK: {
     id: 'NEXT_WEEK',
     name: 'Next Week',
-    calc: time => moment(time).endOf('week').add(START_OF_DAY),
+    calc: time => moment(time).startOf('week')
+      .add(1, 'week')
+      .add(1, 'day')
+      .add(START_OF_DAY)
+      .format(),
   },
 
   NEXT_MONTH: {
     id: 'NEXT_MONTH',
     name: 'Next Month',
-    calc: time => moment(time).endOf('month').add(START_OF_DAY),
+    calc: time => moment(time)
+      .startOf('month')
+      .add(1, 'month')
+      .add(START_OF_DAY)
+      .format(),
   },
 
   SOMEDAY: {
