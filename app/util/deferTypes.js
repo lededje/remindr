@@ -1,13 +1,35 @@
+// Later Today + 3 hours
+
+// This Morning - 9
+// This Afternoon - 14
+// This Evening - 16
+// Tonight - 20
+
+// Tomorrow
+// This Weekend
+// Next Week
+// In a Month
+// Some day
+// Pick a day
 
 import moment from 'moment';
 
 const START_OF_DAY = moment.duration(8.5, 'hours');
 const THIS_MORNING = moment.duration(9, 'hours');
-const THIS_AFTERNOON = moment.duration(15, 'hours');
+const THIS_AFTERNOON = moment.duration(14, 'hours');
 const THIS_EVENING = moment.duration(19, 'hours');
-const MIDNIGHT = moment.duration(24, 'hours');
+const TONIGHT = moment.duration(20, 'hours');
 
 const deferTypes = {
+  // LATER_TODAY: {
+  //   id: 'LATER_TODAY',
+  //   name: 'Later Today',
+  //   calc: time => moment(time)
+  //  .endOf('day')
+  //  .add(START_OF_DAY)
+  //  .format(),
+  // },
+
   THIS_MORNING: {
     id: 'THIS_MORNING',
     name: 'This Morning',
@@ -35,23 +57,14 @@ const deferTypes = {
       .format(),
   },
 
-  MIDNIGHT: {
-    id: 'MIDNIGHT',
-    name: 'Midnight',
+  TONIGHT: {
+    id: 'TONIGHT',
+    name: 'Tonight',
     calc: time => moment(time)
       .startOf('day')
-      .add(MIDNIGHT)
+      .add(TONIGHT)
       .format(),
   },
-
-  // LATER_TODAY: {
-  //   id: 'LATER_TODAY',
-  //   name: 'Later Today',
-  //   calc: time => moment(time)
-  //  .endOf('day')
-  //  .add(START_OF_DAY)
-  //  .format(),
-  // },
 
   TOMORROW: {
     id: 'TOMORROW',
@@ -104,13 +117,13 @@ const deferTypes = {
 function availableDeferOptions(time) {
   const times = [];
 
-  const sameDayTimes = ['THIS_MORNING', 'THIS_AFTERNOON', 'THIS_EVENING', 'MIDNIGHT'];
+  const sameDayTimes = ['THIS_MORNING', 'THIS_AFTERNOON', 'THIS_EVENING', 'TONIGHT'];
 
   // This for loop checks to see which defer time is the next to occur today.
   const nearestSameDayTime = sameDayTimes.find((sameDayTime) => {
     if (
       moment(time).diff(
-        deferTypes[sameDayTime].calc(time)
+        moment(deferTypes[sameDayTime].calc(time))
         .subtract(1, 'hour')
       ) < 0
     ) {

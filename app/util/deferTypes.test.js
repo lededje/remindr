@@ -1,6 +1,6 @@
 import moment from 'moment';
-import { forIn } from 'lodash';
-import { deferTypes } from './deferTypes';
+import { forIn, isEqual } from 'lodash';
+import { deferTypes, availableDeferOptions } from './deferTypes';
 
 describe('Defer Types', () => {
   const tests = [
@@ -14,8 +14,8 @@ describe('Defer Types', () => {
     {
       id: 'THIS_AFTERNOON',
       pairs: {
-        '2000-01-01 05:35:24': '2000-01-01 15:00:00',
-        '2000-01-01 15:32:24': '2000-01-01 15:00:00',
+        '2000-01-01 05:35:24': '2000-01-01 14:00:00',
+        '2000-01-01 15:32:24': '2000-01-01 14:00:00',
       },
     },
     {
@@ -26,9 +26,9 @@ describe('Defer Types', () => {
       },
     },
     {
-      id: 'MIDNIGHT',
+      id: 'TONIGHT',
       pairs: {
-        '2000-01-01 10:00:00': '2000-01-02 00:00:00',
+        '2000-01-01 10:00:00': '2000-01-01 20:00:00',
       },
     },
     {
@@ -70,6 +70,23 @@ describe('Defer Types', () => {
         const after = typeof value === 'string' ? moment(value).format() : value;
         expect(before).toBe(after);
       });
+    });
+  });
+});
+
+
+describe.skip('Available Defer Options', () => {
+  const tests = {
+    '2000-01-01 10:00:00': ['THIS_AFTERNOON', 'TOMORROW', 'NEXT_WEEKEND', 'NEXT_WEEK', 'NEXT_MONTH', 'SOMEDAY'],
+    '2000-01-01 16:00:00': ['THIS_AFTERNOON', 'TOMORROW', 'NEXT_WEEKEND', 'NEXT_WEEK', 'NEXT_MONTH', 'SOMEDAY'],
+    // '2000-01-01 00:00:00': ['TOMORROW', 'NEXT_WEEKEND', 'NEXT_WEEK', 'NEXT_MONTH', 'SOMEDAY'],
+  };
+
+  it('should generate the correct responses depending on time of day', () => {
+    forIn(tests, (value, key) => {
+      const availableOptions = availableDeferOptions(key);
+      console.log(availableOptions);
+      expect(isEqual(availableOptions.sort(), value.sort())).toBe(true);
     });
   });
 });
