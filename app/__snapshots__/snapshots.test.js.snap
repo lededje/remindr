@@ -268,19 +268,31 @@ exports[`Component snapshots renders the task component 1`] = `
       }>
       Test Task
     </Text>
-    <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
+    <View
       style={
         Object {
-          "color": "#999",
-          "fontSize": 12,
-          "fontWeight": "300",
+          "flexDirection": "row",
         }
       }>
-      1474160934141
-    </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "color": "#999",
+              "fontSize": 12,
+              "fontWeight": "300",
+            },
+            Object {
+              "flex": 1,
+            },
+          ]
+        }>
+        in 4 days
+      </Text>
+    </View>
   </View>
 </View>
 `;
@@ -366,19 +378,31 @@ exports[`Component snapshots renders the task list component 1`] = `
           }>
           Test task 1
         </Text>
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
+        <View
           style={
             Object {
-              "color": "#999",
-              "fontSize": 12,
-              "fontWeight": "300",
+              "flexDirection": "row",
             }
           }>
-          1
-        </Text>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "color": "#999",
+                  "fontSize": 12,
+                  "fontWeight": "300",
+                },
+                Object {
+                  "flex": 1,
+                },
+              ]
+            }>
+            in 4 days
+          </Text>
+        </View>
       </View>
     </View>
     <View
@@ -434,19 +458,31 @@ exports[`Component snapshots renders the task list component 1`] = `
           }>
           Test task 2
         </Text>
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
+        <View
           style={
             Object {
-              "color": "#999",
-              "fontSize": 12,
-              "fontWeight": "300",
+              "flexDirection": "row",
             }
           }>
-          2
-        </Text>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "color": "#999",
+                  "fontSize": 12,
+                  "fontWeight": "300",
+                },
+                Object {
+                  "flex": 1,
+                },
+              ]
+            }>
+            in 4 days
+          </Text>
+        </View>
       </View>
     </View>
   </ScrollView>

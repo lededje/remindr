@@ -37,11 +37,11 @@ describe('Component snapshots', () => {
     const taskData = [{
       id: 0,
       title: 'Test task 1',
-      timestamp: 1,
+      timestamp: '2016-10-14T18:47:57+01:00',
     }, {
       id: 1,
       title: 'Test task 2',
-      timestamp: 2,
+      timestamp: '2016-10-14T18:47:57+01:00',
     }];
 
     const component = renderer.create(
@@ -65,7 +65,7 @@ describe('Component snapshots', () => {
       <Task
         id={123}
         title="Test Task"
-        timestamp={1474160934141}
+        timestamp={'2016-10-14T18:47:57+01:00'}
         left={taskTypes.DEFERRED}
         right={taskTypes.DONE}
       />

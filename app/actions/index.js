@@ -60,10 +60,19 @@ export function changeTaskType(id, type) {
 export function changeNextTaskType(id, nextType) {
   if (nextType === 'DEFERRED') return setDeferringTask(id);
 
+  const opts = {};
+
+  if (nextType === 'CURRENT') {
+    opts.deferredUntil = undefined;
+  }
+
   return {
     type: types.CHANGE_NEXT_TASK_TYPE,
-    id,
-    nextType,
+    task: {
+      id,
+      nextType,
+      ...opts,
+    },
   };
 }
 

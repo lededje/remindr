@@ -1,4 +1,3 @@
-
 import moment from 'moment';
 
 const START_OF_DAY = moment.duration(8.5, 'hours');
@@ -110,13 +109,13 @@ function availableDeferOptions(time) {
   const nearestSameDayTime = sameDayTimes.find((sameDayTime) => {
     if (
       moment(time).diff(
-        deferTypes[sameDayTime].calc(time)
+        moment(deferTypes[sameDayTime].calc(time))
         .subtract(1, 'hour')
       ) < 0
     ) {
-      return false;
+      return true;
     }
-    return true;
+    return false;
   });
 
   times.push(nearestSameDayTime);

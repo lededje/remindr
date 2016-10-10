@@ -6,10 +6,13 @@ import {
   TouchableHighlight,
 } from 'react-native';
 
+import moment from 'moment';
+
 import { deferTypes, availableDeferOptions } from '../util/deferTypes';
 
 export default function DeferDialog(props) {
   const delayTimes = availableDeferOptions();
+
   return (
     <TouchableHighlight onPress={props.onClose} style={styles.container}>
       <View style={styles.dialog}>
@@ -17,7 +20,11 @@ export default function DeferDialog(props) {
           <TouchableHighlight
             style={styles.option}
             key={deferTypes[time].id}
-            onPress={props.onTimeChosen}
+            onPress={props.onTimeChosen.bind(
+              null,
+              props.task.id,
+              deferTypes[time].calc(moment.now()),
+            )}
             underlayColor={'orange'}
             activeOpacity={1}
           >
@@ -32,6 +39,9 @@ export default function DeferDialog(props) {
 DeferDialog.propTypes = {
   onClose: React.PropTypes.func,
   onTimeChosen: React.PropTypes.func,
+  task: React.PropTypes.shape({
+    id: React.PropTypes.number,
+  }),
 };
 
 const styles = StyleSheet.create({

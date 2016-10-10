@@ -1,3 +1,4 @@
+import moment from 'moment';
 import * as types from '../actions/types';
 
 const initialState = {
@@ -5,10 +6,11 @@ const initialState = {
   tasks: [{
     id: 0,
     title: 'Create a new task',
-    timestamp: 0,
+    timestamp: moment().format(),
     type: 'CURRENT',
     nextType: '',
     deferring: false,
+    deferredUntil: '2016-10-14T18:47:57+01:00',
   }],
 };
 
@@ -64,10 +66,10 @@ export default function tasks(state = initialState, action = {}) {
       return {
         ...state,
         tasks: state.tasks.map((task) => {
-          if (task.id === action.id) {
+          if (task.id === action.task.id) {
             return {
               ...task,
-              nextType: action.nextType,
+              ...action.task,
             };
           }
           return task;

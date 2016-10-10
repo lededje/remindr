@@ -7,8 +7,10 @@ import {
   Dimensions,
   View,
 } from 'react-native';
+import moment from 'moment';
 import autobind from 'autobind-decorator';
 import { get } from 'lodash';
+import icons from '../util/icons';
 
 const DIRECTIONAL_DISTANCE_CHANGE_THRESHOLD = 5;
 
@@ -17,8 +19,9 @@ export default class Task extends Component {
   static propTypes = {
     id: React.PropTypes.number.isRequired,
     title: React.PropTypes.string.isRequired,
-    timestamp: React.PropTypes.number.isRequired,
+    timestamp: React.PropTypes.string.isRequired,
     nextType: React.PropTypes.string.isRequired,
+    deferredUntil: React.PropTypes.string,
     deferring: React.PropTypes.bool,
 
     onDirectionDecided: React.PropTypes.func,
@@ -208,6 +211,19 @@ export default class Task extends Component {
     }).start();
   }
 
+  renderDeferredTimetamp() {
+    return (
+      <View style={styles.row}>
+        <Text style={[styles.timestamp, styles.icon, { marginRight: 4 }]}>
+          {icons.BELL}
+        </Text>
+        <Text style={[styles.timestamp]}>
+          {this.props.deferredUntil && moment(this.props.deferredUntil).fromNow()}
+        </Text>
+      </View>
+    );
+  }
+
   render() {
     const height = this.state.height._value >= 0 ? this.state.height : undefined;
 
@@ -233,7 +249,7 @@ export default class Task extends Component {
               left: 25,
             }]}
           >
-            <Text style={styles.icon}>{this.props.right.icon}</Text>
+            <Text style={[styles.icon, styles.taskIcon]}>{this.props.right.icon}</Text>
           </View>
         )}
         {this.props.left && this.state.direction === -1 && (
@@ -242,7 +258,7 @@ export default class Task extends Component {
               right: 25,
             }]}
           >
-            <Text style={styles.icon}>{this.props.left.icon}</Text>
+            <Text style={[styles.icon, styles.taskIcon]}>{this.props.left.icon}</Text>
           </View>
         )}
         <Animated.View
@@ -256,12 +272,18 @@ export default class Task extends Component {
           {...this.panResponder.panHandlers}
         >
           <Text style={styles.title}>{this.props.title}</Text>
-          <Text style={styles.timestamp}>{this.props.timestamp}</Text>
+          <View style={styles.row}>
+            <Text style={[styles.timestamp, styles.flex]}>
+              {moment(this.props.timestamp).fromNow()}
+            </Text>
+            {this.props.deferredUntil && this.renderDeferredTimetamp()}
+          </View>
         </Animated.View>
       </Animated.View>
     );
   }
 }
+
 
 const styles = StyleSheet.create({
   container: {
@@ -280,6 +302,8 @@ const styles = StyleSheet.create({
   icon: {
     fontFamily: 'GLYPHICONS Halflings',
     backgroundColor: 'transparent',
+  },
+  taskIcon: {
     color: '#fff',
     fontSize: 20,
   },
@@ -301,5 +325,11 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: '#999',
     fontWeight: '300',
+  },
+  flex: {
+    flex: 1,
+  },
+  row: {
+    flexDirection: 'row',
   },
 });
