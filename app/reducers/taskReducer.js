@@ -2,12 +2,12 @@ import moment from 'moment';
 import * as types from '../actions/types';
 
 const initialState = {
-  filterType: 'DEFERRED',
+  filterType: 'CURRENT',
   tasks: [{
     id: 0,
     title: 'Create a new task',
     timestamp: moment().format(),
-    type: 'DEFERRED',
+    type: 'CURRENT',
     nextType: '',
     deferring: false,
     deferredUntil: '2016-10-14T18:47:57+01:00',
@@ -66,10 +66,10 @@ export default function tasks(state = initialState, action = {}) {
       return {
         ...state,
         tasks: state.tasks.map((task) => {
-          if (task.id === action.id) {
+          if (task.id === action.task.id) {
             return {
               ...task,
-              nextType: action.nextType,
+              ...action.task,
             };
           }
           return task;

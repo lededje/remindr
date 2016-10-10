@@ -213,7 +213,7 @@ export default class Task extends Component {
 
   renderDeferredTimetamp() {
     return (
-      <View style={styles.flex, { flexDirection: 'row' }}>
+      <View style={styles.row}>
         <Text style={[styles.timestamp, styles.icon, { marginRight: 4 }]}>
           {taskTypes.DEFERRED.icon}
         </Text>
@@ -272,11 +272,11 @@ export default class Task extends Component {
           {...this.panResponder.panHandlers}
         >
           <Text style={styles.title}>{this.props.title}</Text>
-          <View style={{ flexDirection: 'row' }}>
+          <View style={styles.row}>
             <Text style={[styles.timestamp, styles.flex]}>
               {moment(this.props.timestamp).fromNow()}
             </Text>
-            {this.renderDeferredTimetamp()}
+            {this.props.deferredUntil && this.renderDeferredTimetamp()}
           </View>
         </Animated.View>
       </Animated.View>
@@ -328,5 +328,8 @@ const styles = StyleSheet.create({
   },
   flex: {
     flex: 1,
+  },
+  row: {
+    flexDirection: 'row',
   },
 });

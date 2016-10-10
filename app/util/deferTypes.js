@@ -113,9 +113,9 @@ function availableDeferOptions(time) {
         .subtract(1, 'hour')
       ) < 0
     ) {
-      return false;
+      return true;
     }
-    return true;
+    return false;
   });
 
   times.push(nearestSameDayTime);

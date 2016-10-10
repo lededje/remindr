@@ -12,6 +12,7 @@ import { deferTypes, availableDeferOptions } from '../util/deferTypes';
 
 export default function DeferDialog(props) {
   const delayTimes = availableDeferOptions();
+
   return (
     <TouchableHighlight onPress={props.onClose} style={styles.container}>
       <View style={styles.dialog}>
