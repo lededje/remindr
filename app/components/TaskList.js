@@ -14,7 +14,7 @@ export default class TaskList extends Component {
     tasks: React.PropTypes.arrayOf(React.PropTypes.shape({
       id: React.PropTypes.number.isRequired,
       title: React.PropTypes.string.isRequired,
-      timestamp: React.PropTypes.number.isRequired,
+      timestamp: React.PropTypes.string.isRequired,
     })),
     onSwipe: React.PropTypes.func,
     onDefer: React.PropTypes.func,
@@ -73,6 +73,8 @@ export default class TaskList extends Component {
         id={task.id}
         title={task.title}
         timestamp={task.timestamp}
+        deferredUntil={task.deferredUntil}
+        completeTime={task.completeTime}
         deferring={task.deferring}
         nextType={task.nextType}
         onDirectionDecided={this.onTaskDirectionDecided}

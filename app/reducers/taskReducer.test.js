@@ -21,14 +21,14 @@ describe('Task Reducer', () => {
       task: {
         id: 1,
         title: 'For the tests',
-        timestamp: 0,
+        timestamp: '2016-10-14T18:47:57+01:00',
       },
     };
     const result = {
       tasks: [{
         id: 1,
         title: 'For the tests',
-        timestamp: 0,
+        timestamp: '2016-10-14T18:47:57+01:00',
       }],
     };
 

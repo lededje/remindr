@@ -61,10 +61,15 @@ export default class RemindrApp extends Component {
   }
 
   render() {
+    let deferringTask;
     const filteredTasks =
       this.props.tasks.tasks.filter(task => task.type === this.props.tasks.filterType);
     const isTaskDeferring = findIndex(filteredTasks, task => task.deferring) >= 0;
     const currentTaskFlowId = findIndex(taskFlow, flow => flow.id === this.props.tasks.filterType);
+
+    if (isTaskDeferring) {
+      deferringTask = filteredTasks.find(task => task.deferring);
+    }
 
     return (
       <View style={styles.container}>
@@ -72,6 +77,7 @@ export default class RemindrApp extends Component {
           <DeferDialog
             onClose={this.props.actions.clearDeferringTask}
             onTimeChosen={this.props.actions.deferTask}
+            task={deferringTask}
           />
         )}
         <Header />
