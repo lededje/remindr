@@ -37,11 +37,11 @@ describe('Component snapshots', () => {
     const taskData = [{
       id: 0,
       title: 'Test task 1',
-      timestamp: '2016-10-14T18:47:57+01:00',
+      timestamp: '2016-10-14T18:47:57Z',
     }, {
       id: 1,
       title: 'Test task 2',
-      timestamp: '2016-10-14T18:47:57+01:00',
+      timestamp: '2016-10-14T18:47:57Z',
     }];
 
     const component = renderer.create(
@@ -66,7 +66,7 @@ describe('Component snapshots', () => {
         id={123}
         type={'CURRENT'}
         title="Current Task"
-        timestamp={'2016-10-14T18:47:57+01:00'}
+        timestamp={'2016-10-14T18:47:57Z'}
         left={taskTypes.DEFERRED}
         right={taskTypes.DONE}
       />
@@ -81,8 +81,8 @@ describe('Component snapshots', () => {
         id={123}
         type={'DEFERRED'}
         title="Current Task"
-        timestamp={'2016-10-14T18:47:57+01:00'}
-        deferredUntil={'2016-10-14T18:47:57+01:00'}
+        timestamp={'2016-10-14T18:47:57Z'}
+        deferredUntil={'2016-10-14T18:47:57Z'}
         right={taskTypes.CURRENT}
       />
     );
@@ -96,7 +96,7 @@ describe('Component snapshots', () => {
         id={123}
         type={'DONE'}
         title="Current Task"
-        timestamp={'2016-10-14T18:47:57+01:00'}
+        timestamp={'2016-10-14T18:47:57Z'}
         left={taskTypes.CURRENT}
         right={taskTypes.DELETE}
       />
