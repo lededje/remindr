@@ -22,6 +22,7 @@ export default class Task extends Component {
     timestamp: React.PropTypes.string.isRequired,
     nextType: React.PropTypes.string.isRequired,
     deferredUntil: React.PropTypes.string,
+    completeTime: React.PropTypes.string,
     deferring: React.PropTypes.bool,
 
     onDirectionDecided: React.PropTypes.func,
@@ -211,14 +212,14 @@ export default class Task extends Component {
     }).start();
   }
 
-  renderDeferredTimetamp() {
+  renderSecondaryTimetamp(time, icon) {
     return (
       <View style={styles.row}>
         <Text style={[styles.timestamp, styles.icon, { marginRight: 4 }]}>
-          {icons.BELL}
+          {icon}
         </Text>
         <Text style={[styles.timestamp]}>
-          {this.props.deferredUntil && moment(this.props.deferredUntil).fromNow()}
+          {moment(time).fromNow()}
         </Text>
       </View>
     );
@@ -276,7 +277,10 @@ export default class Task extends Component {
             <Text style={[styles.timestamp, styles.flex]}>
               {moment(this.props.timestamp).fromNow()}
             </Text>
-            {this.props.deferredUntil && this.renderDeferredTimetamp()}
+            {this.props.deferredUntil &&
+              this.renderSecondaryTimetamp(this.props.deferredUntil, icons.BELL)}
+            {this.props.completeTime &&
+              this.renderSecondaryTimetamp(this.props.completeTime, icons.TICK)}
           </View>
         </Animated.View>
       </Animated.View>

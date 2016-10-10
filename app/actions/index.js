@@ -1,4 +1,5 @@
 import { maxBy } from 'lodash';
+import moment from 'moment';
 import * as types from './types';
 
 // List actions
@@ -64,6 +65,11 @@ export function changeNextTaskType(id, nextType) {
 
   if (nextType === 'CURRENT') {
     opts.deferredUntil = undefined;
+    opts.completeTime = undefined;
+  }
+
+  if (nextType === 'DONE') {
+    opts.completeTime = moment().format();
   }
 
   return {

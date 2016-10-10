@@ -10,7 +10,6 @@ const initialState = {
     type: 'CURRENT',
     nextType: '',
     deferring: false,
-    deferredUntil: '2016-10-14T18:47:57+01:00',
   }],
 };
 
