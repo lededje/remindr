@@ -1,3 +1,296 @@
+exports[`Component snapshots renders a current task component 1`] = `
+<View
+  onLayout={[Function]}
+  style={
+    Object {
+      "backgroundColor": "#8bc34a",
+      "height": undefined,
+      "position": "relative",
+    }
+  }>
+  <View
+    onMoveShouldSetResponder={[Function]}
+    onMoveShouldSetResponderCapture={[Function]}
+    onResponderEnd={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderReject={[Function]}
+    onResponderRelease={[Function]}
+    onResponderStart={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    onStartShouldSetResponderCapture={[Function]}
+    style={
+      Object {
+        "backgroundColor": "#fff",
+        "borderBottomWidth": 0.5,
+        "borderColor": "#eee",
+        "height": undefined,
+        "paddingBottom": 20,
+        "paddingLeft": 35,
+        "paddingRight": 35,
+        "paddingTop": 20,
+        "transform": Array [
+          Object {
+            "translateX": 0,
+          },
+        ],
+      }
+    }
+    testID="Task">
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Object {
+          "fontSize": 14,
+          "fontWeight": "300",
+          "marginBottom": 10,
+        }
+      }>
+      Current Task
+    </Text>
+    <View
+      style={
+        Object {
+          "flexDirection": "row",
+        }
+      }>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "color": "#999",
+              "fontSize": 12,
+              "fontWeight": "300",
+            },
+            Object {
+              "flex": 1,
+            },
+          ]
+        }>
+        in 4 days
+      </Text>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`Component snapshots renders a deferred task component 1`] = `
+<View
+  onLayout={[Function]}
+  style={
+    Object {
+      "backgroundColor": "#03a9f4",
+      "height": undefined,
+      "position": "relative",
+    }
+  }>
+  <View
+    onMoveShouldSetResponder={[Function]}
+    onMoveShouldSetResponderCapture={[Function]}
+    onResponderEnd={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderReject={[Function]}
+    onResponderRelease={[Function]}
+    onResponderStart={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    onStartShouldSetResponderCapture={[Function]}
+    style={
+      Object {
+        "backgroundColor": "#fff",
+        "borderBottomWidth": 0.5,
+        "borderColor": "#eee",
+        "height": undefined,
+        "paddingBottom": 20,
+        "paddingLeft": 35,
+        "paddingRight": 35,
+        "paddingTop": 20,
+        "transform": Array [
+          Object {
+            "translateX": 0,
+          },
+        ],
+      }
+    }
+    testID="Task">
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Object {
+          "fontSize": 14,
+          "fontWeight": "300",
+          "marginBottom": 10,
+        }
+      }>
+      Current Task
+    </Text>
+    <View
+      style={
+        Object {
+          "flexDirection": "row",
+        }
+      }>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "color": "#999",
+              "fontSize": 12,
+              "fontWeight": "300",
+            },
+            Object {
+              "flex": 1,
+            },
+          ]
+        }>
+        in 4 days
+      </Text>
+      <View
+        style={
+          Object {
+            "flexDirection": "row",
+          }
+        }>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "color": "#999",
+                "fontSize": 12,
+                "fontWeight": "300",
+              },
+              Object {
+                "backgroundColor": "transparent",
+                "fontFamily": "GLYPHICONS Halflings",
+              },
+              Object {
+                "marginRight": 4,
+              },
+            ]
+          }>
+          
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "color": "#999",
+                "fontSize": 12,
+                "fontWeight": "300",
+              },
+            ]
+          }>
+          in 4 days
+        </Text>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`Component snapshots renders a done task component 1`] = `
+<View
+  onLayout={[Function]}
+  style={
+    Object {
+      "backgroundColor": "#fff",
+      "height": undefined,
+      "position": "relative",
+    }
+  }>
+  <View
+    onMoveShouldSetResponder={[Function]}
+    onMoveShouldSetResponderCapture={[Function]}
+    onResponderEnd={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderReject={[Function]}
+    onResponderRelease={[Function]}
+    onResponderStart={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    onStartShouldSetResponderCapture={[Function]}
+    style={
+      Object {
+        "backgroundColor": "#fff",
+        "borderBottomWidth": 0.5,
+        "borderColor": "#eee",
+        "height": undefined,
+        "paddingBottom": 20,
+        "paddingLeft": 35,
+        "paddingRight": 35,
+        "paddingTop": 20,
+        "transform": Array [
+          Object {
+            "translateX": 0,
+          },
+        ],
+      }
+    }
+    testID="Task">
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Object {
+          "fontSize": 14,
+          "fontWeight": "300",
+          "marginBottom": 10,
+        }
+      }>
+      Current Task
+    </Text>
+    <View
+      style={
+        Object {
+          "flexDirection": "row",
+        }
+      }>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "color": "#999",
+              "fontSize": 12,
+              "fontWeight": "300",
+            },
+            Object {
+              "flex": 1,
+            },
+          ]
+        }>
+        in 4 days
+      </Text>
+    </View>
+  </View>
+</View>
+`;
+
 exports[`Component snapshots renders an empty list component with message 1`] = `
 <View
   style={
@@ -208,89 +501,6 @@ exports[`Component snapshots renders the navigation component 1`] = `
           ]
         }>
         COMPLETE
-      </Text>
-    </View>
-  </View>
-</View>
-`;
-
-exports[`Component snapshots renders the task component 1`] = `
-<View
-  onLayout={[Function]}
-  style={
-    Object {
-      "backgroundColor": "#8bc34a",
-      "height": undefined,
-      "position": "relative",
-    }
-  }>
-  <View
-    onMoveShouldSetResponder={[Function]}
-    onMoveShouldSetResponderCapture={[Function]}
-    onResponderEnd={[Function]}
-    onResponderGrant={[Function]}
-    onResponderMove={[Function]}
-    onResponderReject={[Function]}
-    onResponderRelease={[Function]}
-    onResponderStart={[Function]}
-    onResponderTerminate={[Function]}
-    onResponderTerminationRequest={[Function]}
-    onStartShouldSetResponder={[Function]}
-    onStartShouldSetResponderCapture={[Function]}
-    style={
-      Object {
-        "backgroundColor": "#fff",
-        "borderBottomWidth": 0.5,
-        "borderColor": "#eee",
-        "height": undefined,
-        "paddingBottom": 20,
-        "paddingLeft": 35,
-        "paddingRight": 35,
-        "paddingTop": 20,
-        "transform": Array [
-          Object {
-            "translateX": 0,
-          },
-        ],
-      }
-    }
-    testID="Task">
-    <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
-      style={
-        Object {
-          "fontSize": 14,
-          "fontWeight": "300",
-          "marginBottom": 10,
-        }
-      }>
-      Test Task
-    </Text>
-    <View
-      style={
-        Object {
-          "flexDirection": "row",
-        }
-      }>
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        style={
-          Array [
-            Object {
-              "color": "#999",
-              "fontSize": 12,
-              "fontWeight": "300",
-            },
-            Object {
-              "flex": 1,
-            },
-          ]
-        }>
-        in 4 days
       </Text>
     </View>
   </View>
