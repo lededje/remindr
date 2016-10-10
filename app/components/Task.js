@@ -212,14 +212,14 @@ export default class Task extends Component {
     }).start();
   }
 
-  renderSecondaryTimetamp(time, icon) {
+  renderSecondaryTimetamp(time, icon, method = 'fromNow') {
     return (
       <View style={styles.row}>
         <Text style={[styles.timestamp, styles.icon, { marginRight: 4 }]}>
           {icon}
         </Text>
         <Text style={[styles.timestamp]}>
-          {moment(time).fromNow()}
+          {moment(time)[method]()}
         </Text>
       </View>
     );
@@ -278,7 +278,7 @@ export default class Task extends Component {
               {moment(this.props.timestamp).fromNow()}
             </Text>
             {this.props.deferredUntil &&
-              this.renderSecondaryTimetamp(this.props.deferredUntil, icons.BELL)}
+              this.renderSecondaryTimetamp(this.props.deferredUntil, icons.BELL, 'calendar')}
             {this.props.completeTime &&
               this.renderSecondaryTimetamp(this.props.completeTime, icons.TICK)}
           </View>
