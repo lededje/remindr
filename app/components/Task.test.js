@@ -8,7 +8,7 @@ import Task from './Task';
 describe('Task', () => {
   it('correctly sets the direction dependent on the translateX position', () => {
     const wrapper = shallow(
-      <Task id={0} title="Test task" timestamp={0} nextType="" />
+      <Task id={0} title="Test task" timestamp={'2016-10-14T18:47:57+01:00'} nextType="" />
     );
 
     const translateX = wrapper.state('translateX');
@@ -23,7 +23,7 @@ describe('Task', () => {
 
   it('should ask for the pan responder when the touch delta is high enough', () => {
     const wrapper = shallow(
-      <Task id={0} title="Test task" timestamp={0} nextType="" />
+      <Task id={0} title="Test task" timestamp={'2016-10-14T18:47:57+01:00'} nextType="" />
     );
 
     const bigDelta = wrapper.instance().handleOnMoveShouldSetPanResponder(null, {
@@ -46,7 +46,7 @@ describe('Task', () => {
       <Task
         id={0}
         title="Test task"
-        timestamp={0}
+        timestamp={'2016-10-14T18:47:57+01:00'}
         nextType=""
         onDirectionDecided={mockDirectionDecided}
       />
@@ -65,7 +65,7 @@ describe('Task', () => {
       <Task
         id={0}
         title="Test task"
-        timestamp={0}
+        timestamp={'2016-10-14T18:47:57+01:00'}
         nextType=""
         onDirectionDecided={mockDirectionDecided}
       />
@@ -84,7 +84,7 @@ describe('Task', () => {
 
 it('should move the task with the gestures coordinates', () => {
   const wrapper = shallow(
-    <Task id={0} title="Test task" timestamp={0} nextType="" />
+    <Task id={0} title="Test task" timestamp={'2016-10-14T18:47:57+01:00'} nextType="" />
   );
 
   const initialX = 0;
