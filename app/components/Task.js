@@ -10,7 +10,7 @@ import {
 import moment from 'moment';
 import autobind from 'autobind-decorator';
 import { get } from 'lodash';
-import taskTypes from '../util/taskTypes';
+import icons from '../util/icons';
 
 const DIRECTIONAL_DISTANCE_CHANGE_THRESHOLD = 5;
 
@@ -215,7 +215,7 @@ export default class Task extends Component {
     return (
       <View style={styles.row}>
         <Text style={[styles.timestamp, styles.icon, { marginRight: 4 }]}>
-          {taskTypes.DEFERRED.icon}
+          {icons.BELL}
         </Text>
         <Text style={[styles.timestamp]}>
           {this.props.deferredUntil && moment(this.props.deferredUntil).fromNow()}
