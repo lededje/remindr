@@ -60,14 +60,45 @@ describe('Component snapshots', () => {
     expect(tree).toMatchSnapshot();
   });
 
-  it('renders the task component', () => {
+  it('renders a current task component', () => {
     const component = renderer.create(
       <Task
         id={123}
-        title="Test Task"
+        type={'CURRENT'}
+        title="Current Task"
         timestamp={'2016-10-14T18:47:57+01:00'}
         left={taskTypes.DEFERRED}
         right={taskTypes.DONE}
+      />
+    );
+    const tree = component.toJSON();
+    expect(tree).toMatchSnapshot();
+  });
+
+  it('renders a deferred task component', () => {
+    const component = renderer.create(
+      <Task
+        id={123}
+        type={'DEFERRED'}
+        title="Current Task"
+        timestamp={'2016-10-14T18:47:57+01:00'}
+        deferredUntil={'2016-10-14T18:47:57+01:00'}
+        right={taskTypes.CURRENT}
+      />
+    );
+    const tree = component.toJSON();
+    expect(tree).toMatchSnapshot();
+  });
+
+  it('renders a done task component', () => {
+    const component = renderer.create(
+      <Task
+        id={123}
+        type={'DONE'}
+        title="Current Task"
+        timestamp={'2016-10-14T18:47:57+01:00'}
+        left={taskTypes.CURRENT}
+        right={taskTypes.DELETE}
       />
     );
     const tree = component.toJSON();
