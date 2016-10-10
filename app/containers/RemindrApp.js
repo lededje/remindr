@@ -54,7 +54,7 @@ export default class RemindrApp extends Component {
       'Local Notification Received',
       `Alert message: ${notification.getMessage()}`,
       [{
-        text: 'Dismiss',
+        text: 'Okay',
         onPress: null,
       }]
     );

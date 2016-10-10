@@ -106,19 +106,22 @@ export function clearDeferringTask() {
 
 export function deferTask(id, until) {
   return (dispatch, getState) => {
-    const selectedTask = getState().tasks.find(task => task.id === id);
+    const selectedTask = getState().tasks.tasks.find(task => task.id === id);
 
-    PushNotificationIOS.scheduleLocalNotification({
-      fireDate: moment(until).format('YYYY-MM-DDTHH:mm:ss.sssZ'),
-      alertBody: selectedTask.title,
-      sound: 'default',
-    });
+    if (until) {
+      PushNotificationIOS.scheduleLocalNotification({
+        id: `${id}`,
+        fireDate: moment(until).format('YYYY-MM-DDTHH:mm:ss.sssZ'),
+        alertBody: selectedTask.title,
+        sound: 'default',
+      });
+    }
 
-    return {
+    dispatch({
       type: types.DEFER_TASK,
       until,
       nextType: 'DEFERRED',
-    };
+    });
   };
 }
 

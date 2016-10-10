@@ -7,6 +7,16 @@ const THIS_EVENING = moment.duration(19, 'hours');
 const MIDNIGHT = moment.duration(24, 'hours');
 
 const deferTypes = {
+
+  // For testing
+  IN_FIVE_SECONDS: {
+    id: 'IN_FIVE_SECONDS',
+    name: 'In five seconds',
+    calc: time => moment(time)
+      .add(5, 'seconds')
+      .format(),
+  },
+
   THIS_MORNING: {
     id: 'THIS_MORNING',
     name: 'This Morning',
@@ -101,7 +111,7 @@ const deferTypes = {
 };
 
 function availableDeferOptions(time) {
-  const times = [];
+  const times = ['IN_FIVE_SECONDS'];
 
   const sameDayTimes = ['THIS_MORNING', 'THIS_AFTERNOON', 'THIS_EVENING', 'MIDNIGHT'];
 

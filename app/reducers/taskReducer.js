@@ -16,6 +16,7 @@ const initialState = {
 export default function tasks(state = initialState, action = {}) {
   switch (action.type) {
 
+    // "Squash" tasks that were deferred but are no longer.
     case types.SQUASH_TASKS:
       return {
         ...state,
