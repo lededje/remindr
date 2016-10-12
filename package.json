@@ -5,7 +5,8 @@
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest",
-    "travis": "set -e; jest --coverage; codeclimate-test-reporter < coverage/lcov.info"
+    "travis": "set -e; jest --coverage; codeclimate-test-reporter < coverage/lcov.info",
+    "eslint": "eslint app"
   },
   "jest": {
     "preset": "jest-react-native",
@@ -18,6 +19,8 @@
   "dependencies": {
     "autobind-decorator": "^1.3.3",
     "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "eslint-plugin-react": "^6.4.1",
+    "lodash": "^4.16.4",
     "react": "15.3.2",
     "react-native": "0.34.0",
     "react-redux": "4.4.5",
