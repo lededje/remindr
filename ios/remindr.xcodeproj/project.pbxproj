@@ -387,6 +387,7 @@
 				TargetAttributes = {
 					A606BF7B1D983A7D00C71A9F = {
 						CreatedOnToolsVersion = 7.3.1;
+						LastSwiftMigration = 0800;
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 				};
@@ -765,6 +766,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = io.likeminded.remindr.remindrUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = remindr;
 			};
 			name = Debug;
@@ -781,6 +783,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.likeminded.remindr.remindrUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = remindr;
 			};
 			name = Release;
