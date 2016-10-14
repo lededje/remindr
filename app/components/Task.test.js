@@ -88,7 +88,7 @@ describe('Task', () => {
     });
   });
 
-  it.only('correctly sets the layout height reference upon layout change', () => {
+  it('correctly sets the layout height reference upon layout change', () => {
     // The layoutHeight is a reference of the initial height of the task.
 
     const wrapper = shallow(
