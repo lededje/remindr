@@ -20,11 +20,20 @@ export default function tasks(state = initialState, action = {}) {
     case types.SQUASH_TASKS:
       return {
         ...state,
-        tasks: state.tasks.map(task => ({
-          ...task,
-          type: task.nextType || task.type,
-          nextType: undefined,
-        })),
+        tasks: state.tasks.map((task) => {
+          let type = task.nextType || task.type;
+
+          if (type === 'DEFERRED' && moment(task.deferredUntil).isBefore(Date.now())) {
+            type = 'CURRENT';
+          }
+
+          return {
+            ...task,
+            type,
+            nextType: undefined,
+            deferredUntil: undefined,
+          };
+        }),
       };
 
     case types.CHANGE_FILTER_TYPE:

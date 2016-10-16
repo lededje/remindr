@@ -68,6 +68,8 @@ export function changeNextTaskType(id, nextType) {
   if (nextType === 'CURRENT') {
     opts.deferredUntil = undefined;
     opts.completeTime = undefined;
+
+    PushNotificationIOS.cancelLocalNotifications({ id });
   }
 
   if (nextType === 'DONE') {
@@ -110,10 +112,10 @@ export function deferTask(id, until) {
 
     if (until) {
       PushNotificationIOS.scheduleLocalNotification({
-        id: `${id}`,
         fireDate: moment(until).format('YYYY-MM-DDTHH:mm:ss.sssZ'),
         alertBody: selectedTask.title,
         sound: 'default',
+        userInfo: { id },
       });
     }
 

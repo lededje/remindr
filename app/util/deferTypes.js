@@ -117,18 +117,16 @@ function availableDeferOptions(time) {
 
   // This for loop checks to see which defer time is the next to occur today.
   const nearestSameDayTime = sameDayTimes.find((sameDayTime) => {
-    if (
-      moment(time).diff(
-        moment(deferTypes[sameDayTime].calc(time))
-        .subtract(1, 'hour')
-      ) < 0
-    ) {
+    if (moment(time).isBefore(moment(deferTypes[sameDayTime].calc(time)).subtract(1, 'hour'))) {
       return true;
     }
     return false;
   });
 
-  times.push(nearestSameDayTime);
+  // TODO: This is sometimes undefined... work out why and sort it. Happened to me at 23:20.
+  if (nearestSameDayTime) {
+    times.push(nearestSameDayTime);
+  }
 
   times.push('TOMORROW');
 
