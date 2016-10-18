@@ -51,13 +51,15 @@ export default class RemindrApp extends Component {
 
   @autobind
   onPushLocalNotification(notification) {
-    this.props.actions.squashTasks();
+    this.props.actions.changeTaskType({ type: 'CURRENT', id: notification._data.id });
   }
 
   render() {
     let deferringTask;
     const filteredTasks =
-      this.props.tasks.tasks.filter(task => task.type === this.props.tasks.filterType);
+      this.props.tasks.tasks.filter(task =>
+        task.type === this.props.tasks.filterType || task.isAnimating
+      );
     const isTaskDeferring = findIndex(filteredTasks, task => task.deferring) >= 0;
     const currentTaskFlowId = findIndex(taskFlow, flow => flow.id === this.props.tasks.filterType);
 
@@ -77,8 +79,8 @@ export default class RemindrApp extends Component {
         <Header />
         <TaskList
           tasks={filteredTasks}
-          onSwipe={this.props.actions.changeNextTaskType}
-          onClose={this.props.actions.squashTask}
+          onSwipe={this.props.actions.changeTaskType}
+          onClose={this.props.actions.stopAnimating}
           left={taskFlow[currentTaskFlowId - 1]}
           right={taskFlow[currentTaskFlowId + 1]}
         />

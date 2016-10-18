@@ -22,8 +22,10 @@ export default function DeferDialog(props) {
             key={deferTypes[time].id}
             onPress={props.onTimeChosen.bind(
               null,
-              props.task.id,
-              deferTypes[time].calc(moment.now()),
+              {
+                id: props.task.id,
+                until: deferTypes[time].calc(moment.now()),
+              },
             )}
             underlayColor={'orange'}
             activeOpacity={1}

@@ -6,7 +6,7 @@ import * as types from './types';
 
 // List actions
 
-export function changeFilterType(filterType) {
+export function changeFilterType({ filterType }) {
   return {
     type: types.CHANGE_FILTER_TYPE,
     filterType,
@@ -39,25 +39,26 @@ export function addTask({
   };
 }
 
-export function changeTaskType(id, type) {
-  if (type === 'DEFERRED') return setDeferringTask(id);
+export function changeTaskType({ id, type, animated = true }) {
+  if (type === 'DEFERRED') return setDeferringTask({ id });
   return {
     type: types.CHANGE_TASK_TYPE,
     task: {
       id,
       type,
+      isAnimating: animated,
     },
   };
 }
 
-export function removeTask(id) {
+export function removeTask({ id }) {
   return {
     type: types.REMOVE_TASK,
     id,
   };
 }
 
-export function setDeferringTask(id) {
+export function setDeferringTask({ id }) {
   return {
     type: types.SET_DEFERRING_TASK,
     id,
@@ -70,7 +71,7 @@ export function clearDeferringTask() {
   };
 }
 
-export function deferTask(id, until) {
+export function deferTask({ id, until, animated = true }) {
   return (dispatch, getState) => {
     const selectedTask = getState().tasks.tasks.find(task => task.id === id);
 
@@ -85,21 +86,23 @@ export function deferTask(id, until) {
 
     dispatch({
       type: types.DEFER_TASK,
+      id,
       until,
+      isAnimating: animated,
     });
   };
 }
 
-export function invalidateTask(id) {
+export function stopAnimating({ id }) {
   return {
-    type: types.SET_INVALIDATED,
+    type: types.STOP_ANIMATING,
     id,
   };
 }
 
 // Push Notification Actions
 
-export function updatePermissions(permissions) {
+export function updatePermissions({ permissions }) {
   return {
     type: types.UPDATE_PERMISSIONS,
     ...permissions,

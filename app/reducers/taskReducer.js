@@ -14,19 +14,6 @@ const initialState = {
 
 export default function tasks(state = initialState, action = {}) {
   switch (action.type) {
-    case types.SET_INVALIDATED:
-      return {
-        ...state,
-        tasks: state.tasks.map((task) => {
-          if (action.id !== undefined || action.id === task.id) {
-            return {
-              ...task,
-              invalidated: true,
-            };
-          }
-          return task;
-        }),
-      };
 
     case types.CHANGE_FILTER_TYPE:
       return {
@@ -49,6 +36,20 @@ export default function tasks(state = initialState, action = {}) {
         tasks: state.tasks.filter(task => task.id !== action.id),
       };
 
+    case types.STOP_ANIMATING:
+      return {
+        ...state,
+        tasks: state.tasks.map((task) => {
+          if (task.id === action.id) {
+            return {
+              ...task,
+              isAnimating: false,
+            };
+          }
+          return task;
+        }),
+      };
+
     case types.CHANGE_TASK_TYPE:
       return {
         ...state,
@@ -57,6 +58,7 @@ export default function tasks(state = initialState, action = {}) {
             return {
               ...task,
               type: action.task.type,
+              isAnimating: action.task.isAnimating,
             };
           }
           return task;
@@ -94,7 +96,9 @@ export default function tasks(state = initialState, action = {}) {
             return {
               ...task,
               deferredUntil: action.until,
+              type: 'DEFERRED',
               deferring: false,
+              isAnimating: action.isAnimating,
             };
           }
           return task;

@@ -62,6 +62,7 @@ describe('actions', () => {
         deferring: false,
       },
     };
+
     actions.addTask.apply(null, args)((test) => {
       expect(test).toEqual(result);
     }, () => state);
