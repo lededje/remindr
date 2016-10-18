@@ -8,16 +8,8 @@ describe('actions', () => {
       type: types.CHANGE_FILTER_TYPE,
       filterType: 'TEST',
     };
-    const squashTaskResult = {
-      type: types.SQUASH_TASKS,
-    };
 
-    const callback = jest.fn();
-
-    actions.changeFilterType.apply(null, args)(callback);
-
-    expect(callback.mock.calls[0][0]).toEqual(squashTaskResult);
-    expect(callback.mock.calls[1][0]).toEqual(changeFilterResult);
+    expect(actions.changeFilterType.apply(null, args)).toEqual(changeFilterResult);
   });
 
   it('should create an action to add a task', () => {
@@ -86,19 +78,6 @@ describe('actions', () => {
     };
 
     expect(actions.changeTaskType.apply(null, args)).toEqual(result);
-  });
-
-  it('should create an action to change the nextType', () => {
-    const args = [1, 'TEST'];
-    const result = {
-      type: types.CHANGE_NEXT_TASK_TYPE,
-      task: {
-        id: 1,
-        nextType: 'TEST',
-      },
-    };
-
-    expect(actions.changeNextTaskType.apply(null, args)).toEqual(result);
   });
 
   it('should create an action to remove a task', () => {

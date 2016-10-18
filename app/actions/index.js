@@ -7,12 +7,9 @@ import * as types from './types';
 // List actions
 
 export function changeFilterType(filterType) {
-  return (dispatch) => {
-    dispatch(squashTasks());
-    dispatch({
-      type: types.CHANGE_FILTER_TYPE,
-      filterType,
-    });
+  return {
+    type: types.CHANGE_FILTER_TYPE,
+    filterType,
   };
 }
 
@@ -42,53 +39,13 @@ export function addTask({
   };
 }
 
-export function squashTask({ id }) {
-  return {
-    type: types.SQUASH_TASK,
-    id,
-  };
-}
-
-export function squashTasks() {
-  return {
-    type: types.SQUASH_TASKS,
-  };
-}
-
 export function changeTaskType(id, type) {
+  if (type === 'DEFERRED') return setDeferringTask(id);
   return {
     type: types.CHANGE_TASK_TYPE,
     task: {
       id,
       type,
-    },
-  };
-}
-
-// Changes the task type, but if the type is deferred, it instead marks the task as deferred.
-// The deferTask action handles changing the nextType in this instance.
-export function changeNextTaskType(id, nextType) {
-  if (nextType === 'DEFERRED') return setDeferringTask(id);
-
-  const opts = {};
-
-  if (nextType === 'CURRENT') {
-    opts.deferredUntil = undefined;
-    opts.completeTime = undefined;
-
-    PushNotificationIOS.cancelLocalNotifications({ id });
-  }
-
-  if (nextType === 'DONE') {
-    opts.completeTime = moment().format();
-  }
-
-  return {
-    type: types.CHANGE_NEXT_TASK_TYPE,
-    task: {
-      id,
-      nextType,
-      ...opts,
     },
   };
 }
@@ -103,7 +60,7 @@ export function removeTask(id) {
 export function setDeferringTask(id) {
   return {
     type: types.SET_DEFERRING_TASK,
-    deferringTaskId: id,
+    id,
   };
 }
 
@@ -129,8 +86,14 @@ export function deferTask(id, until) {
     dispatch({
       type: types.DEFER_TASK,
       until,
-      nextType: 'DEFERRED',
     });
+  };
+}
+
+export function invalidateTask(id) {
+  return {
+    type: types.SET_INVALIDATED,
+    id,
   };
 }
 
