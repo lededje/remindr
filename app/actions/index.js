@@ -42,6 +42,13 @@ export function addTask({
   };
 }
 
+export function squashTask({ id }) {
+  return {
+    type: types.SQUASH_TASK,
+    id,
+  };
+}
+
 export function squashTasks() {
   return {
     type: types.SQUASH_TASKS,

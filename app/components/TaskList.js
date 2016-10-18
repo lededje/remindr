@@ -17,6 +17,7 @@ export default class TaskList extends Component {
       timestamp: React.PropTypes.string.isRequired,
     })),
     onSwipe: React.PropTypes.func,
+    onClose: React.PropTypes.func,
     onDefer: React.PropTypes.func,
     left: React.PropTypes.shape({
       id: React.PropTypes.string.isRequired,
@@ -79,6 +80,7 @@ export default class TaskList extends Component {
         nextType={task.nextType}
         onDirectionDecided={this.onTaskDirectionDecided}
         onSwipeEnd={this.onTaskSwipeEnd}
+        onCloseEnd={this.props.onClose}
         left={this.props.left}
         right={this.props.right}
       />

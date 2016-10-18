@@ -16,7 +16,23 @@ const initialState = {
 export default function tasks(state = initialState, action = {}) {
   switch (action.type) {
 
-    // "Squash" tasks that were deferred but are no longer.
+    case types.SQUASH_TASK:
+      return {
+        ...state,
+        tasks: state.tasks.map((task) => {
+          if (task.id === action.id) {
+            const type = task.nextType || task.type;
+
+            return {
+              ...task,
+              type,
+              nextType: undefined,
+            };
+          }
+          return task;
+        }),
+      };
+
     case types.SQUASH_TASKS:
       return {
         ...state,
@@ -31,7 +47,7 @@ export default function tasks(state = initialState, action = {}) {
             ...task,
             type,
             nextType: undefined,
-            deferredUntil: undefined,
+            deferredUntil: type === 'DEFERRED' ? task.deferredUntil : undefined,
           };
         }),
       };

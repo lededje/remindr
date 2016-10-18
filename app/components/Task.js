@@ -38,8 +38,8 @@ export default class Task extends Component {
       icon: React.PropTypes.string.isRequired,
     }),
 
-    // must be a promise
-    onSwipeEnd: React.PropTypes.func,
+    onSwipeEnd: React.PropTypes.func, // must be a promise
+    onCloseEnd: React.PropTypes.func,
   };
 
   static defaultProps = {
@@ -209,7 +209,9 @@ export default class Task extends Component {
     Animated.timing(this.state.height, {
       toValue: 0,
       delay: 150,
-    }).start();
+    }).start(() => {
+      this.props.onCloseEnd(this.props.id);
+    });
   }
 
   renderSecondaryTimetamp(time, icon, method = 'fromNow') {

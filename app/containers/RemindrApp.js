@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, PushNotificationIOS, AlertIOS } from 'react-native';
+import { View, StyleSheet, PushNotificationIOS } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { findIndex } from 'lodash';
@@ -49,15 +49,9 @@ export default class RemindrApp extends Component {
       .then(this.props.actions.updatePermissions);
   }
 
+  @autobind
   onPushLocalNotification(notification) {
-    AlertIOS.alert(
-      'Local Notification Received',
-      `Alert message: ${notification.getMessage()}`,
-      [{
-        text: 'Okay',
-        onPress: null,
-      }]
-    );
+    this.props.actions.squashTasks();
   }
 
   render() {
@@ -84,6 +78,7 @@ export default class RemindrApp extends Component {
         <TaskList
           tasks={filteredTasks}
           onSwipe={this.props.actions.changeNextTaskType}
+          onClose={this.props.actions.squashTask}
           left={taskFlow[currentTaskFlowId - 1]}
           right={taskFlow[currentTaskFlowId + 1]}
         />
