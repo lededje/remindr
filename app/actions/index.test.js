@@ -3,13 +3,13 @@ import * as actions from './';
 
 describe('actions', () => {
   it('should create an action to change the filter type', () => {
-    const args = ['TEST'];
+    const args = { filterType: 'TEST' };
     const changeFilterResult = {
       type: types.CHANGE_FILTER_TYPE,
       filterType: 'TEST',
     };
 
-    expect(actions.changeFilterType.apply(null, args)).toEqual(changeFilterResult);
+    expect(actions.changeFilterType.call(null, args)).toEqual(changeFilterResult);
   });
 
   it('should create an action to add a task', () => {
@@ -69,25 +69,26 @@ describe('actions', () => {
   });
 
   it('should create an action to change a task type', () => {
-    const args = [1, 'TEST'];
+    const args = { id: 1, type: 'TEST' };
     const result = {
       type: types.CHANGE_TASK_TYPE,
       task: {
         id: 1,
         type: 'TEST',
+        isAnimating: true,
       },
     };
 
-    expect(actions.changeTaskType.apply(null, args)).toEqual(result);
+    expect(actions.changeTaskType.call(null, args)).toEqual(result);
   });
 
   it('should create an action to remove a task', () => {
-    const args = [1];
+    const args = { id: 1 };
     const result = {
       type: types.REMOVE_TASK,
       id: 1,
     };
 
-    expect(actions.removeTask.apply(null, args)).toEqual(result);
+    expect(actions.removeTask.call(null, args)).toEqual(result);
   });
 });
