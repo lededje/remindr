@@ -1,16 +1,15 @@
 import { maxBy } from 'lodash';
 import moment from 'moment';
+import { PushNotificationIOS } from 'react-native';
+
 import * as types from './types';
 
 // List actions
 
-export function changeFilterType(filterType) {
-  return (dispatch) => {
-    dispatch(squashTasks());
-    dispatch({
-      type: types.CHANGE_FILTER_TYPE,
-      filterType,
-    });
+export function changeFilterType({ filterType }) {
+  return {
+    type: types.CHANGE_FILTER_TYPE,
+    filterType,
   };
 }
 
@@ -40,59 +39,29 @@ export function addTask({
   };
 }
 
-export function squashTasks() {
-  return {
-    type: types.SQUASH_TASKS,
-  };
-}
-
-export function changeTaskType(id, type) {
+export function changeTaskType({ id, type, animated = true }) {
+  if (type === 'DEFERRED') return setDeferringTask({ id });
   return {
     type: types.CHANGE_TASK_TYPE,
     task: {
       id,
       type,
+      isAnimating: animated,
     },
   };
 }
 
-// Changes the task type, but if the type is deferred, it instead marks the task as deferred.
-// The deferTask action handles changing the nextType in this instance.
-export function changeNextTaskType(id, nextType) {
-  if (nextType === 'DEFERRED') return setDeferringTask(id);
-
-  const opts = {};
-
-  if (nextType === 'CURRENT') {
-    opts.deferredUntil = undefined;
-    opts.completeTime = undefined;
-  }
-
-  if (nextType === 'DONE') {
-    opts.completeTime = moment().format();
-  }
-
-  return {
-    type: types.CHANGE_NEXT_TASK_TYPE,
-    task: {
-      id,
-      nextType,
-      ...opts,
-    },
-  };
-}
-
-export function removeTask(id) {
+export function removeTask({ id }) {
   return {
     type: types.REMOVE_TASK,
     id,
   };
 }
 
-export function setDeferringTask(id) {
+export function setDeferringTask({ id }) {
   return {
     type: types.SET_DEFERRING_TASK,
-    deferringTaskId: id,
+    id,
   };
 }
 
@@ -102,12 +71,40 @@ export function clearDeferringTask() {
   };
 }
 
-export function deferTask(id, until) {
-  return {
-    type: types.DEFER_TASK,
-    until,
-    nextType: 'DEFERRED',
+export function deferTask({ id, until, animated = true }) {
+  return (dispatch, getState) => {
+    const selectedTask = getState().tasks.tasks.find(task => task.id === id);
+
+    if (until) {
+      PushNotificationIOS.scheduleLocalNotification({
+        fireDate: moment(until).format('YYYY-MM-DDTHH:mm:ss.sssZ'),
+        alertBody: selectedTask.title,
+        sound: 'default',
+        userInfo: { id },
+      });
+    }
+
+    dispatch({
+      type: types.DEFER_TASK,
+      id,
+      until,
+      isAnimating: animated,
+    });
   };
 }
 
-// Fix up change task type to activate the overlay.
+export function stopAnimating({ id }) {
+  return {
+    type: types.STOP_ANIMATING,
+    id,
+  };
+}
+
+// Push Notification Actions
+
+export function updatePermissions({ permissions }) {
+  return {
+    type: types.UPDATE_PERMISSIONS,
+    ...permissions,
+  };
+}

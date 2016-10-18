@@ -7,6 +7,16 @@ const THIS_EVENING = moment.duration(19, 'hours');
 const MIDNIGHT = moment.duration(24, 'hours');
 
 const deferTypes = {
+
+  // For testing
+  IN_FIVE_SECONDS: {
+    id: 'IN_FIVE_SECONDS',
+    name: 'In five seconds',
+    calc: time => moment(time)
+      .add(5, 'seconds')
+      .format(),
+  },
+
   THIS_MORNING: {
     id: 'THIS_MORNING',
     name: 'This Morning',
@@ -101,24 +111,22 @@ const deferTypes = {
 };
 
 function availableDeferOptions(time) {
-  const times = [];
+  const times = ['IN_FIVE_SECONDS'];
 
   const sameDayTimes = ['THIS_MORNING', 'THIS_AFTERNOON', 'THIS_EVENING', 'MIDNIGHT'];
 
   // This for loop checks to see which defer time is the next to occur today.
   const nearestSameDayTime = sameDayTimes.find((sameDayTime) => {
-    if (
-      moment(time).diff(
-        moment(deferTypes[sameDayTime].calc(time))
-        .subtract(1, 'hour')
-      ) < 0
-    ) {
+    if (moment(time).isBefore(moment(deferTypes[sameDayTime].calc(time)).subtract(1, 'hour'))) {
       return true;
     }
     return false;
   });
 
-  times.push(nearestSameDayTime);
+  // TODO: This is sometimes undefined... work out why and sort it. Happened to me at 23:20.
+  if (nearestSameDayTime) {
+    times.push(nearestSameDayTime);
+  }
 
   times.push('TOMORROW');
 

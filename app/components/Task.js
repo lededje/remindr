@@ -20,7 +20,7 @@ export default class Task extends Component {
     id: React.PropTypes.number.isRequired,
     title: React.PropTypes.string.isRequired,
     timestamp: React.PropTypes.string.isRequired,
-    nextType: React.PropTypes.string.isRequired,
+    type: React.PropTypes.oneOf(['DEFERRED', 'CURRENT', 'DONE']).isRequired,
     deferredUntil: React.PropTypes.string,
     completeTime: React.PropTypes.string,
     deferring: React.PropTypes.bool,
@@ -38,14 +38,13 @@ export default class Task extends Component {
       icon: React.PropTypes.string.isRequired,
     }),
 
-    // must be a promise
-    onSwipeEnd: React.PropTypes.func,
+    onSwipeEnd: React.PropTypes.func, // must be a promise
+    onCloseEnd: React.PropTypes.func,
   };
 
   static defaultProps = {
     onDirectionDecided: () => undefined,
     onSwipeEnd: () => undefined,
-    nextType: '',
   };
 
   constructor(props) {
@@ -79,7 +78,7 @@ export default class Task extends Component {
 
   componentWillUpdate(nextProps) {
     // If it's currently blank and it wont be after this update...
-    if (nextProps.nextType !== '' && this.props.nextType === '') {
+    if (nextProps.type !== this.props.type) {
       this.closeTask();
       return;
     }
@@ -209,7 +208,9 @@ export default class Task extends Component {
     Animated.timing(this.state.height, {
       toValue: 0,
       delay: 150,
-    }).start();
+    }).start(() => {
+      this.props.onCloseEnd({ id: this.props.id });
+    });
   }
 
   renderSecondaryTimetamp(time, icon, method = 'fromNow') {

@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, PushNotificationIOS } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { findIndex } from 'lodash';
+import autobind from 'autobind-decorator';
 
 import * as actions from '../actions';
 import { flow as taskFlow } from '../util/taskTypes';
@@ -14,7 +15,10 @@ import Navigation from '../components/Navigation';
 import DeferDialog from '../components/DeferDialog';
 
 @connect(
-  state => state.tasks,
+  state => ({
+    tasks: state.tasks,
+    push: state.push,
+  }),
   dispatch => ({
     actions: bindActionCreators(actions, dispatch),
   }),
@@ -22,16 +26,42 @@ import DeferDialog from '../components/DeferDialog';
 export default class RemindrApp extends Component {
 
   static propTypes = {
-    tasks: React.PropTypes.array.isRequired,
-    filterType: React.PropTypes.string.isRequired,
+    tasks: React.PropTypes.shape({
+      tasks: React.PropTypes.array.isRequired,
+      filterType: React.PropTypes.string.isRequired,
+    }).isRequired,
+    push: React.PropTypes.shape(),
     actions: React.PropTypes.shape().isRequired,
+  }
+
+  componentWillMount() {
+    PushNotificationIOS.addEventListener('localNotification', this.onPushLocalNotification);
+    PushNotificationIOS.requestPermissions().then(this.props.actions.updatePermissions);
+  }
+
+  componentWillUnmount() {
+    PushNotificationIOS.removeEventListener('localNotification', this.onPushLocalNotification);
+  }
+
+  @autobind
+  askPermission() {
+    PushNotificationIOS.requestPermissions({ alert: true, badge: true, sound: true })
+      .then(this.props.actions.updatePermissions);
+  }
+
+  @autobind
+  onPushLocalNotification(notification) {
+    this.props.actions.changeTaskType({ type: 'CURRENT', id: notification._data.id });
   }
 
   render() {
     let deferringTask;
-    const filteredTasks = this.props.tasks.filter(task => task.type === this.props.filterType);
+    const filteredTasks =
+      this.props.tasks.tasks.filter(task =>
+        task.type === this.props.tasks.filterType || task.isAnimating
+      );
     const isTaskDeferring = findIndex(filteredTasks, task => task.deferring) >= 0;
-    const currentTaskFlowId = findIndex(taskFlow, flow => flow.id === this.props.filterType);
+    const currentTaskFlowId = findIndex(taskFlow, flow => flow.id === this.props.tasks.filterType);
 
     if (isTaskDeferring) {
       deferringTask = filteredTasks.find(task => task.deferring);
@@ -49,14 +79,15 @@ export default class RemindrApp extends Component {
         <Header />
         <TaskList
           tasks={filteredTasks}
-          onSwipe={this.props.actions.changeNextTaskType}
+          onSwipe={this.props.actions.changeTaskType}
+          onClose={this.props.actions.stopAnimating}
           left={taskFlow[currentTaskFlowId - 1]}
           right={taskFlow[currentTaskFlowId + 1]}
         />
         <AddTaskInput onSubmit={this.props.actions.addTask} />
         <Navigation
           onPress={this.props.actions.changeFilterType}
-          selectedType={this.props.filterType}
+          selectedType={this.props.tasks.filterType}
         />
       </View>
     );

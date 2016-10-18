@@ -23,11 +23,11 @@ export default function Navigation(props) {
             }, styles.selected);
           }
 
+          // This is the most elegent way of binding the callback with the value.
+          // eslint-disable-next-line react/jsx-no-bind
           return (
             <TouchableHighlight
-              // This is the most elegent way of binding the callback with the value.
-              // eslint-disable-next-line react/jsx-no-bind
-              onPress={props.onPress.bind(null, type.id)}
+              onPress={props.onPress.bind(null, { filterType: type.id })}
               key={type.id}
               accessibilityLabel={`navigation-${type.id.toLowerCase()}`}
             >

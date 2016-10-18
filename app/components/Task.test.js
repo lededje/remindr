@@ -9,7 +9,7 @@ const defaultTaskProps = {
   id: 0,
   title: 'Test Title',
   timestamp: '2016-10-14T18:47:57+01:00',
-  nextType: '',
+  type: 'CURRENT',
 };
 
 describe('Task', () => {

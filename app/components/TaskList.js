@@ -17,6 +17,7 @@ export default class TaskList extends Component {
       timestamp: React.PropTypes.string.isRequired,
     })),
     onSwipe: React.PropTypes.func,
+    onClose: React.PropTypes.func,
     onDefer: React.PropTypes.func,
     left: React.PropTypes.shape({
       id: React.PropTypes.string.isRequired,
@@ -52,10 +53,10 @@ export default class TaskList extends Component {
     return new Promise((resolve, reject) => {
       switch (direction) {
         case -1:
-          this.props.onSwipe(id, this.props.left.id);
+          this.props.onSwipe({ id, type: this.props.left.id });
           break;
         case 1:
-          this.props.onSwipe(id, this.props.right.id);
+          this.props.onSwipe({ id, type: this.props.right.id });
           break;
         case 0:
         default:
@@ -69,16 +70,17 @@ export default class TaskList extends Component {
   renderRow(task) {
     return (
       <Task
-        key={`${task.id}-${task.type}`}
+        key={`${task.id}`}
         id={task.id}
         title={task.title}
+        type={task.type}
         timestamp={task.timestamp}
         deferredUntil={task.deferredUntil}
         completeTime={task.completeTime}
         deferring={task.deferring}
-        nextType={task.nextType}
         onDirectionDecided={this.onTaskDirectionDecided}
         onSwipeEnd={this.onTaskSwipeEnd}
+        onCloseEnd={this.props.onClose}
         left={this.props.left}
         right={this.props.right}
       />

@@ -8,23 +8,12 @@ const initialState = {
     title: 'Create a new task',
     timestamp: moment().format(),
     type: 'CURRENT',
-    nextType: '',
     deferring: false,
   }],
 };
 
 export default function tasks(state = initialState, action = {}) {
   switch (action.type) {
-
-    case types.SQUASH_TASKS:
-      return {
-        ...state,
-        tasks: state.tasks.map(task => ({
-          ...task,
-          type: task.nextType || task.type,
-          nextType: undefined,
-        })),
-      };
 
     case types.CHANGE_FILTER_TYPE:
       return {
@@ -47,28 +36,35 @@ export default function tasks(state = initialState, action = {}) {
         tasks: state.tasks.filter(task => task.id !== action.id),
       };
 
-    case types.CHANGE_TASK_TYPE:
+    case types.STOP_ANIMATING:
       return {
         ...state,
         tasks: state.tasks.map((task) => {
-          if (task.id === action.task.id) {
+          if (task.id === action.id) {
             return {
               ...task,
-              type: action.task.type,
+              isAnimating: false,
             };
           }
           return task;
         }),
       };
 
-    case types.CHANGE_NEXT_TASK_TYPE:
+    case types.CHANGE_TASK_TYPE:
       return {
         ...state,
         tasks: state.tasks.map((task) => {
           if (task.id === action.task.id) {
+            let deferredUntil = task.deferredUntil;
+            if (action.task.type !== 'DEFERRED') {
+              deferredUntil = undefined;
+            }
+
             return {
               ...task,
-              ...action.task,
+              type: action.task.type,
+              isAnimating: action.task.isAnimating,
+              deferredUntil,
             };
           }
           return task;
@@ -79,7 +75,7 @@ export default function tasks(state = initialState, action = {}) {
       return {
         ...state,
         tasks: state.tasks.map((task) => {
-          if (task.id === action.deferringTaskId) {
+          if (task.id === action.id) {
             return {
               ...task,
               deferring: true,
@@ -105,15 +101,15 @@ export default function tasks(state = initialState, action = {}) {
           if (task.deferring) {
             return {
               ...task,
-              nextType: action.nextType,
               deferredUntil: action.until,
+              type: 'DEFERRED',
               deferring: false,
+              isAnimating: action.isAnimating,
             };
           }
           return task;
         }),
       };
-
     default:
       return state;
   }
