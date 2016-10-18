@@ -55,10 +55,16 @@ export default function tasks(state = initialState, action = {}) {
         ...state,
         tasks: state.tasks.map((task) => {
           if (task.id === action.task.id) {
+            let deferredUntil = task.deferredUntil;
+            if (action.task.type !== 'DEFERRED') {
+              deferredUntil = undefined;
+            }
+
             return {
               ...task,
               type: action.task.type,
               isAnimating: action.task.isAnimating,
+              deferredUntil,
             };
           }
           return task;
