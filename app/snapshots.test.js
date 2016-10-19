@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-
+import mockdate from 'mockdate';
 import taskTypes from './util/taskTypes';
 
 import AddTaskInput from './components/AddTaskInput';
@@ -9,7 +9,21 @@ import Header from './components/Header';
 import TaskList from './components/TaskList';
 import Task from './components/Task';
 
+const _getTimezoneOffset = Date.prototype.getTimezoneOffset;
+
 describe('Component snapshots', () => {
+  beforeEach(() => {
+    // eslint-disable-next-line no-extend-native
+    Date.prototype.getTimezoneOffset = () => 0;
+    mockdate.set('2015-10-21T16:29:00Z');
+  });
+
+  afterEach(() => {
+    mockdate.reset();
+    // eslint-disable-next-line no-extend-native
+    Date.prototype.getTimezoneOffset = _getTimezoneOffset;
+  });
+
   it('renders the component', () => {
     const component = renderer.create(
       <AddTaskInput />
@@ -21,7 +35,7 @@ describe('Component snapshots', () => {
   it('renders the navigation component', () => {
     const dummyPressCallback = () => '';
     const component = renderer.create(
-      <Navigation selectedType={'CURRENT'} onPress={dummyPressCallback} />
+      <Navigation selectedType="CURRENT" onPress={dummyPressCallback} />
     );
     const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
@@ -33,15 +47,17 @@ describe('Component snapshots', () => {
     expect(tree).toMatchSnapshot();
   });
 
-  it.skip('renders the task list component', () => {
+  it('renders the task list component', () => {
     const taskData = [{
       id: 0,
       title: 'Test task 1',
-      timestamp: '2016-10-14T18:47:57Z',
+      timestamp: '2015-10-21T17:29:00Z',
+      type: 'CURRENT',
     }, {
       id: 1,
       title: 'Test task 2',
-      timestamp: '2016-10-14T18:47:57Z',
+      timestamp: '2015-10-21T17:29:00Z',
+      type: 'CURRENT',
     }];
 
     const component = renderer.create(
@@ -62,13 +78,13 @@ describe('Component snapshots', () => {
 
   // Calendar time causes this to use Date.now to calculate result so breaks
 
-  it.skip('renders a current task component', () => {
+  it('renders a current task component', () => {
     const component = renderer.create(
       <Task
         id={123}
-        type={'CURRENT'}
+        type="CURRENT"
         title="Current Task"
-        timestamp={'2016-10-14T18:47:57Z'}
+        timestamp="2015-10-21T17:29:00Z"
         left={taskTypes.DEFERRED}
         right={taskTypes.DONE}
       />
@@ -78,14 +94,14 @@ describe('Component snapshots', () => {
   });
 
 
-  it.skip('renders a deferred task component', () => {
+  it('renders a deferred task component', () => {
     const component = renderer.create(
       <Task
         id={123}
-        type={'DEFERRED'}
+        type="DEFERRED"
         title="Current Task"
-        timestamp={'2016-10-14T18:47:57Z'}
-        deferredUntil={'2016-10-14T18:47:57Z'}
+        timestamp="2015-10-21T17:29:00Z"
+        deferredUntil="2015-10-22T17:29:00Z"
         right={taskTypes.CURRENT}
       />
     );
@@ -93,13 +109,13 @@ describe('Component snapshots', () => {
     expect(tree).toMatchSnapshot();
   });
 
-  it.skip('renders a done task component', () => {
+  it('renders a done task component', () => {
     const component = renderer.create(
       <Task
         id={123}
-        type={'DONE'}
+        type="DONE"
         title="Current Task"
-        timestamp={'2016-10-14T18:47:57Z'}
+        timestamp="2015-10-21T17:29:00Z"
         left={taskTypes.CURRENT}
         right={taskTypes.DELETE}
       />
