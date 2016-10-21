@@ -3,6 +3,8 @@ import renderer from 'react-test-renderer';
 import mockdate from 'mockdate';
 import taskTypes from './util/taskTypes';
 
+import moment from 'moment';
+
 import AddTaskInput from './components/AddTaskInput';
 import Navigation from './components/Navigation';
 import Header from './components/Header';
@@ -51,12 +53,12 @@ describe('Component snapshots', () => {
     const taskData = [{
       id: 0,
       title: 'Test task 1',
-      timestamp: '2015-10-21T17:29:00Z',
+      timestamp: '2015-10-21T17:29:00',
       type: 'CURRENT',
     }, {
       id: 1,
       title: 'Test task 2',
-      timestamp: '2015-10-21T17:29:00Z',
+      timestamp: '2015-10-21T17:29:00',
       type: 'CURRENT',
     }];
 
@@ -84,7 +86,7 @@ describe('Component snapshots', () => {
         id={123}
         type="CURRENT"
         title="Current Task"
-        timestamp="2015-10-21T17:29:00Z"
+        timestamp="2015-10-21T09:29:00"
         left={taskTypes.DEFERRED}
         right={taskTypes.DONE}
       />
@@ -99,9 +101,9 @@ describe('Component snapshots', () => {
       <Task
         id={123}
         type="DEFERRED"
-        title="Current Task"
-        timestamp="2015-10-21T17:29:00Z"
-        deferredUntil="2015-10-22T17:29:00Z"
+        title="Deferred Task"
+        timestamp="2015-10-21T17:29:00"
+        deferredUntil="2015-10-22T17:29:00"
         right={taskTypes.CURRENT}
       />
     );
@@ -114,8 +116,8 @@ describe('Component snapshots', () => {
       <Task
         id={123}
         type="DONE"
-        title="Current Task"
-        timestamp="2015-10-21T17:29:00Z"
+        title="Done Task"
+        timestamp="2015-10-21T17:29:00"
         left={taskTypes.CURRENT}
         right={taskTypes.DELETE}
       />

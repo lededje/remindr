@@ -74,7 +74,7 @@ exports[`Component snapshots renders a current task component 1`] = `
             },
           ]
         }>
-        in an hour
+        2 hours ago
       </Text>
     </View>
   </View>
@@ -133,7 +133,7 @@ exports[`Component snapshots renders a deferred task component 1`] = `
           "marginBottom": 10,
         }
       }>
-      Current Task
+      Deferred Task
     </Text>
     <View
       style={
@@ -157,7 +157,7 @@ exports[`Component snapshots renders a deferred task component 1`] = `
             },
           ]
         }>
-        in an hour
+        in 6 hours
       </Text>
       <View
         style={
@@ -200,7 +200,7 @@ exports[`Component snapshots renders a deferred task component 1`] = `
               },
             ]
           }>
-          Tomorrow at 6:29 PM
+          Tomorrow at 5:29 PM
         </Text>
       </View>
     </View>
@@ -260,7 +260,7 @@ exports[`Component snapshots renders a done task component 1`] = `
           "marginBottom": 10,
         }
       }>
-      Current Task
+      Done Task
     </Text>
     <View
       style={
@@ -284,7 +284,7 @@ exports[`Component snapshots renders a done task component 1`] = `
             },
           ]
         }>
-        in an hour
+        in 6 hours
       </Text>
     </View>
   </View>
@@ -610,7 +610,7 @@ exports[`Component snapshots renders the task list component 1`] = `
                 },
               ]
             }>
-            in an hour
+            in 6 hours
           </Text>
         </View>
       </View>
@@ -690,7 +690,7 @@ exports[`Component snapshots renders the task list component 1`] = `
                 },
               ]
             }>
-            in an hour
+            in 6 hours
           </Text>
         </View>
       </View>
