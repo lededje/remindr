@@ -91,4 +91,72 @@ describe('actions', () => {
 
     expect(actions.removeTask.call(null, args)).toEqual(result);
   });
+
+  it('should create an action to defer a task', () => {
+    const args = { id: 1 };
+    const result = {
+      type: types.SET_DEFERRING_TASK,
+      id: 1,
+    };
+
+    expect(actions.setDeferringTask(args)).toEqual(result);
+  });
+
+  it('should create an action to clear all deferring tasks', () => {
+    const result = {
+      type: types.CLEAR_DEFERRING_TASK,
+    };
+
+    expect(actions.clearDeferringTask()).toEqual(result);
+  });
+
+
+  it('should create an action to mark a tasks animation state as stopeed', () => {
+    const args = { id: 1 };
+    const result = {
+      type: types.STOP_ANIMATING,
+      id: 1,
+    };
+
+    expect(actions.stopAnimating(args)).toEqual(result);
+  });
+
+  it('should create an action to update push permissions with all args', () => {
+    const args = { alert: 1, lorem: 2, ipsum: 3 };
+    const result = {
+      type: types.UPDATE_PERMISSIONS,
+      ...args,
+    };
+
+    expect(actions.updatePermissions(args)).toEqual(result);
+  });
+
+  describe('defer task', () => {
+    const state = {
+      tasks: {
+        tasks: [
+          {
+            id: 1,
+            title: 'lorem',
+          },
+        ],
+      },
+    };
+
+    // TODO: This task skips over the script that sets the push notification.
+    it('should create an action to defer a task', (done) => {
+      const args = { id: 1, until: undefined, animated: true };
+      const result = {
+        type: types.DEFER_TASK,
+        id: 1,
+        until: undefined,
+        isAnimating: true,
+      };
+
+      actions.deferTask(args)((test) => {
+        expect(test).toEqual(result);
+        done();
+      }, () => state);
+    });
+  });
 });
