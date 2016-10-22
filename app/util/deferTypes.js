@@ -93,6 +93,16 @@ const deferTypes = {
       .format(),
   },
 
+  NEXT_WEEKEND: {
+    id: 'NEXT_WEEKEND',
+    name: 'Next Weekend',
+    calc: time => moment(time).startOf('week')
+      .add(1, 'week')
+      .add(5, 'days')
+      .add(START_OF_DAY)
+      .format(),
+  },
+
   NEXT_MONTH: {
     id: 'NEXT_MONTH',
     name: 'Next Month',

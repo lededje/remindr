@@ -66,13 +66,13 @@ describe('Task Reducer', () => {
       type: types.CHANGE_TASK_TYPE,
       task: {
         id: 1,
-        type: 'DONE',
+        type: 'DELETE',
       },
     };
     const result = {
       tasks: [{
         id: 1,
-        type: 'DONE',
+        type: 'DELETE',
       }, {
         id: 2,
         type: 'CURRENT',

@@ -17,7 +17,7 @@ export function changeFilterType({ filterType }) {
 
 export function addTask({
   type = 'CURRENT',
-  timestamp = Date.now(),
+  timestamp = moment().format(),
   title,
 }) {
   return (dispatch, getState) => {
