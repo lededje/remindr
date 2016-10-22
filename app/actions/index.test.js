@@ -153,12 +153,10 @@ describe('actions', () => {
   describe('defer task', () => {
     const state = {
       tasks: {
-        tasks: [
-          {
-            id: 1,
-            title: 'Test task',
-          },
-        ],
+        tasks: [{
+          id: 1,
+          title: 'Test task',
+        }],
       },
     };
 
