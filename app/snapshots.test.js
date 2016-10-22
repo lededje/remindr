@@ -1,4 +1,5 @@
 import React from 'react';
+import 'react-native'; // https://facebook.github.io/jest/docs/tutorial-react-native.html#require-react-native-before-the-test-renderer
 import renderer from 'react-test-renderer';
 
 import taskTypes from './util/taskTypes';

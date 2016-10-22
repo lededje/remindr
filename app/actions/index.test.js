@@ -1,3 +1,11 @@
+jest.mock('react-native', () => (
+  {
+    PushNotificationIOS: {
+      scheduleLocalNotification: jest.fn(),
+    },
+  }
+));
+
 import * as types from './types';
 import * as actions from './';
 
@@ -137,14 +145,13 @@ describe('actions', () => {
         tasks: [
           {
             id: 1,
-            title: 'lorem',
+            title: 'Test task',
           },
         ],
       },
     };
 
-    // TODO: This task skips over the script that sets the push notification.
-    it('should create an action to defer a task', (done) => {
+    it('should create an action to defer a task', () => {
       const args = { id: 1, until: undefined, animated: true };
       const result = {
         type: types.DEFER_TASK,
@@ -155,7 +162,20 @@ describe('actions', () => {
 
       actions.deferTask(args)((test) => {
         expect(test).toEqual(result);
-        done();
+      }, () => state);
+    });
+
+    it('should queue a push notification when you defer a task', () => {
+      const args = { id: 1, until: 1476470877000 };
+      const sheduleMock = require.requireMock('react-native').PushNotificationIOS.scheduleLocalNotification;
+
+      actions.deferTask(args)((test) => {
+        expect(sheduleMock).toHaveBeenCalledWith({
+          fireDate: '2016-10-14T19:47:57.5757+01:00',
+          alertBody: 'Test task',
+          sound: 'default',
+          userInfo: { id: 1 },
+        });
       }, () => state);
     });
   });
