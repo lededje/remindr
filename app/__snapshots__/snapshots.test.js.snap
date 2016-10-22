@@ -298,18 +298,20 @@ exports[`Component snapshots renders an empty list component with message 1`] = 
       "flex": 1,
     }
   }>
-  <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
-    style={
-      Object {
-        "marginTop": 20,
-        "textAlign": "center",
-      }
-    }>
-    This list is empty
-  </Text>
+  <ScrollView>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Object {
+          "marginTop": 20,
+          "textAlign": "center",
+        }
+      }>
+      This list is empty
+    </Text>
+  </ScrollView>
 </View>
 `;
 
@@ -329,6 +331,7 @@ exports[`Component snapshots renders the component 1`] = `
     enablesReturnKeyAutomatically={true}
     onChange={[Function]}
     onSubmitEditing={[Function]}
+    placeholder="Add a task"
     style={
       Object {
         "height": 19,
@@ -336,6 +339,20 @@ exports[`Component snapshots renders the component 1`] = `
     }
     testID="Add Task"
     value="" />
+  <View
+    style={
+      Array [
+        Object {
+          "bottom": 0,
+          "left": 0,
+          "right": 0,
+        },
+        Object {
+          "height": 0,
+        },
+        undefined,
+      ]
+    } />
 </View>
 `;
 
