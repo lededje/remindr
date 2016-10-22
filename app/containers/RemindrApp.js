@@ -103,7 +103,7 @@ export default class RemindrApp extends Component {
           left={taskFlow[currentTaskFlowId - 1]}
           right={taskFlow[currentTaskFlowId + 1]}
         />
-        <AddTaskInput onSubmit={this.props.actions.addTask} />
+        {this.props.tasks.filterType === 'CURRENT' && <AddTaskInput onSubmit={this.props.actions.addTask} />}
         <Navigation
           onPress={this.props.actions.changeFilterType}
           selectedType={this.props.tasks.filterType}

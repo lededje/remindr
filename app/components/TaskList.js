@@ -4,6 +4,7 @@ import {
   View,
   Text,
   ListView,
+  ScrollView,
 } from 'react-native';
 import autobind from 'autobind-decorator';
 import Task from './Task';
@@ -100,7 +101,7 @@ export default class TaskList extends Component {
           />
         )}
         {this.props.tasks.length === 0 && (
-          <Text style={styles.emptyMessage}>This list is empty</Text>
+          <ScrollView><Text style={styles.emptyMessage}>This list is empty</Text></ScrollView>
         )}
       </View>
     );

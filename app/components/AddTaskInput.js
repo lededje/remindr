@@ -4,6 +4,7 @@ import {
   View,
   TextInput,
 } from 'react-native';
+import KeyboardSpacer from 'react-native-keyboard-spacer';
 import autobind from 'autobind-decorator';
 
 export default class AddTaskInput extends Component {
@@ -35,6 +36,7 @@ export default class AddTaskInput extends Component {
     return (
       <View style={styles.container}>
         <TextInput
+          placeholder="Add a task"
           style={styles.input}
           enablesReturnKeyAutomatically={true}
           blurOnSubmit={true}
@@ -44,6 +46,8 @@ export default class AddTaskInput extends Component {
           value={this.state.text}
           testID="Add Task"
         />
+        { /* TODO: Magic number works on ios afaik, fix later for android. */}
+        <KeyboardSpacer topSpacing={-37.5} />
       </View>
     );
   }

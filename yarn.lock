@@ -4142,6 +4142,10 @@ react-dom@^15.3.2:
   version "15.3.2"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-15.3.2.tgz#c46b0aa5380d7b838e7a59c4a7beff2ed315531f"
 
+react-native-keyboard-spacer:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/react-native-keyboard-spacer/-/react-native-keyboard-spacer-0.3.0.tgz#09016c11f6b5cfbc3b96c63e6d049e77a3e0908b"
+
 react-native-mock@^0.2.6:
   version "0.2.7"
   resolved "https://registry.yarnpkg.com/react-native-mock/-/react-native-mock-0.2.7.tgz#683880c400099a1c41bbd309ec5b92b3019d6034"
