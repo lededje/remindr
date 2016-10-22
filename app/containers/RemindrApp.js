@@ -4,9 +4,10 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { findIndex } from 'lodash';
 import autobind from 'autobind-decorator';
+import moment from 'moment';
 
 import * as actions from '../actions';
-import { flow as taskFlow } from '../util/taskTypes';
+import taskTypes, { flow as taskFlow } from '../util/taskTypes';
 
 import Header from '../components/Header';
 import TaskList from '../components/TaskList';
@@ -54,17 +55,35 @@ export default class RemindrApp extends Component {
     this.props.actions.changeTaskType({ type: 'CURRENT', id: notification._data.id });
   }
 
-  render() {
-    let deferringTask;
+  filterAndSortTasks() {
     const filteredTasks =
       this.props.tasks.tasks.filter(task =>
         task.type === this.props.tasks.filterType || task.isAnimating
       );
-    const isTaskDeferring = findIndex(filteredTasks, task => task.deferring) >= 0;
+    const sortedTasks = filteredTasks.sort((taskA, taskB) => {
+      const sortBy = taskTypes[this.props.tasks.filterType].sortBy;
+      if (sortBy) {
+        return moment(taskA[sortBy]).isBefore(taskB[sortBy]);
+      }
+      return true;
+    });
+
+    if (taskTypes[this.props.tasks.filterType].order === 'asc') {
+      sortedTasks.reverse();
+    }
+
+    return sortedTasks;
+  }
+
+  render() {
+    let deferringTask;
+
+    const tasks = this.filterAndSortTasks();
+    const isTaskDeferring = findIndex(tasks, task => task.deferring) >= 0;
     const currentTaskFlowId = findIndex(taskFlow, flow => flow.id === this.props.tasks.filterType);
 
     if (isTaskDeferring) {
-      deferringTask = filteredTasks.find(task => task.deferring);
+      deferringTask = tasks.find(task => task.deferring);
     }
 
     return (
@@ -78,7 +97,7 @@ export default class RemindrApp extends Component {
         )}
         <Header />
         <TaskList
-          tasks={filteredTasks}
+          tasks={tasks}
           onSwipe={this.props.actions.changeTaskType}
           onClose={this.props.actions.stopAnimating}
           left={taskFlow[currentTaskFlowId - 1]}
