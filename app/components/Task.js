@@ -22,7 +22,7 @@ export default class Task extends Component {
     timestamp: React.PropTypes.string.isRequired,
     type: React.PropTypes.oneOf(['DEFERRED', 'CURRENT', 'DONE']).isRequired,
     deferredUntil: React.PropTypes.string,
-    completeTime: React.PropTypes.string,
+    completedAt: React.PropTypes.string,
     deferring: React.PropTypes.bool,
 
     onDirectionDecided: React.PropTypes.func,
@@ -280,8 +280,8 @@ export default class Task extends Component {
             </Text>
             {this.props.deferredUntil &&
               this.renderSecondaryTimetamp(this.props.deferredUntil, icons.BELL, 'calendar')}
-            {this.props.completeTime &&
-              this.renderSecondaryTimetamp(this.props.completeTime, icons.TICK)}
+            {this.props.completedAt &&
+              this.renderSecondaryTimetamp(this.props.completedAt, icons.TICK)}
           </View>
         </Animated.View>
       </Animated.View>

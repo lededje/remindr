@@ -76,7 +76,7 @@ export default class TaskList extends Component {
         type={task.type}
         timestamp={task.timestamp}
         deferredUntil={task.deferredUntil}
-        completeTime={task.completeTime}
+        completedAt={task.completedAt}
         deferring={task.deferring}
         onDirectionDecided={this.onTaskDirectionDecided}
         onSwipeEnd={this.onTaskSwipeEnd}
