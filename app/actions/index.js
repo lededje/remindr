@@ -102,7 +102,7 @@ export function stopAnimating({ id }) {
 
 // Push Notification Actions
 
-export function updatePermissions({ permissions }) {
+export function updatePermissions(permissions) {
   return {
     type: types.UPDATE_PERMISSIONS,
     ...permissions,

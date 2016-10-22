@@ -58,3 +58,5 @@ rules:
 
   ### Import
   import/no-extraneous-dependencies: 0
+  # plays havok with jest.mock and fairly obvious to fix anyways
+  import/imports-first: 0

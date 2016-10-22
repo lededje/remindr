@@ -1,5 +1,11 @@
+jest.mock('moment', () => {
+  const moment = require.requireActual('moment');
+  return moment.utc;
+});
+
 import React from 'react';
 import renderer from 'react-test-renderer';
+import mockdate from 'mockdate';
 
 import taskTypes from './util/taskTypes';
 
@@ -10,6 +16,13 @@ import TaskList from './components/TaskList';
 import Task from './components/Task';
 
 describe('Component snapshots', () => {
+  beforeEach(() => {
+    mockdate.set('2015-10-21T16:29:00');
+  });
+  afterEach(() => {
+    mockdate.reset();
+  });
+
   it('renders the component', () => {
     const component = renderer.create(
       <AddTaskInput />
@@ -33,15 +46,17 @@ describe('Component snapshots', () => {
     expect(tree).toMatchSnapshot();
   });
 
-  it.skip('renders the task list component', () => {
+  it('renders the task list component', () => {
     const taskData = [{
       id: 0,
       title: 'Test task 1',
-      timestamp: '2016-10-14T18:47:57Z',
+      timestamp: '2015-10-21T15:29:00',
+      type: 'CURRENT',
     }, {
       id: 1,
       title: 'Test task 2',
-      timestamp: '2016-10-14T18:47:57Z',
+      timestamp: '2015-10-21T15:29:00',
+      type: 'CURRENT',
     }];
 
     const component = renderer.create(
@@ -62,13 +77,13 @@ describe('Component snapshots', () => {
 
   // Calendar time causes this to use Date.now to calculate result so breaks
 
-  it.skip('renders a current task component', () => {
+  it('renders a current task component', () => {
     const component = renderer.create(
       <Task
         id={123}
         type={'CURRENT'}
         title="Current Task"
-        timestamp={'2016-10-14T18:47:57Z'}
+        timestamp={'2015-10-21T15:29:00'}
         left={taskTypes.DEFERRED}
         right={taskTypes.DONE}
       />
@@ -78,14 +93,14 @@ describe('Component snapshots', () => {
   });
 
 
-  it.skip('renders a deferred task component', () => {
+  it('renders a deferred task component', () => {
     const component = renderer.create(
       <Task
         id={123}
         type={'DEFERRED'}
         title="Current Task"
-        timestamp={'2016-10-14T18:47:57Z'}
-        deferredUntil={'2016-10-14T18:47:57Z'}
+        timestamp={'2015-10-21T15:29:00'}
+        deferredUntil={'2015-10-21T17:29:00'}
         right={taskTypes.CURRENT}
       />
     );
@@ -93,13 +108,13 @@ describe('Component snapshots', () => {
     expect(tree).toMatchSnapshot();
   });
 
-  it.skip('renders a done task component', () => {
+  it('renders a done task component', () => {
     const component = renderer.create(
       <Task
         id={123}
         type={'DONE'}
         title="Current Task"
-        timestamp={'2016-10-14T18:47:57Z'}
+        timestamp={'2015-10-21T15:29:00'}
         left={taskTypes.CURRENT}
         right={taskTypes.DELETE}
       />
