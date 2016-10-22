@@ -1,15 +1,26 @@
-jest.mock('react-native', () => (
-  {
-    PushNotificationIOS: {
-      scheduleLocalNotification: jest.fn(),
-    },
-  }
-));
+jest.mock('react-native', () => ({
+  PushNotificationIOS: {
+    scheduleLocalNotification: jest.fn(),
+  },
+}));
 
+jest.mock('moment', () => {
+  const moment = require.requireActual('moment');
+  return moment.utc;
+});
+
+import mockdate from 'mockdate';
 import * as types from './types';
 import * as actions from './';
 
 describe('actions', () => {
+  beforeEach(() => {
+    mockdate.set('2015-10-21T16:29:00');
+  });
+  afterEach(() => {
+    mockdate.reset();
+  });
+
   it('should create an action to change the filter type', () => {
     const args = { filterType: 'TEST' };
     const changeFilterResult = {
@@ -167,11 +178,12 @@ describe('actions', () => {
 
     it('should queue a push notification when you defer a task', () => {
       const args = { id: 1, until: 1476470877000 };
-      const sheduleMock = require.requireMock('react-native').PushNotificationIOS.scheduleLocalNotification;
+      const sheduleMock = require.requireMock('react-native')
+        .PushNotificationIOS.scheduleLocalNotification;
 
       actions.deferTask(args)((test) => {
         expect(sheduleMock).toHaveBeenCalledWith({
-          fireDate: '2016-10-14T19:47:57.5757+01:00',
+          fireDate: '2016-10-14T18:47:57.5757+00:00',
           alertBody: 'Test task',
           sound: 'default',
           userInfo: { id: 1 },
