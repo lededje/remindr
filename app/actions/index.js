@@ -7,9 +7,12 @@ import * as types from './types';
 // List actions
 
 export function changeFilterType({ filterType }) {
-  return {
-    type: types.CHANGE_FILTER_TYPE,
-    filterType,
+  return (dispatch, getState) => {
+    dispatch(cleanTasks());
+    dispatch({
+      type: types.CHANGE_FILTER_TYPE,
+      filterType,
+    });
   };
 }
 
@@ -97,6 +100,12 @@ export function stopAnimating({ id }) {
   return {
     type: types.STOP_ANIMATING,
     id,
+  };
+}
+
+export function cleanTasks() {
+  return {
+    type: types.CLEAN_TASKS,
   };
 }
 

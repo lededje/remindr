@@ -4,13 +4,14 @@ import thunk from 'redux-thunk';
 import devTools from 'remote-redux-devtools';
 import createEngine from 'redux-storage-engine-reactnativeasyncstorage';
 
-import { STATEFUL_ACTIONS as statefulActions } from '../actions/types';
+import { ALL_ACTIONS } from '../actions/types';
 import reducers from '../reducers';
 
 const storageReducer = storage.reducer(reducers);
 const engine = createEngine('remindr');
 
-const middleware = storage.createMiddleware(engine, statefulActions);
+const middleware = storage.createMiddleware(engine, ALL_ACTIONS);
+// const middleware = storage.createMiddleware(engine, statefulActions);
 const load = storage.createLoader(engine);
 
 export default function configureStore(initialState) {

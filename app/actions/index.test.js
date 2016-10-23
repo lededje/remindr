@@ -21,14 +21,22 @@ describe('actions', () => {
     mockdate.reset();
   });
 
-  it('should create an action to change the filter type', () => {
+  it('should create an action to change the filter type and clean tasks', () => {
     const args = { filterType: 'TEST' };
-    const changeFilterResult = {
+    const cleanTaskResult = [{
+      type: types.CLEAN_TASKS,
+    }];
+    const changeFilterResult = [{
       type: types.CHANGE_FILTER_TYPE,
       filterType: 'TEST',
-    };
+    }];
 
-    expect(actions.changeFilterType.call(null, args)).toEqual(changeFilterResult);
+    const mockCallback = jest.fn();
+
+    actions.changeFilterType.call(null, args)(mockCallback);
+
+    expect(mockCallback.mock.calls[0]).toEqual(cleanTaskResult);
+    expect(mockCallback.mock.calls[1]).toEqual(changeFilterResult);
   });
 
   it('should create an action to add a task', () => {
