@@ -4,9 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "jest",
-    "travis": "set -e; jest --coverage; codeclimate-test-reporter < coverage/lcov.info",
-    "eslint": "eslint app"
+    "test": "jest"
   },
   "jest": {
     "preset": "jest-react-native",
