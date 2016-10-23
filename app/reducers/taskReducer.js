@@ -1,5 +1,6 @@
 import moment from 'moment';
 import * as types from '../actions/types';
+import { compact } from 'lodash';
 
 const initialState = {
   filterType: 'CURRENT',
@@ -75,7 +76,7 @@ export default function tasks(state = initialState, action = {}) {
     case types.CLEAN_TASKS:
       return {
         ...state,
-        tasks: state.tasks.map((task) => {
+        tasks: compact(state.tasks.map((task) => {
           const newTask = {
             ...task,
           };
@@ -91,12 +92,14 @@ export default function tasks(state = initialState, action = {}) {
             case 'DONE':
               newTask.deferredUntil = undefined;
               break;
+            case 'DELETED':
+              return undefined;
             default:
               break;
           }
 
           return newTask;
-        }),
+        })),
       };
 
     case types.SET_DEFERRING_TASK:

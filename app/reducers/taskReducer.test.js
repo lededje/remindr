@@ -66,13 +66,13 @@ describe('Task Reducer', () => {
       type: types.CHANGE_TASK_TYPE,
       task: {
         id: 1,
-        type: 'DELETE',
+        type: 'DELETED',
       },
     };
     const result = {
       tasks: [{
         id: 1,
-        type: 'DELETE',
+        type: 'DELETED',
       }, {
         id: 2,
         type: 'CURRENT',
@@ -95,5 +95,83 @@ describe('Task Reducer', () => {
     };
 
     expect(reducer(state, action)).toEqual(result);
+  });
+
+  describe('Clean Tasks', () => {
+    const action = {
+      type: types.CLEAN_TASKS,
+    };
+
+    it('removes deleted tasks', () => {
+      const state = {
+        tasks: [{
+          id: 1,
+          type: 'CURRENT',
+        }, {
+          id: 2,
+          type: 'DELETED',
+        }],
+      };
+      const result = {
+        tasks: [{
+          id: 1,
+          type: 'CURRENT',
+        }],
+      };
+
+      expect(reducer(state, action)).toEqual(result);
+    });
+
+    it('removes deferred times off of tasks that are no longer deferred', () => {
+      const state = {
+        tasks: [{
+          id: 1,
+          type: 'CURRENT',
+          deferredUntil: '2016-10-14T18:47:57+01:00',
+        }, {
+          id: 2,
+          type: 'DEFERRED',
+          deferredUntil: '2016-10-14T18:47:57+01:00',
+        }],
+      };
+      const result = {
+        tasks: [{
+          id: 1,
+          type: 'CURRENT',
+        }, {
+          id: 2,
+          type: 'DEFERRED',
+          deferredUntil: '2016-10-14T18:47:57+01:00',
+        }],
+      };
+
+      expect(reducer(state, action)).toEqual(result);
+    });
+
+    it('removes completed times off of tasks that are no longer done', () => {
+      const state = {
+        tasks: [{
+          id: 1,
+          type: 'CURRENT',
+          completedAt: '2016-10-14T18:47:57+01:00',
+        }, {
+          id: 2,
+          type: 'DONE',
+          completedAt: '2016-10-14T18:47:57+01:00',
+        }],
+      };
+      const result = {
+        tasks: [{
+          id: 1,
+          type: 'CURRENT',
+        }, {
+          id: 2,
+          type: 'DONE',
+          completedAt: '2016-10-14T18:47:57+01:00',
+        }],
+      };
+
+      expect(reducer(state, action)).toEqual(result);
+    });
   });
 });
