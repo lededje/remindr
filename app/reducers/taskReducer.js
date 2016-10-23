@@ -55,12 +55,8 @@ export default function tasks(state = initialState, action = {}) {
         ...state,
         tasks: state.tasks.map((task) => {
           if (task.id === action.task.id) {
-            let deferredUntil;
             let completedAt;
 
-            if (action.task.type === 'DEFERRED') {
-              deferredUntil = task.deferredUntil;
-            }
             if (action.task.type === 'DONE') {
               completedAt = moment().format();
             }
@@ -69,11 +65,37 @@ export default function tasks(state = initialState, action = {}) {
               ...task,
               type: action.task.type,
               isAnimating: action.task.isAnimating,
-              deferredUntil,
               completedAt,
             };
           }
           return task;
+        }),
+      };
+
+    case types.CLEAN_TASKS:
+      return {
+        ...state,
+        tasks: state.tasks.map((task) => {
+          const newTask = {
+            ...task,
+          };
+
+          switch (task.type) {
+            case 'DEFERRED':
+              newTask.completedAt = undefined;
+              break;
+            case 'CURRENT':
+              newTask.completedAt = undefined;
+              newTask.deferredUntil = undefined;
+              break;
+            case 'DONE':
+              newTask.deferredUntil = undefined;
+              break;
+            default:
+              break;
+          }
+
+          return newTask;
         }),
       };
 
