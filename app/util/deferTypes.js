@@ -121,7 +121,7 @@ const deferTypes = {
 };
 
 function availableDeferOptions(time) {
-  const times = ['IN_FIVE_SECONDS'];
+  const times = [];
 
   const sameDayTimes = ['THIS_MORNING', 'THIS_AFTERNOON', 'THIS_EVENING', 'MIDNIGHT'];
 
