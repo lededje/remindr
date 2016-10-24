@@ -79,6 +79,7 @@ export default function tasks(state = initialState, action = {}) {
         tasks: compact(state.tasks.map((task) => {
           const newTask = {
             ...task,
+            isAnimating: undefined,
           };
 
           switch (task.type) {
