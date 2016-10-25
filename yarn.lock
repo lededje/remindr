@@ -4179,6 +4179,10 @@ react-native-mock@^0.2.6:
     react-timer-mixin "=0.13.3"
     warning "=2.1.0"
 
+react-native-push-notification:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/react-native-push-notification/-/react-native-push-notification-2.1.1.tgz#98033605621e3657aeb2cbe7b4314c2e8882df4a"
+
 react-native@0.34.0:
   version "0.34.0"
   resolved "https://registry.yarnpkg.com/react-native/-/react-native-0.34.0.tgz#a6320983db7b14eed6add34c00780a470d968210"
