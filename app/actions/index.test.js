@@ -1,7 +1,5 @@
-jest.mock('react-native', () => ({
-  PushNotificationIOS: {
-    scheduleLocalNotification: jest.fn(),
-  },
+jest.mock('react-native-push-notification', () => ({
+  scheduleLocalNotification: jest.fn(),
 }));
 
 jest.mock('moment', () => {
@@ -184,8 +182,8 @@ describe('actions', () => {
 
     it('should queue a push notification when you defer a task', () => {
       const args = { id: 1, until: 1476470877000 };
-      const sheduleMock = require.requireMock('react-native')
-        .PushNotificationIOS.scheduleLocalNotification;
+      const sheduleMock = require.requireMock('react-native-push-notification')
+        .scheduleLocalNotification;
 
       actions.deferTask(args)((test) => {
         expect(sheduleMock).toHaveBeenCalledWith({

@@ -1,6 +1,6 @@
 import { maxBy } from 'lodash';
 import moment from 'moment';
-import { PushNotificationIOS } from 'react-native';
+import PushNotification from 'react-native-push-notification';
 
 import * as types from './types';
 
@@ -79,7 +79,7 @@ export function deferTask({ id, until, animated = true }) {
     const selectedTask = getState().tasks.tasks.find(task => task.id === id);
 
     if (until) {
-      PushNotificationIOS.scheduleLocalNotification({
+      PushNotification.scheduleLocalNotification({
         fireDate: moment(until).format('YYYY-MM-DDTHH:mm:ss.sssZ'),
         alertBody: selectedTask.title,
         sound: 'default',
