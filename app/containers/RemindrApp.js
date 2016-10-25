@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, PushNotificationIOS } from 'react-native';
+import { View, StyleSheet, DeviceEventEmitter } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { findIndex } from 'lodash';
+import PushNotification from 'react-native-push-notification';
 import autobind from 'autobind-decorator';
 import moment from 'moment';
 
@@ -36,18 +37,24 @@ export default class RemindrApp extends Component {
   }
 
   componentWillMount() {
-    PushNotificationIOS.addEventListener('localNotification', this.onPushLocalNotification);
-    PushNotificationIOS.requestPermissions().then(this.props.actions.updatePermissions);
+    PushNotification.configure({
+      onRegister: this.props.actions.updatePermissions,
+      onNotification: this.onPushLocalNotification,
+      requestPermissions: false,
+    });
+
+    this.localNotificationListener = DeviceEventEmitter.addListener('localNotification', this.onPushLocalNotification);
+
+    this.askPermission();
   }
 
   componentWillUnmount() {
-    PushNotificationIOS.removeEventListener('localNotification', this.onPushLocalNotification);
+    this.localNotificationListener.remove();
   }
 
   @autobind
   askPermission() {
-    PushNotificationIOS.requestPermissions({ alert: true, badge: true, sound: true })
-      .then(this.props.actions.updatePermissions);
+    PushNotification.requestPermissions();
   }
 
   @autobind
