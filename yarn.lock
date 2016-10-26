@@ -847,7 +847,11 @@ base62@^1.1.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/base62/-/base62-1.1.1.tgz#974e82c11bd5e00816b508a7ed9c7b9086c9db6b"
 
-base64-js@^0.0.8, base64-js@0.0.8:
+base64-js@^1.1.2:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/base64-js/-/base64-js-1.2.0.tgz#a39992d723584811982be5e290bb6a53d86700f1"
+
+base64-js@0.0.8:
   version "0.0.8"
   resolved "https://registry.yarnpkg.com/base64-js/-/base64-js-0.0.8.tgz#1101e9544f4a76b1bc3b26d452ca96d7a35e7978"
 
@@ -4183,12 +4187,13 @@ react-native-push-notification:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/react-native-push-notification/-/react-native-push-notification-2.1.1.tgz#98033605621e3657aeb2cbe7b4314c2e8882df4a"
 
-react-native@0.34.0:
-  version "0.34.0"
-  resolved "https://registry.yarnpkg.com/react-native/-/react-native-0.34.0.tgz#a6320983db7b14eed6add34c00780a470d968210"
+react-native@0.35.0:
+  version "0.35.0"
+  resolved "https://registry.yarnpkg.com/react-native/-/react-native-0.35.0.tgz#59a53e80109a728a7f6c7c9f0f0899c8b14c13b2"
   dependencies:
     absolute-path "^0.0.0"
     art "^0.10.0"
+    async "^2.0.1"
     babel-core "^6.10.4"
     babel-plugin-external-helpers "^6.8.0"
     babel-plugin-syntax-trailing-function-commas "^6.5.0"
@@ -4201,7 +4206,7 @@ react-native@0.34.0:
     babel-register "^6.6.0"
     babel-types "^6.6.4"
     babylon "^6.8.2"
-    base64-js "^0.0.8"
+    base64-js "^1.1.2"
     bser "^1.0.2"
     chalk "^1.1.1"
     commander "^2.9.0"
