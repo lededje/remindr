@@ -95,13 +95,6 @@ export default class RemindrApp extends Component {
 
     return (
       <View style={styles.container}>
-        {isTaskDeferring && (
-          <DeferDialog
-            onClose={this.props.actions.clearDeferringTask}
-            onTimeChosen={this.props.actions.deferTask}
-            task={deferringTask}
-          />
-        )}
         <Header />
         <TaskList
           tasks={tasks}
@@ -115,6 +108,11 @@ export default class RemindrApp extends Component {
           onPress={this.props.actions.changeFilterType}
           selectedType={this.props.tasks.filterType}
         />
+        {isTaskDeferring && <DeferDialog
+          onClose={this.props.actions.clearDeferringTask}
+          onTimeChosen={this.props.actions.deferTask}
+          task={deferringTask}
+        />}
       </View>
     );
   }
