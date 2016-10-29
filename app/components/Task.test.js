@@ -2,8 +2,10 @@ import 'react-native-mock/mock';
 
 import React from 'react';
 import { shallow } from 'enzyme';
+import moment from 'moment';
 
 import Task from './Task';
+import icons from '../util/icons';
 
 const defaultTaskProps = {
   id: 0,
@@ -100,5 +102,18 @@ describe('Task', () => {
     });
 
     expect(wrapper.state('layoutHeight')).toBe(1000);
+  });
+
+  it('should render the secondary timestamp', () => {
+    // The secondary timestamp is the one that can float to the right,
+    // the time the push will come or the time the task was completed.
+
+    const wrapper = shallow(
+      <Task {...defaultTaskProps} />
+    );
+
+    const time = moment().format();
+
+    shallow(wrapper.instance().renderSecondaryTimetamp(time, icons.CLOCK));
   });
 });
