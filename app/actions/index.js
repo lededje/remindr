@@ -84,11 +84,11 @@ export function deferTask({ id, until, animated = true }) {
     const selectedTask = getState().tasks.tasks.find(task => task.id === id);
 
     if (until) {
-      PushNotification.scheduleLocalNotification({
-        fireDate: moment(until).format('YYYY-MM-DDTHH:mm:ss.sssZ'),
-        alertBody: selectedTask.title,
-        sound: 'default',
+      PushNotification.localNotificationSchedule({
+        id: String(id),
         userInfo: { id },
+        message: selectedTask.title,
+        date: moment(until).format('YYYY-MM-DDTHH:mm:ss.sssZ'),
       });
     }
 
