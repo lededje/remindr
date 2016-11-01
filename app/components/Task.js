@@ -190,6 +190,9 @@ export default class Task extends Component {
 
   @autobind
   onLayout(event) {
+    // Android for some reason hits and the state is undefined. Might be after it's
+    // been disposed of?
+    if (!this.state) { return; }
     if (this.state.layoutHeight) return;
 
     this.setState({
