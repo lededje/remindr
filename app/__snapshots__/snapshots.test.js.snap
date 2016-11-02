@@ -322,7 +322,8 @@ exports[`Component snapshots renders the component 1`] = `
       "backgroundColor": "#fff",
       "borderTopColor": "#d9dbdb",
       "borderTopWidth": 1,
-      "padding": 10,
+      "paddingLeft": 10,
+      "paddingRight": 10,
     }
   }>
   <TextInput
@@ -335,7 +336,7 @@ exports[`Component snapshots renders the component 1`] = `
     style={
       Object {
         "borderBottomWidth": 0,
-        "padding": 0,
+        "height": 39,
       }
     }
     testID="Add Task"
@@ -364,6 +365,7 @@ exports[`Component snapshots renders the header component 1`] = `
     Object {
       "borderBottomWidth": 1,
       "borderColor": "#d9dbdb",
+      "paddingTop": 20,
     }
   }>
   <Text

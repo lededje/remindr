@@ -47,7 +47,6 @@ export default class AddTaskInput extends Component {
           testID="Add Task"
           underlineColorAndroid="rgba(0, 0, 0, 0)"
         />
-        { /* TODO: Magic number works on ios afaik, fix later for android. */}
         <KeyboardSpacer topSpacing={-37.5} />
       </View>
     );
@@ -59,11 +58,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderTopWidth: 1,
     borderTopColor: '#d9dbdb',
-    padding: 10,
+    paddingLeft: 10,
+    paddingRight: 10,
   },
   input: {
-    // height: 19,
+    height: 39,
     borderBottomWidth: 0,
-    padding: 0,
   },
 });
