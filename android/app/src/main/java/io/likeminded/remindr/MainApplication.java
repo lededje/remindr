@@ -1,4 +1,4 @@
-package com.remindr;
+package io.likeminded.remindr;
 
 import android.app.Application;
 import android.util.Log;

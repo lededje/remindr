@@ -1,4 +1,4 @@
-package com.remindr;
+package io.likeminded.remindr;
 
 import com.facebook.react.ReactActivity;
 
