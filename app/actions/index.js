@@ -1,7 +1,8 @@
 import { maxBy } from 'lodash';
 import moment from 'moment';
 import PushNotification from 'react-native-push-notification';
-
+import colors from '../util/colors';
+import { Platform } from 'react-native';
 import * as types from './types';
 
 // List actions
@@ -84,12 +85,30 @@ export function deferTask({ id, until, animated = true }) {
     const selectedTask = getState().tasks.tasks.find(task => task.id === id);
 
     if (until) {
-      PushNotification.scheduleLocalNotification({
-        fireDate: moment(until).format('YYYY-MM-DDTHH:mm:ss.sssZ'),
-        alertBody: selectedTask.title,
-        sound: 'default',
-        userInfo: { id },
-      });
+      const notification = {
+        id: String(id),
+        ticker: selectedTask.title,
+        message: selectedTask.title,
+        bigText: selectedTask.title,
+        subText: 'Deferred Task',
+        largeIcon: 'none',
+        smallIcon: 'ic_notification',
+        vibrate: true,
+        vibration: 300,
+        color: colors.BLUE,
+        userInfo: {
+          id: String(id),
+        },
+      };
+
+      // Submit pr to stop this madness.
+      if (Platform.OS === 'ios') {
+        notification.date = moment(until).format('YYYY-MM-DDTHH:mm:ss.sssZ');
+      } else if (Platform.OS === 'android') {
+        notification.date = new Date(until);
+      }
+
+      PushNotification.localNotificationSchedule(notification);
     }
 
     dispatch({

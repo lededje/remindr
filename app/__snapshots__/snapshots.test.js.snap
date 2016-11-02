@@ -334,10 +334,12 @@ exports[`Component snapshots renders the component 1`] = `
     placeholder="Add a task"
     style={
       Object {
-        "height": 19,
+        "borderBottomWidth": 0,
+        "padding": 0,
       }
     }
     testID="Add Task"
+    underlineColorAndroid="rgba(0, 0, 0, 0)"
     value="" />
   <View
     style={
