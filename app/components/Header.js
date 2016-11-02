@@ -3,12 +3,14 @@ import {
   StyleSheet,
   Text,
   View,
+  Platform,
 } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
     borderColor: '#d9dbdb',
     borderBottomWidth: 1,
+    paddingTop: Platform.OS === 'ios' ? 20 : 0,
   },
   title: {
     fontSize: 29,
