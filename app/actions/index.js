@@ -48,7 +48,7 @@ export function cancelNotification({ id }) {
 }
 
 export function changeTaskType({ id, type, animated = true }) {
-  if (type === 'DEFERRED') return setDeferringTask({ id });
+  if (type === 'DEFERRED' || type === 'CONFIGURE') return setDeferringTask({ id });
   if (type === 'CURRENT') cancelNotification({ id });
   return {
     type: types.CHANGE_TASK_TYPE,
