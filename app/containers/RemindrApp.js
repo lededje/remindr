@@ -59,7 +59,7 @@ export default class RemindrApp extends Component {
 
   @autobind
   onPushLocalNotification(notification) {
-    this.props.actions.changeTaskType({ type: 'CURRENT', id: parseInt(notification.id, 10) });
+    this.props.actions.cleanTasks();
   }
 
   filterAndSortTasks() {

@@ -79,19 +79,25 @@ export default function tasks(state = initialState, action = {}) {
         tasks: compact(state.tasks.map((task) => {
           const newTask = {
             ...task,
-            isAnimating: undefined,
           };
 
-          switch (task.type) {
+          delete newTask.isAnimating;
+
+          if (newTask.type === 'DEFERRED'
+            && moment(newTask.deferredUntil).isBefore(moment().format())) {
+            newTask.type = 'CURRENT';
+          }
+
+          switch (newTask.type) {
             case 'DEFERRED':
-              newTask.completedAt = undefined;
+              delete newTask.completedAt;
               break;
             case 'CURRENT':
-              newTask.completedAt = undefined;
-              newTask.deferredUntil = undefined;
+              delete newTask.completedAt;
+              delete newTask.deferredUntil;
               break;
             case 'DONE':
-              newTask.deferredUntil = undefined;
+              delete newTask.deferredUntil;
               break;
             case 'DELETED':
               return undefined;
