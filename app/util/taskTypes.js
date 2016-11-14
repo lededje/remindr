@@ -2,6 +2,12 @@ import icons from './icons';
 import colors from './colors';
 
 const taskTypes = {
+  CONFIGURE: {
+    id: 'CONFIGURE',
+    name: 'Configure',
+    color: colors.ORANGE,
+    icon: icons.SPANNER,
+  },
   DEFERRED: {
     id: 'DEFERRED',
     name: 'Deferred',
@@ -34,6 +40,12 @@ const taskTypes = {
   },
 };
 
-const flow = [taskTypes.DEFERRED, taskTypes.CURRENT, taskTypes.DONE, taskTypes.DELETED];
+const flow = [
+  taskTypes.CONFIGURE,
+  taskTypes.DEFERRED,
+  taskTypes.CURRENT,
+  taskTypes.DONE,
+  taskTypes.DELETED,
+];
 
 export { taskTypes as default, flow };

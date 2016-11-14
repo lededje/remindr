@@ -8,4 +8,5 @@ export default {
   TICK: '',
   CROSS: '',
   BELL: '',
+  SPANNER: '',
 };
