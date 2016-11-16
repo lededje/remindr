@@ -12,7 +12,7 @@ export default function tasks(state = initialState, action = {}) {
       return {
         ...initialState,
         alert: action.alert,
-        badge: action.badger,
+        badge: action.badge,
         sound: action.sound,
       };
     default:

@@ -1,5 +1,6 @@
 jest.mock('react-native-push-notification', () => ({
   localNotificationSchedule: jest.fn(),
+  cancelLocalNotifications: jest.fn(),
 }));
 
 jest.mock('moment', () => {
@@ -204,5 +205,15 @@ describe('actions', () => {
         });
       }, () => state);
     });
+  });
+
+  it('should unqueue the push notification', () => {
+    const args = { id: 6 };
+    const sheduleMock = require.requireMock('react-native-push-notification')
+    .cancelLocalNotifications;
+
+    actions.cancelNotification(args);
+
+    expect(sheduleMock).toHaveBeenCalledWith({ id: 6 });
   });
 });

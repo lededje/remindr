@@ -114,6 +114,100 @@ describe('Task Reducer', () => {
     expect(reducer(state, action)).toEqual(result);
   });
 
+  it('marks a tasks as not animating any longer', () => {
+    const state = {
+      tasks: [{
+        id: 1,
+        type: 'CURRENT',
+        isAnimating: true,
+      }],
+    };
+    const action = {
+      type: types.STOP_ANIMATING,
+      id: 1,
+    };
+    const result = {
+      tasks: [{
+        id: 1,
+        type: 'CURRENT',
+        isAnimating: false,
+      }],
+    };
+
+    deepFreeze(state);
+    expect(reducer(state, action)).toEqual(result);
+  });
+
+  it('marks a task as currently deferring', () => {
+    const state = {
+      tasks: [{
+        id: 1,
+        type: 'CURRENT',
+      }],
+    };
+    const action = {
+      type: types.SET_DEFERRING_TASK,
+      id: 1,
+    };
+    const result = {
+      tasks: [{
+        id: 1,
+        type: 'CURRENT',
+        deferring: true,
+      }],
+    };
+
+    deepFreeze(state);
+    expect(reducer(state, action)).toEqual(result);
+  });
+
+  it('clears a task as being deferring', () => {
+    const state = {
+      tasks: [{
+        id: 1,
+        type: 'CURRENT',
+      }],
+    };
+    const action = {
+      type: types.CLEAR_DEFERRING_TASK,
+      id: 1,
+    };
+    const result = {
+      tasks: [{
+        id: 1,
+        type: 'CURRENT',
+        deferring: false,
+      }],
+    };
+
+    deepFreeze(state);
+    expect(reducer(state, action)).toEqual(result);
+  });
+
+  it('defers a task', () => {
+    const state = {
+      tasks: [{
+        id: 1,
+        type: 'CURRENT',
+        deferring: true,
+      }],
+    };
+    const action = {
+      type: types.DEFER_TASK,
+      id: 1,
+    };
+    const result = {
+      tasks: [{
+        id: 1,
+        type: 'DEFERRED',
+        deferring: false,
+      }],
+    };
+
+    deepFreeze(state);
+    expect(reducer(state, action)).toEqual(result);
+  });
+
   describe('Clean Tasks', () => {
     const action = {
       type: types.CLEAN_TASKS,
