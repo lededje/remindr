@@ -1,41 +1,66 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {
   StyleSheet,
   View,
   Text,
   TouchableHighlight,
+  Dimensions,
 } from 'react-native';
-
 import moment from 'moment';
+import 'moment-round';
+import autobind from 'autobind-decorator';
 
-import { deferTypes, availableDeferOptions } from '../util/deferTypes';
+import SliderInput from './SliderInput';
 
-export default function DeferDialog(props) {
-  const delayTimes = availableDeferOptions();
+const deviceWidth = Dimensions.get('window').width;
 
-  return (
-    <TouchableHighlight onPress={props.onClose} style={styles.container}>
-      <View style={styles.dialog}>
-        {delayTimes.map(time => (
-          <TouchableHighlight
-            style={styles.option}
-            key={deferTypes[time].id}
-            onPress={props.onTimeChosen.bind(
-              null,
-              {
-                id: props.task.id,
-                until: deferTypes[time].calc(moment.now()),
-              },
-            )}
-            underlayColor={'orange'}
-            activeOpacity={1}
-          >
-            <Text style={styles.optionLabel}>{deferTypes[time].name}</Text>
-          </TouchableHighlight>
-        ))}
+const maxMacro = 14;
+const maxMicro = 24;
+
+export default class DeferDialog extends Component {
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      macro: 0,
+      micro: 0,
+    };
+  }
+
+  @autobind
+  updateMacro(macro) {
+    this.setState({ macro });
+  }
+
+  @autobind
+  updateMicro(micro) {
+    this.setState({ micro });
+  }
+
+  render() {
+    const time = moment()
+      .add(maxMacro * this.state.macro, 'days')
+      .minutes(((maxMicro * this.state.micro) - 13) * 60);
+
+    return (
+      <View onPress={this.props.onClose} style={styles.container}>
+        <View style={styles.dialog}>
+          <Text style={styles.label}>{time.round(15, 'minutes').calendar(null, {
+            sameElse: 'DD/MM/YYYY - hh:mm A',
+          })}</Text>
+          <SliderInput
+            labels={['Near', 'Far']}
+            onChange={this.updateMacro}
+          />
+          <SliderInput
+            labels={['Morning', 'Evening']}
+            onChange={this.updateMicro}
+          />
+        </View>
       </View>
-    </TouchableHighlight>
-  );
+    );
+  }
 }
 
 DeferDialog.propTypes = {
@@ -61,21 +86,13 @@ const styles = StyleSheet.create({
   },
   dialog: {
     borderRadius: 5,
-    flexDirection: 'row',
     flexWrap: 'wrap',
-    width: 90 * 3,
-  },
-  option: {
+    width: deviceWidth - 40,
     backgroundColor: '#fff',
-    padding: 10,
-    width: 90,
-    height: 90,
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderWidth: StyleSheet.hairlineWidth,
-    borderColor: 'rgba(0, 0, 0, 0.05)',
+    padding: 15,
   },
-  optionLabel: {
+  label: {
     textAlign: 'center',
+    marginBottom: 20,
   },
 });

@@ -3651,6 +3651,10 @@ module-deps@^3.9.1:
     through2 "^1.0.0"
     xtend "^4.0.0"
 
+moment-round:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/moment-round/-/moment-round-1.0.1.tgz#5baf2b752e85d0f6a227c0a16f6fbe107c2a2d39"
+
 moment@^2.15.1, moment@2.x.x:
   version "2.15.1"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.15.1.tgz#e979c2a29e22888e60f396f2220a6118f85cd94c"

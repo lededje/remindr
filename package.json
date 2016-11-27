@@ -21,6 +21,7 @@
     "lodash": "^4.16.4",
     "mockdate": "^1.0.4",
     "moment": "^2.15.1",
+    "moment-round": "^1.0.1",
     "react": "15.3.2",
     "react-native": "0.35.0",
     "react-native-keyboard-spacer": "^0.3.0",
