@@ -4,6 +4,8 @@
 
 # Remindr
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/lededje/remindr.svg)](https://greenkeeper.io/)
+
 A mobile app for forgetful people.
 
 ## Running the app
